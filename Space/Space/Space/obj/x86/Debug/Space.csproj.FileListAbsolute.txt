@@ -1,0 +1,9 @@
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Content\opfer.xnb
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Content\Pfeil.xnb
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Content\Teema space.xnb
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Space.exe
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Space.pdb
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\Space.exe
+C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\Space.pdb
