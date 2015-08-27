@@ -2,31 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>opfer.png</Source>
-      <Name>opfer</Name>
+      <Source>Teemo.png</Source>
+      <Name>Teemo</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Content\opfer.xnb</Output>
-      <Time>2013-08-07T21:09:29.4151049+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Pfeil.png</Source>
-      <Name>Pfeil</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Content\Pfeil.xnb</Output>
-      <Time>2013-08-07T21:09:29.4151049+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Teema space.png</Source>
-      <Name>Teema space</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Content\Teema space.xnb</Output>
-      <Time>2013-08-07T21:09:29.4201049+02:00</Time>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo.xnb</Output>
+      <Time>2015-08-27T20:58:56.1753855+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -35,10 +17,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\SpaceContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Julie\Desktop\Teemovaders\Space\Space\SpaceContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

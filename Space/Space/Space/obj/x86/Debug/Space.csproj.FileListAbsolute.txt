@@ -7,3 +7,10 @@ C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\ResolveAsse
 C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\Space.exe
 C:\Users\Julie\Desktop\SpaceInvaders\Space\Space\Space\obj\x86\Debug\Space.pdb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Space.exe
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Space.pdb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Space.csprojResolveAssemblyReference.cache
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Space.exe
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Space.pdb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo.xnb
