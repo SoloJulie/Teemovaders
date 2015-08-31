@@ -16,9 +16,13 @@ namespace Space
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        int zeile = 5;
+        int spalte = 4;
 
         Spieler spieler = new Spieler();
         Gegner gegner = new Gegner();
+        Hintergrund hin = new Hintergrund();
+        Schuss schuss = new Schuss();
 
 
         public Game1()
@@ -45,7 +49,21 @@ namespace Space
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             spieler.LoadContent(Content);     //Lade Spieler
-            gegner.LoadContent(Content);     //Lade Gegner
+
+
+
+            //Gegner nebeneinander zeichnen
+
+            for (int z = 0; z < zeile; z++)
+            {
+                for (int s = 0; s < spalte; s++)
+                {
+                    gegner.LoadContent(Content);     //Lade Gegner}
+                }
+            }
+            
+            hin.LoadContent(Content);
+            schuss.LoadContent(Content);
 
         }
 
@@ -65,6 +83,8 @@ namespace Space
 
             spieler.Update(gameTime);
             gegner.Update(gameTime);
+            hin.Update(gameTime);
+            schuss.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -75,8 +95,10 @@ namespace Space
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spieler.Draw(spriteBatch);
+            hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
+            spieler.Draw(spriteBatch);                 
             gegner.Draw(spriteBatch);
+            schuss.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

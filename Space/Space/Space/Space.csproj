@@ -74,9 +74,11 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Gegner.cs" />
+    <Compile Include="Hintergrund.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Schuss.cs" />
     <Compile Include="Spieler.cs" />
   </ItemGroup>
   <ItemGroup>
