@@ -10,6 +10,15 @@
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo.xnb</Output>
       <Time>2015-08-27T20:58:56.1753855+02:00</Time>
     </Item>
+    <Item>
+      <Source>opfer.png</Source>
+      <Name>opfer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer.xnb</Output>
+      <Time>2015-08-31T18:30:35.4730789+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{94DC18BC-D413-4259-90D6-CE0481B92FD4}</ContentProjectGUID>

@@ -14,3 +14,4 @@ C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Microsoft.Xna
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Space.exe
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Space.pdb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer.xnb

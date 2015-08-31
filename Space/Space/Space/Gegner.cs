@@ -9,27 +9,28 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Space
 {
-    public class Spieler
+    public class Gegner
     {
         public Texture2D textur;
         public Vector2 position;
         public int speed;
 
+
         //Kollision
         public Rectangle boundingBox;
         public bool kollision;
 
-        public Spieler()
+        public Gegner()
         {
             textur = null;
-            position = new Vector2(300, 400);
-            speed = 5;
+            position = new Vector2(300, 200);
+            speed = 2;
             kollision = false;
         }
 
         public void LoadContent(ContentManager Content)
         {
-            textur = Content.Load<Texture2D>("Teemo");
+            textur = Content.Load<Texture2D>("opfer");
         }
 
         //Draw
@@ -41,27 +42,6 @@ namespace Space
         //Update
         public void Update(GameTime gameTime)
         {
-            KeyboardState kb = Keyboard.GetState();
-
-            // Bewegung Teemo
-            if (kb.IsKeyDown(Keys.Left))
-                position.X = position.X - speed;
-
-            if (kb.IsKeyDown(Keys.Right))
-                position.X = position.X + speed;
-
-
-            //Spieler bleibt innerhalb des Bildschirms
-            if (position.X <= 0)
-                position.X = 0;
-
-            if (position.X >= 700 - textur.Width)
-                position.X = 700 - textur.Width;
-
-
-
-
         }
-
     }
 }
