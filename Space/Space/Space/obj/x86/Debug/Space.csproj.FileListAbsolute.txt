@@ -17,3 +17,4 @@ C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Hintergrund.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Schuss.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projectilrot.xnb

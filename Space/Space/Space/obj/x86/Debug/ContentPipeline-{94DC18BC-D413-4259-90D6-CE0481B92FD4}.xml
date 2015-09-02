@@ -37,6 +37,15 @@
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Schuss.xnb</Output>
       <Time>2015-08-31T23:05:41.5048514+02:00</Time>
     </Item>
+    <Item>
+      <Source>Projectilrot.png</Source>
+      <Name>Projectilrot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projectilrot.xnb</Output>
+      <Time>2015-09-03T00:33:12.7250644+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{94DC18BC-D413-4259-90D6-CE0481B92FD4}</ContentProjectGUID>

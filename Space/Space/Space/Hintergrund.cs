@@ -14,14 +14,13 @@ namespace Space
         public Texture2D textur;
         public Vector2 position;
 
+
         public Hintergrund()
         {
             textur = null;
             position = new Vector2(0, 0);
         }
 
-
-        //Content
         public void LoadContent(ContentManager Content)
         {
             textur = Content.Load<Texture2D>("Hintergrund");
@@ -33,6 +32,7 @@ namespace Space
             spriteBatch.Draw(textur, position, Color.White);
         }
 
+        //Update
         public void Update(GameTime gameTime)
         {
         }

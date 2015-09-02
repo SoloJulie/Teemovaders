@@ -19,10 +19,11 @@ namespace Space
         int zeile = 5;
         int spalte = 4;
 
-        Spieler spieler = new Spieler();
-        Gegner gegner = new Gegner();
-        Hintergrund hin = new Hintergrund();
-        Schuss schuss = new Schuss();
+        Spieler spieler;
+        Gegner gegner;
+        Hintergrund hin;
+
+        
 
 
         public Game1()
@@ -38,8 +39,9 @@ namespace Space
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            spieler = new Spieler();
+            gegner = new Gegner();
+            hin = new Hintergrund();
             base.Initialize();
         }
 
@@ -58,12 +60,13 @@ namespace Space
             {
                 for (int s = 0; s < spalte; s++)
                 {
-                    gegner.LoadContent(Content);     //Lade Gegner}
+                    gegner.LoadContent(Content);
+                   //Lade Gegner}
                 }
             }
             
             hin.LoadContent(Content);
-            schuss.LoadContent(Content);
+           
 
         }
 
@@ -84,7 +87,6 @@ namespace Space
             spieler.Update(gameTime);
             gegner.Update(gameTime);
             hin.Update(gameTime);
-            schuss.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -98,7 +100,6 @@ namespace Space
             hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
             spieler.Draw(spriteBatch);                 
             gegner.Draw(spriteBatch);
-            schuss.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

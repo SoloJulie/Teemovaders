@@ -9,23 +9,22 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Space
 {
-    class Schuss
+    public class Schuss
     {
         public Texture2D textur;
-        public Vector2 position;
+        public Vector2 position, origin;
+        public Rectangle boundingBox;
+        public bool isVisible;
+        public float pSpeed;
+    
 
-        public Schuss()
+        public Schuss(Texture2D newTexture)
         {
-            textur = null;
-            position = new Vector2(300,10);
+            pSpeed = 10;
+            textur = newTexture;
+            isVisible = false;
         }
-
-
-        //Content
-        public void LoadContent(ContentManager Content)
-        {
-            textur = Content.Load<Texture2D>("Schuss");
-        }
+                     
 
         //Draw
         public void Draw(SpriteBatch spriteBatch)
@@ -33,8 +32,7 @@ namespace Space
             spriteBatch.Draw(textur, position, Color.White);
         }
 
-        public void Update(GameTime gameTime)
-        {
-        }
+
+        
     }
 }
