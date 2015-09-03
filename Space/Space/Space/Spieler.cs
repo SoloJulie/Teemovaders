@@ -60,10 +60,9 @@ namespace Space
             if (pDelay <= 0)
             {
                 Schuss nProjektil = new Schuss(projektilTextur);
-                nProjektil.position = new Vector2(position.X + 32 - nProjektil.textur.Width / 2, position.Y + 32); //FAIL
+                nProjektil.position = new Vector2(position.X + 25 - nProjektil.textur.Width / 2, position.Y);
 
                 nProjektil.isVisible = true;
-
                 
                 //Maximal 20 Projektile zur selben Zeit möglich
                 if (schussListe.Count() < 20)
@@ -72,6 +71,7 @@ namespace Space
 
             if (pDelay == 0)
                 pDelay = 5;
+
         }
 
         //Update Schuss
@@ -91,7 +91,7 @@ namespace Space
             // wenn eine Kugel unsichtbar wird, entferne sie aus der Liste
             for (int i = 0; i < schussListe.Count; i++)
             {
-                if (schussListe[i].isVisible)
+                if (!schussListe[i].isVisible) 
                 {
                     schussListe.RemoveAt(i);
                     i--;

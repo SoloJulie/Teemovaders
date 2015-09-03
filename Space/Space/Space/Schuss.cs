@@ -20,9 +20,9 @@ namespace Space
 
         public Schuss(Texture2D newTexture)
         {
-            pSpeed = 10;
             textur = newTexture;
             isVisible = false;
+            pSpeed = 10;
         }
                      
 
@@ -30,9 +30,6 @@ namespace Space
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textur, position, Color.White);
-        }
-
-
-        
+        }        
     }
 }
