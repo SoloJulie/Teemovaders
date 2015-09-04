@@ -15,6 +15,9 @@ namespace Space
         public Vector2 position;
         public int speed;
 
+        int zeile = 5;
+        int spalte = 4; 
+
 
         //Kollision
         public Rectangle boundingBox;
@@ -23,7 +26,7 @@ namespace Space
         public Gegner()
         {
             textur = null;
-            position = new Vector2(300, 200);
+            position = new Vector2(300, 200);  // Erscheinungsposition
             speed = 2;
             kollision = false;
         }
@@ -37,11 +40,45 @@ namespace Space
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textur, position, Color.White);
+            //gegner[zeile, spalte].Draw(spriteBatch);
         }
 
         //Update
         public void Update(GameTime gameTime)
         {
+            //Gegner nebeneinander zeichnen
+            //for (int z = 0; z < zeile; z++)
+            //{
+            //    for (int s = 0; s < spalte; s++)
+            //    {
+            //        gegner[z, s].Update(gameTime);
+            //        //Lade Gegner}
+            //    }
+            //} 
         }
+
+        public Vector2 getPosition()
+        {
+            return position;
+        }
+
+        public void setPosition(int x, int y)
+        {
+            position.X = x;
+            position.Y = y;
+        }
+
+        public int getX()
+        {
+            return (int)position.X;
+        }
+
+        public int getY()
+        {
+            return (int)position.Y;
+        }
+
+
+
     }
 }

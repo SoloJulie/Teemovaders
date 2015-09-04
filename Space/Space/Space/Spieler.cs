@@ -14,19 +14,20 @@ namespace Space
         public Texture2D textur, projektilTextur;
         public Vector2 position;
         public int speed;
-        public float pDelay; //Verhindern von Dauerfeuer
+        public float pDelay, pD; //Verhindern von Dauerfeuer
         public Rectangle boundingBox;
         public bool kollision;
-        public List<Schuss> schussListe;
+        public List<Schuss> schussListe; //Liste um Projektile besser händeln zu können
 
         public Spieler()
         {
-            schussListe = new List<Schuss>();
+            schussListe = new List<Schuss>(); 
             textur = null;
-            position = new Vector2(300, 400);
+            position = new Vector2(300, 450);
             speed = 5;
             kollision = false;
-            pDelay = 5;
+            pD = 10; // Um änderungen in Schussmethode nicht 2mal durch Wert Ändern zu müssen, nur zur Wertanpassung / vereinfachung gedacht
+            pDelay = pD; 
         }
 
 
@@ -60,7 +61,7 @@ namespace Space
             if (pDelay <= 0)
             {
                 Schuss nProjektil = new Schuss(projektilTextur);
-                nProjektil.position = new Vector2(position.X + 25 - nProjektil.textur.Width / 2, position.Y);
+                nProjektil.position = new Vector2(position.X + 25 - nProjektil.textur.Width / 2, position.Y); //Schuss aus der Mitte von Teemo auslösen
 
                 nProjektil.isVisible = true;
                 
@@ -70,7 +71,7 @@ namespace Space
             }
 
             if (pDelay == 0)
-                pDelay = 5;
+                pDelay = pD;
 
         }
 
