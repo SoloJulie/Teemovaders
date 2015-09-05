@@ -40,10 +40,10 @@ namespace Space
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int d = 0; d < anzahl; d++)
-            {
-                gegner[d].Draw(spriteBatch);
-            }
+            //for (int d = 0; d < anzahl; d++)
+            //{
+            //    gegner[d].Draw(spriteBatch);
+            //}
         }
 
         //Update
@@ -62,7 +62,7 @@ namespace Space
                     {
                         int tempX = gegner[d].getX() + (20 * z);
                         int tempY = gegner[d].getY() + (20 * s);
-                        gegner[d].setPosition(tempX, tempY);
+                        //gegner[d].setPosition(tempX, tempY);
                         //Lade Gegner}
                     }
                 }

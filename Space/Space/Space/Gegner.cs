@@ -15,8 +15,8 @@ namespace Space
         public Vector2 position;
         public int speed;
 
-        int zeile = 5;
-        int spalte = 4; 
+        public List<Gegner> GegnerListe;
+
 
 
         //Kollision
@@ -26,9 +26,12 @@ namespace Space
         public Gegner()
         {
             textur = null;
-            position = new Vector2(300, 200);  // Erscheinungsposition
+            position = new Vector2();  // Erscheinungsposition
+            position.X = 0;
+            position.Y = 0;
             speed = 2;
             kollision = false;
+            GegnerListe = new List<Gegner>();
         }
 
         public void LoadContent(ContentManager Content)
@@ -39,22 +42,30 @@ namespace Space
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textur, position, Color.White);
-            //gegner[zeile, spalte].Draw(spriteBatch);
+            foreach (Gegner gegner in GegnerListe)
+            {
+                spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+            } 
         }
 
         //Update
         public void Update(GameTime gameTime)
         {
-            //Gegner nebeneinander zeichnen
-            //for (int z = 0; z < zeile; z++)
-            //{
-            //    for (int s = 0; s < spalte; s++)
-            //    {
-            //        gegner[z, s].Update(gameTime);
-            //        //Lade Gegner}
-            //    }
-            //} 
+            Sporn();
+        }
+
+        public void Sporn()
+        {
+            for (int y = 30; y <= 300; y += 60)
+            {
+                for (int x = 30; x <= 600; x += 60)
+                {
+                    Gegner gegner = new Gegner();
+                    GegnerListe.Add(gegner);
+                    gegner.setXPos(x);
+                    gegner.setYPos(y);
+                }
+            }
         }
 
         public Vector2 getPosition()
@@ -62,9 +73,13 @@ namespace Space
             return position;
         }
 
-        public void setPosition(int x, int y)
+        public void setXPos(int x)
         {
             position.X = x;
+        }
+
+        public void setYPos(int y)
+        {
             position.Y = y;
         }
 
@@ -76,6 +91,11 @@ namespace Space
         public int getY()
         {
             return (int)position.Y;
+        }
+
+        public Vector2 getPos()
+        {
+            return position;
         }
 
 

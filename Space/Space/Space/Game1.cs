@@ -22,7 +22,7 @@ namespace Space
         Gegner gegner;
         //Gegner[,] gegner = null;
         Hintergrund hin;
-        GegnerContainer gc;
+        //GegCont gc;
 
 
         int zeile = 5;
@@ -44,9 +44,8 @@ namespace Space
         {
             spieler = new Spieler();
             hin = new Hintergrund();
-            //Gegner[,] gegner = new Gegner[zeile, spalte];
             gegner = new Gegner();
-            gc = new GegnerContainer(zeile*spalte);
+            //gc = new GegCont();
 
             base.Initialize();
         }
@@ -58,7 +57,7 @@ namespace Space
             spriteBatch = new SpriteBatch(GraphicsDevice);
             gegner.LoadContent(Content);
             spieler.LoadContent(Content);     //Lade Spieler
-            gc.LoadContent(Content);
+            //gc.LoadContent(Content);
             hin.LoadContent(Content);
          }
 
@@ -77,19 +76,8 @@ namespace Space
                 this.Exit();
 
             spieler.Update(gameTime);
-            
-            //Gegner nebeneinander zeichnen
-            //for (int z = 0; z < zeile; z++)
-            //{
-            //    for (int s = 0; s < spalte; s++)
-            //    {
-            //        gegner[z, s].Update(gameTime);
-            //        //Lade Gegner}
-            //    }
-            //}
-
-            gc.Update(gameTime);
             hin.Update(gameTime);
+            gegner.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -101,12 +89,10 @@ namespace Space
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
-            spieler.Draw(spriteBatch);
-                  
-            
-
+                
             gegner.Draw(spriteBatch);
-            gc.Draw(spriteBatch);
+            spieler.Draw(spriteBatch);
+            //gc.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
