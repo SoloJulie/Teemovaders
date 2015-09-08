@@ -92,7 +92,7 @@ namespace Space
             // wenn eine Kugel unsichtbar wird, entferne sie aus der Liste
             for (int i = 0; i < schussListe.Count; i++)
             {
-                if (!schussListe[i].isVisible) 
+                if (!schussListe[i].isVisible) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
                 {
                     schussListe.RemoveAt(i);
                     i--;

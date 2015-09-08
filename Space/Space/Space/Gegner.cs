@@ -15,7 +15,6 @@ namespace Space
         public Vector2 position;
         public int speed;
 
-        public List<Gegner> GegnerListe;
 
 
 
@@ -31,7 +30,7 @@ namespace Space
             position.Y = 0;
             speed = 2;
             kollision = false;
-            GegnerListe = new List<Gegner>();
+            
         }
 
         public void LoadContent(ContentManager Content)
@@ -40,35 +39,23 @@ namespace Space
         }
 
         //Draw
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            foreach (Gegner gegner in GegnerListe)
-            {
-                spriteBatch.Draw(textur, gegner.getPos(), Color.White);
-            } 
-        }
+        //public void Draw(SpriteBatch spriteBatch)
+        //{
+        //    foreach (Gegner gegner in GegnerListe)
+        //    {
+        //        spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+        //    } 
+        //}
 
         //Update
         public void Update(GameTime gameTime)
         {
-            Sporn();
+            
         }
 
-        public void Sporn()
-        {
-            for (int y = 30; y <= 300; y += 60)
-            {
-                for (int x = 30; x <= 600; x += 60)
-                {
-                    Gegner gegner = new Gegner();
-                    GegnerListe.Add(gegner);
-                    gegner.setXPos(x);
-                    gegner.setYPos(y);
-                }
-            }
-        }
+        
 
-        public Vector2 getPosition()
+        public Vector2 getPos()
         {
             return position;
         }
@@ -91,11 +78,6 @@ namespace Space
         public int getY()
         {
             return (int)position.Y;
-        }
-
-        public Vector2 getPos()
-        {
-            return position;
         }
 
 

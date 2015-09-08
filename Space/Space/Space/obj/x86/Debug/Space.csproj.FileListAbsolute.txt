@@ -18,3 +18,4 @@ C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Hintergrund.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Schuss.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projectilrot.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Punkte.xnb

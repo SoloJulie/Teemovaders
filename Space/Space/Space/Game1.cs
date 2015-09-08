@@ -19,14 +19,14 @@ namespace Space
 
         Spieler spieler;
 
-        Gegner gegner;
-        //Gegner[,] gegner = null;
         Hintergrund hin;
-        //GegCont gc;
+        GegContainer gc;
 
+        private SpriteFont font;
+        private int punkte = 0;
+        
 
-        int zeile = 5;
-        int spalte = 4;       
+   
 
 
         public Game1()
@@ -44,8 +44,8 @@ namespace Space
         {
             spieler = new Spieler();
             hin = new Hintergrund();
-            gegner = new Gegner();
-            //gc = new GegCont();
+            gc = new GegContainer();
+
 
             base.Initialize();
         }
@@ -54,10 +54,10 @@ namespace Space
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            gegner.LoadContent(Content);
+            spriteBatch = new SpriteBatch(GraphicsDevice); 
+            font = Content.Load<SpriteFont>("Punkte");
             spieler.LoadContent(Content);     //Lade Spieler
-            //gc.LoadContent(Content);
+            gc.LoadContent(Content);
             hin.LoadContent(Content);
          }
 
@@ -77,7 +77,9 @@ namespace Space
 
             spieler.Update(gameTime);
             hin.Update(gameTime);
-            gegner.Update(gameTime);
+            //gegner.Update(gameTime);
+            gc.Update(gameTime);
+            punkte=gc.GegnerAnzahl();
 
             base.Update(gameTime);
         }
@@ -89,10 +91,10 @@ namespace Space
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
-                
-            gegner.Draw(spriteBatch);
+            
+            gc.Draw(spriteBatch);
             spieler.Draw(spriteBatch);
-            //gc.Draw(spriteBatch);
+            spriteBatch.DrawString(font, "Punkte: " + gc.GegnerAnzahl(), new Vector2(0, 0), Color.Black);
             spriteBatch.End();
 
             base.Draw(gameTime);

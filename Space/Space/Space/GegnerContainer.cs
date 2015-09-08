@@ -3,34 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+
 namespace Space
 {
-    public class GegnerContainer
+    public class GegContainer
     {
         public Texture2D textur;
-        Gegner[] gegner;
-        int zeile = 5;
-        int spalte = 4;
-        int anzahl = 0;
+        public Vector2 position;
+        public int speed;
+        public List<Gegner> GegnerListe ;
+        public int spalte; 
+        public int zeile, anzahl;
 
-
-        public GegnerContainer(int anzahl)
+        public GegContainer()
         {
-            gegner = new Gegner[anzahl];
-            this.anzahl = anzahl;
-
+            GegnerListe = new List<Gegner>();
+            zeile = 3;
+            spalte = 5;
+            anzahl = 0;
         }
 
-        public int getAnzahl()
-        {
-            return anzahl;
-        }
 
         public void LoadContent(ContentManager Content)
         {
@@ -40,37 +35,52 @@ namespace Space
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            //for (int d = 0; d < anzahl; d++)
-            //{
-            //    gegner[d].Draw(spriteBatch);
-            //}
+            foreach (Gegner gegner in GegnerListe)
+            {
+                spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+            }
+
         }
 
         //Update
         public void Update(GameTime gameTime)
         {
-            
+            //GegnerListe.Count();
+            Sporn();
+            //for (int z = 0; z < zeile; zr++)
+            //    for (int s = 0; c < spalte; s++)
+            //    {
+            //        if (direction.Equals("RIGHT"))
+            //            rectinvader[r, c].X = rectinvader[r, c].X + invaderspeed;
+            //        if (direction.Equals("LEFT"))
+            //            rectinvader[r, c].X = rectinvader[r, c].X - invaderspeed;
+            //    }
         }
 
         public void Sporn()
         {
-            for (int d = 0; d < anzahl; d++)
+            for (int a = 0; a <= 5; a++) // Listengröße
             {
-                for (int z = 0; z < zeile; z++)
+                for (int y = 0; y <= zeile; y++) //Beginn bei 20px Abstand oben, max px nach unten, 70px erhöhen ( Abstand zwischen Opfern)
                 {
-                    for (int s = 0; s < spalte; s++)
+                    for (int x = 0; x <= spalte; x++)
                     {
-                        int tempX = gegner[d].getX() + (20 * z);
-                        int tempY = gegner[d].getY() + (20 * s);
-                        //gegner[d].setPosition(tempX, tempY);
-                        //Lade Gegner}
+                        Gegner gegner = new Gegner();
+                        GegnerListe.Add(gegner);
+                        gegner.setXPos(x * 80);
+                        gegner.setYPos(y * 80);
+                        anzahl++;
                     }
-                }
+                }  
             }
         }
 
-
+        public int GegnerAnzahl()
+        {
+            return anzahl;
+        }
 
         
     }
+
 }
