@@ -37,16 +37,16 @@ namespace Space
         {
             foreach (Gegner gegner in GegnerListe)
             {
-                spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+                spriteBatch.Draw(textur, gegner.getPos(), Color.White);                
             }
-
+            //Sporn();
         }
 
         //Update
         public void Update(GameTime gameTime)
         {
             //GegnerListe.Count();
-            Sporn();
+            //Sporn();
             //for (int z = 0; z < zeile; zr++)
             //    for (int s = 0; c < spalte; s++)
             //    {
@@ -59,25 +59,22 @@ namespace Space
 
         public void Sporn()
         {
-            for (int a = 0; a <= 5; a++) // Listengröße
+            for (int y = 0; y <= zeile; y++) //Beginn bei 20px Abstand oben, max px nach unten, 70px erhöhen ( Abstand zwischen Opfern)
             {
-                for (int y = 0; y <= zeile; y++) //Beginn bei 20px Abstand oben, max px nach unten, 70px erhöhen ( Abstand zwischen Opfern)
+                for (int x = 0; x <= spalte; x++)
                 {
-                    for (int x = 0; x <= spalte; x++)
-                    {
-                        Gegner gegner = new Gegner();
-                        GegnerListe.Add(gegner);
-                        gegner.setXPos(x * 80);
-                        gegner.setYPos(y * 80);
-                        anzahl++;
-                    }
-                }  
-            }
-        }
+                    Gegner gegner = new Gegner();
+                    gegner.setXPos(x * 80);
+                    gegner.setYPos(y * 80);
+                    GegnerListe.Add(gegner);
+                }
+            }  
+         }
+        
 
         public int GegnerAnzahl()
         {
-            return anzahl;
+            return GegnerListe.Count();
         }
 
         

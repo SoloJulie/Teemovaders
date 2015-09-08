@@ -59,6 +59,7 @@ namespace Space
             spieler.LoadContent(Content);     //Lade Spieler
             gc.LoadContent(Content);
             hin.LoadContent(Content);
+            gc.Sporn();
          }
 
 
@@ -79,7 +80,6 @@ namespace Space
             hin.Update(gameTime);
             //gegner.Update(gameTime);
             gc.Update(gameTime);
-            punkte=gc.GegnerAnzahl();
 
             base.Update(gameTime);
         }
@@ -91,8 +91,9 @@ namespace Space
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
-            
             gc.Draw(spriteBatch);
+
+            punkte = gc.GegnerAnzahl();
             spieler.Draw(spriteBatch);
             spriteBatch.DrawString(font, "Punkte: " + gc.GegnerAnzahl(), new Vector2(0, 0), Color.Black);
             spriteBatch.End();
