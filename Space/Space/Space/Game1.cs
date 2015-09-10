@@ -20,7 +20,7 @@ namespace Space
         Spieler spieler;
 
         Hintergrund hin;
-        Gegner g;
+        GegnerContainer gc;
 
         private SpriteFont font;
         private int punkte = 0;
@@ -44,7 +44,7 @@ namespace Space
         {
             spieler = new Spieler();
             hin = new Hintergrund();
-            g = new Gegner();
+            gc = new GegnerContainer();
 
 
             base.Initialize();
@@ -57,9 +57,9 @@ namespace Space
             spriteBatch = new SpriteBatch(GraphicsDevice); 
             font = Content.Load<SpriteFont>("Punkte");
             spieler.LoadContent(Content);     //Lade Spieler
-            g.LoadContent(Content);
+            gc.LoadContent(Content);
             hin.LoadContent(Content);
-            g.Sporn();
+            gc.SpornRechteck();
          }
 
 
@@ -79,19 +79,23 @@ namespace Space
             spieler.Update(gameTime);
 
 
+            //Macht alle unsichtbar beim Kontakt
 
-
-            for (int i = 0; i < g.GegnerListe.Count; i++ )
+            foreach (Gegner gegner in gc.GegnerListe)
             {
-
-                if (g.boundingBox.Intersects(spieler.boundingBox))
+                foreach (Schuss s in spieler.getSchussListe())
                 {
-                    g.remove();
-                    g.Update(gameTime);
+                    if (gegner.isVisible && s.isVisible && gegner.getBounding().Intersects(s.boundingBox))
+                    {
+                        gegner.machUnsichtbar();
+                        s.isVisible = false;                        
+                        break;
+                    }
                 }
             }
-                    
+        
 
+            gc.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -103,11 +107,11 @@ namespace Space
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
-            g.Draw(spriteBatch);
+            gc.Draw(spriteBatch);
 
-            punkte = g.GegnerAnzahl();
+            punkte = gc.GegnerAnzahl();
             spieler.Draw(spriteBatch);
-            spriteBatch.DrawString(font, "Punkte: " + g.GegnerAnzahl(), new Vector2(0, 0), Color.Black);
+            spriteBatch.DrawString(font, "Punkte: " + gc.GegnerAnzahl(), new Vector2(0, 0), Color.Black);
             spriteBatch.End();
 
             base.Draw(gameTime);

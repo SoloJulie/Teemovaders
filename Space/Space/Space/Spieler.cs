@@ -24,7 +24,7 @@ namespace Space
         {
             schussListe = new List<Schuss>(); 
             textur = null;
-            position = new Vector2(100, 100); //Teemo Sporn 300,450 x,y
+            position = new Vector2(300, 450); //Teemo Sporn 300,450 x,y
             speed = 5;
             kollision = false;
             pD = 10; // Um änderungen in Schussmethode nicht 2mal durch Wert Ändern zu müssen, nur zur Wertanpassung / vereinfachung gedacht
@@ -108,6 +108,11 @@ namespace Space
 
         }
 
+        public List<Schuss> getSchussListe()
+        {
+            return schussListe;
+        }
+
 
         //Update (Keyboard einstellungen)
         public void Update(GameTime gameTime)
@@ -141,6 +146,7 @@ namespace Space
                 position.X = 700 - textur.Width;
 
         }
+
         
     }
 }

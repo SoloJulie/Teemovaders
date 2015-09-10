@@ -91,52 +91,28 @@ namespace Space
             return (int)position.Y;
         }
 
-        public void Sporn()
-        {
-            for (int y = 0; y <= zeile; y++) //Beginn bei 20px Abstand oben, max px nach unten, 70px erhöhen ( Abstand zwischen Opfern)
-            {
-                for (int x = 0; x <= spalte; x++)
-                {
-                    Gegner gegner = new Gegner();
-                    //boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
-                    isVisible = true;
-                    gegner.setXPos(x * 80);
-                    gegner.setYPos(y * 80);
-                    GegnerListe.Add(gegner);
-                }
-            }
-        }
-
-
         public int GegnerAnzahl()
         {
             return GegnerListe.Count();
         }
 
-        public void sichtbar()
+        public void machUnsichtbar()
         {
-            foreach (Gegner gegner in GegnerListe)
-            {
-                if (isVisible == false)
-                    GegnerListe.Remove(gegner);
-            }
-
+            isVisible = false;
         }
 
 
-        public void remove()
+        
+
+        public Rectangle getBounding()
         {
-            foreach (Gegner gegner in GegnerListe)
-            {
-                for (int i = 0; i < GegnerListe.Count; i++)
-                {
-                    if (!GegnerListe[i].isVisible) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
-                    {
-                        GegnerListe.RemoveAt(i);
-                        i--;
-                    }
-                }
-            }
+            return boundingBox;
         }
+
+        public bool visible()
+        {
+            return isVisible;
+        }
+
     }
 }
