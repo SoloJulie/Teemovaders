@@ -18,16 +18,18 @@ namespace Space
         public Rectangle boundingBox;
         public bool kollision;
         public List<Schuss> schussListe; //Liste um Projektile besser händeln zu können
+        public bool isVisible;
 
         public Spieler()
         {
             schussListe = new List<Schuss>(); 
             textur = null;
-            position = new Vector2(300, 450);
+            position = new Vector2(100, 100); //Teemo Sporn 300,450 x,y
             speed = 5;
             kollision = false;
             pD = 10; // Um änderungen in Schussmethode nicht 2mal durch Wert Ändern zu müssen, nur zur Wertanpassung / vereinfachung gedacht
-            pDelay = pD; 
+            pDelay = pD;
+            isVisible = true;
         }
 
 
@@ -80,6 +82,11 @@ namespace Space
         {
             foreach (Schuss p in schussListe)
             {
+                //Bounding Box um die Projektile
+                p.boundingBox = new Rectangle((int)p.position.X, (int)p.position.Y, p.textur.Width, p.textur.Height);
+                
+                
+                //Jedes Projektil mit Geschwindigkeit versehen
                 p.position.Y = p.position.Y - p.pSpeed;
 
                 
@@ -113,9 +120,12 @@ namespace Space
 
             if (kb.IsKeyDown(Keys.Right))
                 position.X = position.X + speed;
+            
+            //BoundingBox Spieler
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height); 
 
 
-            //Schuss bei Space
+            //Schuss bei Leertaste
             if (kb.IsKeyDown(Keys.Space))
             {
                 Schuss();
