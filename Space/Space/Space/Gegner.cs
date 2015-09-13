@@ -12,11 +12,12 @@ namespace Space
     public class Gegner
     {
         public Texture2D textur;
-        public Vector2 position;
+        public Vector2 position, bbposition;
         public int speed;
         public bool isVisible;
         public int spalte;
         public int zeile, anzahl;
+        
 
         public List<Gegner> GegnerListe;
 
@@ -31,11 +32,13 @@ namespace Space
             position.X = 0;
             position.Y = 0;
             speed = 2;
-            isVisible = true;
             GegnerListe = new List<Gegner>();
             zeile = 3;
             spalte = 5;
             anzahl = 0;
+            bbposition.X = position.X;
+            bbposition.Y = position.Y;
+
             
         }
 
@@ -101,18 +104,46 @@ namespace Space
             isVisible = false;
         }
 
+        public bool visible()
+        {
+            return isVisible;
+        }
 
         
 
         public Rectangle getBounding()
         {
             return boundingBox;
-        }
+        }      
 
-        public bool visible()
+
+        //BoundingBox Box positionen
+
+        public int getXbb()
         {
-            return isVisible;
+            return (int)bbposition.X;
         }
 
+        public int getYbb()
+        {
+            return (int)bbposition.Y;
+        }
+
+        public void setXbb(int x)
+        {
+            bbposition.X = x;
+        }
+
+        public void setYbb(int y)
+        {
+            bbposition.Y = y;
+        }
+
+        public Vector2 getbbPos()
+        {
+            return bbposition;
+        }
+
+        
     }
 }

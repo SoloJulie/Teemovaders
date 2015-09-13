@@ -12,7 +12,6 @@ namespace Space
     public class GegnerContainer
     {
         public Texture2D textur;
-        public Vector2 position;
         public int speed;
         public List<Gegner> GegnerListe;
         public int spalte;
@@ -34,7 +33,6 @@ namespace Space
         {
 
             textur = Content.Load<Texture2D>("opfer");
-            //boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
         }
 
         //Draw
@@ -52,7 +50,7 @@ namespace Space
         //Update
         public void Update(GameTime gameTime)
         {
-
+            bewegen();            
         }
 
         public void SpornRechteck()
@@ -65,7 +63,11 @@ namespace Space
                     gegner.isVisible = true;
                     gegner.setXPos(x * 80);
                     gegner.setYPos(y * 80);
+
+                    gegner.setXbb(x * 80);
+                    gegner.setYbb(y * 80);
                     gegner.boundingBox = new Rectangle((int)gegner.position.X, (int)gegner.position.Y, textur.Width, textur.Height);
+
                     GegnerListe.Add(gegner);
                 }
             }
@@ -90,13 +92,13 @@ namespace Space
         }
 
 
-        public void remove()
+        public void remove() //klappt noch nihct
         {
             foreach (Gegner gegner in GegnerListe)
             {
                 for (int i = 0; i < GegnerListe.Count; i++)
                 {
-                    if (!GegnerListe[i].isVisible) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
+                    if (GegnerListe[i].isVisible == false) 
                     {
                         GegnerListe.RemoveAt(i);
                         i--;
@@ -106,17 +108,43 @@ namespace Space
         }
 
 
-        //public void test()
-        //{
+        public void bewegen()
+        {
+            foreach (Gegner gegner in GegnerListe)
+            {
 
-        //    foreach (Gegner gegner in GegnerListe)
-        //    {
-        //        if (boundingBox.Intersects(spieler.boundingBox))
-        //        {
-        //            isVisible == false;
-        //        }
-        //    }
-        //}
+                gegner.setXPos(gegner.getX() + gegner.speed);
+                gegner.setXbb(gegner.getXbb() + gegner.speed);
+                
+                //gegner.setXbb(gegner.getX());
+                    
+                
+
+                //if (gegner.getX() >= 700)
+                //{
+                //    break;
+                //}
+
+                
+            }      
+                       
+           
+        }
+
+        public void zurueck()
+        {
+            foreach (Gegner gegner in GegnerListe)
+            {
+                if (gegner.getX() >= 700)
+                {
+                    break;
+                }
+
+            }
+        }
+
+
+
     }
 
 }
