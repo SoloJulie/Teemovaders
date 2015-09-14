@@ -23,10 +23,7 @@ namespace Space
         GegnerContainer gc;
 
         private SpriteFont font;
-        private int punkte = 0;
-        
-
-   
+        private int punkte = 0;   
 
 
         public Game1()
@@ -85,11 +82,18 @@ namespace Space
             {
                 foreach (Schuss s in spieler.getSchussListe())
                 {
-                    if (gegner.isVisible && s.isVisible && gegner.getBounding().Intersects(s.boundingBox))
+                    if (gegner.isVisible && s.isVisible)
                     {
-                        gegner.machUnsichtbar();
-                        s.isVisible = false;                        
-                        break;
+                        gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.textur.Width, gc.textur.Height);
+                        
+
+                        if (s.boundingBox.Intersects(gc.boundingBox))
+                        {                        
+                            gegner.machUnsichtbar();
+                            s.isVisible = false;
+                            gc.anzahl--;
+                            break;
+                        }
                     }
                 }
             }
@@ -111,7 +115,7 @@ namespace Space
 
             punkte = gc.GegnerAnzahl();
             spieler.Draw(spriteBatch);
-            spriteBatch.DrawString(font, "Punkte: " + gc.GegnerAnzahl(), new Vector2(0, 0), Color.Black);
+            spriteBatch.DrawString(font, "Punkte: " + gc.anzahl, new Vector2(0, 0), Color.Black);
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -13,13 +13,12 @@ namespace Space
     {
         public Texture2D textur;
         public Vector2 position, bbposition;
-        public int speed;
-        public bool isVisible;
+        public int speed, tempBew;
+        public bool isVisible, zurueck;
         public int spalte;
-        public int zeile, anzahl;
-        
-
+        public int zeile, anzahl;     
         public List<Gegner> GegnerListe;
+        public int type; //Für Gegnertypdeklaration
 
         //Kollision
         public Rectangle boundingBox;
@@ -35,10 +34,10 @@ namespace Space
             GegnerListe = new List<Gegner>();
             zeile = 3;
             spalte = 5;
+            tempBew = 0;
+            zurueck = false;
             anzahl = 0;
-            bbposition.X = position.X;
-            bbposition.Y = position.Y;
-
+            type = 0;
             
         }
 
@@ -46,8 +45,8 @@ namespace Space
         //Content
         public void LoadContent(ContentManager Content)
         {
-            textur = Content.Load<Texture2D>("opfer");
-            boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
+            //textur = Content.Load<Texture2D>("opfer");
+            //boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
             
         }
 
@@ -55,10 +54,10 @@ namespace Space
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Gegner gegner in GegnerListe)
-            {
-                spriteBatch.Draw(textur, gegner.getPos(), Color.White);
-            }
+            //foreach (Gegner gegner in GegnerListe)
+            //{
+            //    spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+            //}
         }
 
         //Update leer
@@ -116,33 +115,7 @@ namespace Space
             return boundingBox;
         }      
 
-
-        //BoundingBox Box positionen
-
-        public int getXbb()
-        {
-            return (int)bbposition.X;
-        }
-
-        public int getYbb()
-        {
-            return (int)bbposition.Y;
-        }
-
-        public void setXbb(int x)
-        {
-            bbposition.X = x;
-        }
-
-        public void setYbb(int y)
-        {
-            bbposition.Y = y;
-        }
-
-        public Vector2 getbbPos()
-        {
-            return bbposition;
-        }
+        
 
         
     }

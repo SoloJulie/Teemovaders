@@ -12,26 +12,30 @@ namespace Space
     public class GegnerContainer
     {
         public Texture2D textur;
-        public int speed;
+        public int speed, maxBew, tempBew;
         public List<Gegner> GegnerListe;
         public int spalte;
         public int zeile, anzahl;
         public Rectangle boundingBox;
-        public bool isVisible;
+        public bool isVisible, zurueck, runter;
+  
 
         public GegnerContainer()
         {
             GegnerListe = new List<Gegner>();
+            maxBew = 250;
+            tempBew = 0;
             zeile = 3;
             spalte = 5;
             anzahl = 0;
             isVisible = true;
+            zurueck = false;
+            runter = false;
         }
 
 
         public void LoadContent(ContentManager Content)
         {
-
             textur = Content.Load<Texture2D>("opfer");
         }
 
@@ -42,7 +46,15 @@ namespace Space
             {
                 if (gegner.visible())
                 {
-                    spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+                    if (gegner.type == 0) //welcher Gegnertyp wird gezeichnet
+                    {
+                        spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+                    }
+
+                    else
+                    {
+                        spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+                    }
                 }
             }
         }
@@ -64,11 +76,11 @@ namespace Space
                     gegner.setXPos(x * 80);
                     gegner.setYPos(y * 80);
 
-                    gegner.setXbb(x * 80);
-                    gegner.setYbb(y * 80);
-                    gegner.boundingBox = new Rectangle((int)gegner.position.X, (int)gegner.position.Y, textur.Width, textur.Height);
+                   
+                    //gegner.boundingBox = new Rectangle((int)gegner.position.X, (int)gegner.position.Y, textur.Width, textur.Height);
 
                     GegnerListe.Add(gegner);
+                    anzahl++;
                 }
             }
         }
@@ -92,56 +104,64 @@ namespace Space
         }
 
 
-        public void remove() //klappt noch nihct
+        public void remove() 
         {
-            foreach (Gegner gegner in GegnerListe)
+            
+            for (int i = 0; i < GegnerListe.Count; i++)
             {
-                for (int i = 0; i < GegnerListe.Count; i++)
+                if (GegnerListe.ElementAt(i).isVisible == false) 
                 {
-                    if (GegnerListe[i].isVisible == false) 
-                    {
-                        GegnerListe.RemoveAt(i);
-                        i--;
-                    }
+                    GegnerListe.RemoveAt(i);
+                    break;
                 }
             }
+            
         }
 
 
         public void bewegen()
         {
+            if (runter == true)  //Runter gehen
+            {
+                foreach (Gegner tempGegner in GegnerListe)
+                {
+                    tempGegner.setYPos(tempGegner.getY() + 10);
+                }
+                runter = false; 
+            }
+
             foreach (Gegner gegner in GegnerListe)
             {
+                if (gegner.zurueck == false)
+                {
+                    gegner.setXPos(gegner.getX() + gegner.speed);
+                    gegner.tempBew += gegner.speed;
 
-                gegner.setXPos(gegner.getX() + gegner.speed);
-                gegner.setXbb(gegner.getXbb() + gegner.speed);
-                
-                //gegner.setXbb(gegner.getX());
-                    
-                
+                    if (gegner.tempBew == maxBew)
+                    {
+                        gegner.tempBew = 0; //für jeden Gegner einzeln prüfen
+                        gegner.zurueck = true;
+                        runter = true;
+                    }
+                }
 
-                //if (gegner.getX() >= 700)
-                //{
-                //    break;
-                //}
+                else
+                {
+                    gegner.setXPos(gegner.getX() - gegner.speed);
+                    gegner.tempBew += gegner.speed;
 
-                
-            }      
-                       
+                    if (gegner.tempBew == maxBew)
+                    {
+                        gegner.tempBew = 0;
+                        gegner.zurueck = false;
+                        runter = true;                        
+                    }
+                }                
+            }                     
            
         }
 
-        public void zurueck()
-        {
-            foreach (Gegner gegner in GegnerListe)
-            {
-                if (gegner.getX() >= 700)
-                {
-                    break;
-                }
-
-            }
-        }
+       
 
 
 
