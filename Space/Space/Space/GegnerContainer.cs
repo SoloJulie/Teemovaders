@@ -14,8 +14,8 @@ namespace Space
         public Texture2D textur;
         public int speed, maxBew, tempBew;
         public List<Gegner> GegnerListe;
-        public int spalte;
-        public int zeile, anzahl;
+        public int spalte, zeile;
+        public int anzahl;
         public Rectangle boundingBox;
         public bool isVisible, zurueck, runter;
   
@@ -51,6 +51,7 @@ namespace Space
                         spriteBatch.Draw(textur, gegner.getPos(), Color.White);
                     }
 
+                    
                     else
                     {
                         spriteBatch.Draw(textur, gegner.getPos(), Color.White);
@@ -134,15 +135,17 @@ namespace Space
             {
                 if (gegner.zurueck == false)
                 {
-                    gegner.setXPos(gegner.getX() + gegner.speed);
-                    gegner.tempBew += gegner.speed;
-
-                    if (gegner.tempBew == maxBew)
+                    gegner.setXPos(gegner.getX() + gegner.speed); //eigentliche Bewegung für jeden Gegner
+                    gegner.tempBew += gegner.speed; //Wert um Position nicht Bildschirm überschreiten zu lassen
+                        
+                    
+                    // Gegner nicht aus Bildschirm
+                    if (gegner.tempBew == maxBew) 
                     {
                         gegner.tempBew = 0; //für jeden Gegner einzeln prüfen
                         gegner.zurueck = true;
                         runter = true;
-                    }
+                    }                    
                 }
 
                 else

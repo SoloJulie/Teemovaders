@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer.xnb</Output>
-      <Time>2015-08-31T18:30:35.4730789+02:00</Time>
+      <Time>2015-09-18T15:52:50.2715288+02:00</Time>
     </Item>
     <Item>
       <Source>Hintergrund.jpg</Source>
@@ -27,15 +27,6 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Hintergrund.xnb</Output>
       <Time>2015-08-31T22:56:52.6966053+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Schuss.png</Source>
-      <Name>Schuss</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Schuss.xnb</Output>
-      <Time>2015-08-31T23:05:41.5048514+02:00</Time>
     </Item>
     <Item>
       <Source>Projectilrot.png</Source>
@@ -54,6 +45,42 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Punkte.xnb</Output>
       <Time>2015-09-08T02:21:31.5959583+02:00</Time>
+    </Item>
+    <Item>
+      <Source>opfer g rot.png</Source>
+      <Name>opfer g rot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer g rot.xnb</Output>
+      <Time>2015-09-18T15:52:50.2665285+02:00</Time>
+    </Item>
+    <Item>
+      <Source>opfer g.png</Source>
+      <Name>opfer g</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer g.xnb</Output>
+      <Time>2015-09-18T15:52:50.2685286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>opfer r.png</Source>
+      <Name>opfer r</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer r.xnb</Output>
+      <Time>2015-09-18T15:52:50.2695286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Pilz.png</Source>
+      <Name>Pilz</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Pilz.xnb</Output>
+      <Time>2015-09-18T17:08:46.0901067+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

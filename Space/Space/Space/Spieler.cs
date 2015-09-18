@@ -16,7 +16,6 @@ namespace Space
         public int speed;
         public float pDelay, pD; //Verhindern von Dauerfeuer
         public Rectangle boundingBox;
-        public bool kollision;
         public List<Schuss> schussListe; //Liste um Projektile besser händeln zu können
         public bool isVisible;
 
@@ -26,7 +25,6 @@ namespace Space
             textur = null;
             position = new Vector2(300, 450); //Teemo Sporn 300,450 x,y
             speed = 5;
-            kollision = false;
             pD = 10; // Um änderungen in Schussmethode nicht 2mal durch Wert Ändern zu müssen, nur zur Wertanpassung / vereinfachung gedacht
             pDelay = pD;
             isVisible = true;

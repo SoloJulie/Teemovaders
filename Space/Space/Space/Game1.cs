@@ -22,6 +22,8 @@ namespace Space
         Hintergrund hin;
         GegnerContainer gc;
 
+        Item item;
+
         private SpriteFont font;
         private int punkte = 0;   
 
@@ -42,6 +44,7 @@ namespace Space
             spieler = new Spieler();
             hin = new Hintergrund();
             gc = new GegnerContainer();
+            item = new Item();
 
 
             base.Initialize();
@@ -55,6 +58,7 @@ namespace Space
             font = Content.Load<SpriteFont>("Punkte");
             spieler.LoadContent(Content);     //Lade Spieler
             gc.LoadContent(Content);
+            item.LoadContent(Content);
             hin.LoadContent(Content);
             gc.SpornRechteck();
          }
@@ -85,10 +89,10 @@ namespace Space
                     if (gegner.isVisible && s.isVisible)
                     {
                         gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.textur.Width, gc.textur.Height);
-                        
+
 
                         if (s.boundingBox.Intersects(gc.boundingBox))
-                        {                        
+                        {
                             gegner.machUnsichtbar();
                             s.isVisible = false;
                             gc.anzahl--;
@@ -96,8 +100,20 @@ namespace Space
                         }
                     }
                 }
+
+
+                if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox))
+                {
+                    if (gegner.type == 1)
+                    {
+
+                    }
+                    
+                }
             }
-        
+
+
+            item.Update(gameTime);
 
             gc.Update(gameTime);
 
@@ -112,6 +128,7 @@ namespace Space
             spriteBatch.Begin();
             hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
             gc.Draw(spriteBatch);
+            item.Draw(spriteBatch);
 
             punkte = gc.GegnerAnzahl();
             spieler.Draw(spriteBatch);
