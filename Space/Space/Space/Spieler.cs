@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Space
 {
@@ -18,6 +19,9 @@ namespace Space
         public Rectangle boundingBox;
         public List<Schuss> schussListe; //Liste um Projektile besser händeln zu können
         public bool isVisible;
+        public SoundEffect effect;
+
+
 
         public Spieler()
         {
@@ -34,7 +38,7 @@ namespace Space
         public void LoadContent(ContentManager Content)
         {
             textur = Content.Load<Texture2D>("Teemo");
-            projektilTextur = Content.Load<Texture2D>("Projectilrot");
+            projektilTextur = Content.Load<Texture2D>("Projectilrot");  
         }
 
         //Draw
@@ -64,6 +68,7 @@ namespace Space
                 nProjektil.position = new Vector2(position.X + 25 - nProjektil.textur.Width / 2, position.Y); //Schuss aus der Mitte von Teemo auslösen
 
                 nProjektil.isVisible = true;
+
                 
                 //Maximal 20 Projektile zur selben Zeit möglich
                 if (schussListe.Count() < 20)

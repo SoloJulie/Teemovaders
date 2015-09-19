@@ -8,34 +8,28 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
 namespace Space
 {
-    public class Item
+    public class Schutzpilz
     {
-        public Texture2D textur;
+        public Texture2D textur,t2;
         public Vector2 position;
-        public int ispeed;
         public Rectangle boundingBox;
         public bool isVisible;
         public int iTyp;
 
 
-        public Item()
+        public Schutzpilz()
         {
             textur = null;
-            position = new Vector2(0,0);
-            ispeed = 1;
+            position = new Vector2(0, 350);
             isVisible = true;
-            position.X = 0;
-            position.Y = 0;
-            iTyp = 1;
 
         }
 
         public void LoadContent(ContentManager Content)
         {
-            textur = Content.Load<Texture2D>("Pilz");
+            textur = Content.Load<Texture2D>("P1");
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -46,35 +40,17 @@ namespace Space
         public void Update(GameTime gameTime)
         {
             boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
-            fallen();
         }
 
-        public int getX()
-        {
-            return (int)position.X;
-        }
 
-        public int getY()
-        {
-            return (int)position.Y;
-        }
 
-        public void setXPos(int x)
-        {
-            position.X = x;
-        }
+        //public void schutz()
+        //{
+        //    for (int i = 0; i<=9; i++)
+        //    {
+            
+        //    position.Y = 400;
 
-        public void setYPos(int y)
-        {
-            position.Y = y;
-        }
-
-        public void fallen()
-        {
-            setYPos(getY() + ispeed);
-        }
-
-        
-
+        //}
     }
 }

@@ -65,15 +65,6 @@
       <Time>2015-09-18T15:52:50.2685286+02:00</Time>
     </Item>
     <Item>
-      <Source>opfer r.png</Source>
-      <Name>opfer r</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer r.xnb</Output>
-      <Time>2015-09-18T15:52:50.2695286+02:00</Time>
-    </Item>
-    <Item>
       <Source>Pilz.png</Source>
       <Name>Pilz</Name>
       <Importer>TextureImporter</Importer>
@@ -81,6 +72,42 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Pilz.xnb</Output>
       <Time>2015-09-18T17:08:46.0901067+02:00</Time>
+    </Item>
+    <Item>
+      <Source>opfer r.png</Source>
+      <Name>opferR</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opferR.xnb</Output>
+      <Time>2015-09-18T15:52:50.2695286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>P1.png</Source>
+      <Name>P1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P1.xnb</Output>
+      <Time>2015-09-19T17:42:38.7909374+02:00</Time>
+    </Item>
+    <Item>
+      <Source>P2.png</Source>
+      <Name>P2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P2.xnb</Output>
+      <Time>2015-09-19T17:42:38.7929375+02:00</Time>
+    </Item>
+    <Item>
+      <Source>4.wav</Source>
+      <Name>4</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\4.xnb</Output>
+      <Time>2015-09-19T18:35:48.215362+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -11,7 +11,7 @@ namespace Space
 {
     public class GegnerContainer
     {
-        public Texture2D textur;
+        public Texture2D textur, t2;
         public int speed, maxBew, tempBew;
         public List<Gegner> GegnerListe;
         public int spalte, zeile;
@@ -37,6 +37,7 @@ namespace Space
         public void LoadContent(ContentManager Content)
         {
             textur = Content.Load<Texture2D>("opfer");
+            t2 = Content.Load<Texture2D>("opferR");
         }
 
         //Draw
@@ -46,7 +47,7 @@ namespace Space
             {
                 if (gegner.visible())
                 {
-                    if (gegner.type == 0) //welcher Gegnertyp wird gezeichnet
+                    if (gegner.gtyp == 0) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(textur, gegner.getPos(), Color.White);
                     }
@@ -54,7 +55,7 @@ namespace Space
                     
                     else
                     {
-                        spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+                        spriteBatch.Draw(t2, gegner.getPos(), Color.White);
                     }
                 }
             }
@@ -163,6 +164,7 @@ namespace Space
             }                     
            
         }
+
 
        
 

@@ -18,11 +18,8 @@ namespace Space
         public int spalte;
         public int zeile, anzahl;     
         public List<Gegner> GegnerListe;
-        public int type; //Für Gegnertypdeklaration
-
-        //Kollision
+        public int gtyp; //Für Gegnertypdeklaration
         public Rectangle boundingBox;
-        public bool kollision;
 
         public Gegner()
         {
@@ -37,7 +34,7 @@ namespace Space
             tempBew = 0;
             zurueck = false;
             anzahl = 0;
-            type = 0;
+            gtyp = 0;
             
         }
 
@@ -113,7 +110,13 @@ namespace Space
         public Rectangle getBounding()
         {
             return boundingBox;
-        }      
+        }
+
+
+        public void setTyp(int t)
+        {
+            gtyp = t;
+        }
 
         
 

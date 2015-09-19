@@ -23,6 +23,9 @@ namespace Space
         GegnerContainer gc;
 
         Item item;
+        Schutzpilz schutz;
+
+        private SoundEffect effect;
 
         private SpriteFont font;
         private int punkte = 0;   
@@ -45,7 +48,7 @@ namespace Space
             hin = new Hintergrund();
             gc = new GegnerContainer();
             item = new Item();
-
+            schutz = new Schutzpilz();
 
             base.Initialize();
         }
@@ -61,6 +64,8 @@ namespace Space
             item.LoadContent(Content);
             hin.LoadContent(Content);
             gc.SpornRechteck();
+            schutz.LoadContent(Content);
+            effect = Content.Load<SoundEffect>("4");
          }
 
 
@@ -78,6 +83,9 @@ namespace Space
                 this.Exit();
 
             spieler.Update(gameTime);
+            item.Update(gameTime);
+            //schutz.Update(gameTime);
+
 
 
             //Macht alle unsichtbar beim Kontakt
@@ -94,26 +102,30 @@ namespace Space
                         if (s.boundingBox.Intersects(gc.boundingBox))
                         {
                             gegner.machUnsichtbar();
+                            effect.Play();
                             s.isVisible = false;
                             gc.anzahl--;
                             break;
                         }
+
+
+
+                        // ändert gegner Typ und Gegner Aussehen
+                        if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox))
+                        {
+                            if (gegner.gtyp != 1)
+                            {
+                                gegner.setTyp(item.iTyp);
+                                gc.Draw(spriteBatch);
+                            }
+                        }
                     }
-                }
-
-
-                if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox))
-                {
-                    if (gegner.type == 1)
-                    {
-
-                    }
-                    
                 }
             }
 
 
-            item.Update(gameTime);
+
+            
 
             gc.Update(gameTime);
 
@@ -129,6 +141,7 @@ namespace Space
             hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
             gc.Draw(spriteBatch);
             item.Draw(spriteBatch);
+            schutz.Draw(spriteBatch);
 
             punkte = gc.GegnerAnzahl();
             spieler.Draw(spriteBatch);
