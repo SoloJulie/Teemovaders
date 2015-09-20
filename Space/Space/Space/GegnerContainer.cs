@@ -52,10 +52,9 @@ namespace Space
                         spriteBatch.Draw(textur, gegner.getPos(), Color.White);
                     }
 
-                    
-                    else
+                    else if (gegner.gtyp == 1) //welcher Gegnertyp wird gezeichnet
                     {
-                        spriteBatch.Draw(t2, gegner.getPos(), Color.White);
+                         spriteBatch.Draw(t2, gegner.getPos(), Color.White);
                     }
                 }
             }

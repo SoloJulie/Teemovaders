@@ -25,3 +25,10 @@ C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P1.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P2.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\4.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P3.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\p4.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P5.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P6.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P7.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P8.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P9.xnb

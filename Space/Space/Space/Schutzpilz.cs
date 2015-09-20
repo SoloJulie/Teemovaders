@@ -12,7 +12,7 @@ namespace Space
 {
     public class Schutzpilz
     {
-        public Texture2D textur,t2;
+        public Texture2D t1,t2,t3,t4,t5,t6,t7,t8,t9,tex;
         public Vector2 position;
         public Rectangle boundingBox;
         public bool isVisible;
@@ -21,36 +21,51 @@ namespace Space
 
         public Schutzpilz()
         {
-            textur = null;
-            position = new Vector2(0, 350);
-            isVisible = true;
+            position = new Vector2(0, 0);
+            isVisible = true;        
+            
 
         }
 
         public void LoadContent(ContentManager Content)
         {
-            textur = Content.Load<Texture2D>("P1");
+            t1 = Content.Load<Texture2D>("P1");
+            t2 = Content.Load<Texture2D>("P2");
+            t3 = Content.Load<Texture2D>("P3");
+            t4 = Content.Load<Texture2D>("P4");
+            t5 = Content.Load<Texture2D>("P5");
+            t6 = Content.Load<Texture2D>("P6");
+            t7 = Content.Load<Texture2D>("P7");
+            t8 = Content.Load<Texture2D>("P8");
+            t9 = Content.Load<Texture2D>("P9");
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textur, position, Color.White);
+            Texture2D[] tex = new Texture2D[] { t1, t2, t3, t4, t5, t6, t7, t8, t9 };
+            
+            position.X = 0;
+            position.Y = 350;
+            int z = 0;
+
+            for (int i = 0; i < tex.Length/3; i++)
+            {
+                for (int j = 0; j < tex.Length/3; j++)
+                {
+                    spriteBatch.Draw(tex[z], position, Color.White);
+                    position.X += 43;
+                    z++;
+                }
+                   position.Y += 44;
+                   position.X =0; //X Wert zurücksetzen
+            }
         }
 
         public void Update(GameTime gameTime)
         {
-            boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
         }
 
 
 
-        //public void schutz()
-        //{
-        //    for (int i = 0; i<=9; i++)
-        //    {
-            
-        //    position.Y = 400;
-
-        //}
     }
 }

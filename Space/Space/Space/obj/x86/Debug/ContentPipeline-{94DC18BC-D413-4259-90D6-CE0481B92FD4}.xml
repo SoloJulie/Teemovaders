@@ -109,6 +109,69 @@
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\4.xnb</Output>
       <Time>2015-09-19T18:35:48.215362+02:00</Time>
     </Item>
+    <Item>
+      <Source>P3.png</Source>
+      <Name>P3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P3.xnb</Output>
+      <Time>2015-09-20T20:45:00.2408984+02:00</Time>
+    </Item>
+    <Item>
+      <Source>p4.png</Source>
+      <Name>p4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\p4.xnb</Output>
+      <Time>2015-09-20T20:45:00.2428986+02:00</Time>
+    </Item>
+    <Item>
+      <Source>P5.png</Source>
+      <Name>P5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P5.xnb</Output>
+      <Time>2015-09-20T20:45:00.2438986+02:00</Time>
+    </Item>
+    <Item>
+      <Source>P6.png</Source>
+      <Name>P6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P6.xnb</Output>
+      <Time>2015-09-20T20:45:00.2448987+02:00</Time>
+    </Item>
+    <Item>
+      <Source>P7.png</Source>
+      <Name>P7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P7.xnb</Output>
+      <Time>2015-09-20T20:45:00.2468988+02:00</Time>
+    </Item>
+    <Item>
+      <Source>P8.png</Source>
+      <Name>P8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P8.xnb</Output>
+      <Time>2015-09-20T20:45:00.2478988+02:00</Time>
+    </Item>
+    <Item>
+      <Source>P9.png</Source>
+      <Name>P9</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P9.xnb</Output>
+      <Time>2015-09-20T20:45:00.2398984+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{94DC18BC-D413-4259-90D6-CE0481B92FD4}</ContentProjectGUID>

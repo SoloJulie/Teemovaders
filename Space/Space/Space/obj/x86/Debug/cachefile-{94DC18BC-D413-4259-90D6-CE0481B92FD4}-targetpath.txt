@@ -10,3 +10,10 @@ Content\opferR.xnb
 Content\P1.xnb
 Content\P2.xnb
 Content\4.xnb
+Content\P3.xnb
+Content\p4.xnb
+Content\P5.xnb
+Content\P6.xnb
+Content\P7.xnb
+Content\P8.xnb
+Content\P9.xnb

@@ -92,13 +92,13 @@ namespace Space
 
             foreach (Gegner gegner in gc.GegnerListe)
             {
+                //Erstelle bounding box immer neu für jeden Gegner an jeder position pro frame
+                gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.textur.Width, gc.textur.Height);
+
                 foreach (Schuss s in spieler.getSchussListe())
                 {
                     if (gegner.isVisible && s.isVisible)
-                    {
-                        gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.textur.Width, gc.textur.Height);
-
-
+                    {                
                         if (s.boundingBox.Intersects(gc.boundingBox))
                         {
                             gegner.machUnsichtbar();
@@ -106,18 +106,23 @@ namespace Space
                             s.isVisible = false;
                             gc.anzahl--;
                             break;
-                        }
+                        }                        
+                    }
+                }
 
+                //BoundingBox für Item
+                item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.textur.Width, item.textur.Height); 
 
+                // ändert Gegner Typ und Gegner Aussehen
+                if (item.isVisible == true)
+                {
+                    if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox))
+                    {
 
-                        // ändert gegner Typ und Gegner Aussehen
-                        if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox))
+                        if (gegner.gtyp != 1)
                         {
-                            if (gegner.gtyp != 1)
-                            {
-                                gegner.setTyp(item.iTyp);
-                                gc.Draw(spriteBatch);
-                            }
+                            gegner.setTyp(item.iTyp);
+                            item.isVisible = false;
                         }
                     }
                 }
@@ -138,7 +143,7 @@ namespace Space
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            hin.Draw(spriteBatch);  //Erst Hintergrund da nacheinander gezeichnet wird
+            hin.Draw(spriteBatch);  //Erst Hintergrund, da nacheinander gezeichnet wird
             gc.Draw(spriteBatch);
             item.Draw(spriteBatch);
             schutz.Draw(spriteBatch);

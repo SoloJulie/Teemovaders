@@ -40,7 +40,10 @@ namespace Space
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textur, position, Color.White);
+            if (isVisible == true)
+            {
+                spriteBatch.Draw(textur, position, Color.White);
+            }
         }
 
         public void Update(GameTime gameTime)
