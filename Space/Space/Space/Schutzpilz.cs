@@ -40,24 +40,62 @@ namespace Space
             t9 = Content.Load<Texture2D>("P9");
         }
 
+
         public void Draw(SpriteBatch spriteBatch)
         {
             Texture2D[] tex = new Texture2D[] { t1, t2, t3, t4, t5, t6, t7, t8, t9 };
             
             position.X = 0;
-            position.Y = 350;
+            position.Y = 300;
             int z = 0;
 
-            for (int i = 0; i < tex.Length/3; i++)
+            if (isVisible == true)
             {
-                for (int j = 0; j < tex.Length/3; j++)
+                for (int i = 0; i < tex.Length / 3; i++)
                 {
-                    spriteBatch.Draw(tex[z], position, Color.White);
-                    position.X += 43;
-                    z++;
+                    for (int j = 0; j < tex.Length / 3; j++)
+                    {
+                        spriteBatch.Draw(tex[z], position, Color.White);
+                        position.X += 43;
+                        z++;
+                    }
+                    position.Y += 44;
+                    position.X = 0; //X Wert zurücksetzen
                 }
-                   position.Y += 44;
-                   position.X =0; //X Wert zurücksetzen
+
+                //2. Pilz
+                position.X = 300;
+                position.Y = 300;
+                int m = 0;
+
+                for (int i = 0; i < tex.Length / 3; i++)
+                {
+                    for (int j = 0; j < tex.Length / 3; j++)
+                    {
+                        spriteBatch.Draw(tex[m], position, Color.White);
+                        position.X += 43;
+                        m++;
+                    }
+                    position.Y += 44;
+                    position.X = 300; //X Wert zurücksetzen
+                }
+
+                //3. Pilz
+                position.X = 575;
+                position.Y = 300;
+                int n = 0;
+
+                for (int i = 0; i < tex.Length / 3; i++)
+                {
+                    for (int j = 0; j < tex.Length / 3; j++)
+                    {
+                        spriteBatch.Draw(tex[n], position, Color.White);
+                        position.X += 43;
+                        n++;
+                    }
+                    position.Y += 44;
+                    position.X = 575; //X Wert zurücksetzen
+                }
             }
         }
 
