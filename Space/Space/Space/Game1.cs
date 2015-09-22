@@ -15,7 +15,7 @@ namespace Space
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        SpriteBatch spriteBatch; //Punkte
 
         Spieler spieler;
 
@@ -110,7 +110,7 @@ namespace Space
                             else
                             {
                                 gegner.machUnsichtbar();
-                                effect.Play();
+                                effect.Play(); //Sound wird abgespielt
                                 s.isVisible = false;
                                 gc.anzahl--;
                                 break;                                
@@ -123,7 +123,7 @@ namespace Space
                 //BoundingBox für Item
                 item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.pilzrot.Width, item.pilzrot.Height); 
 
-                // ändert Gegner Typ und Gegner Aussehen
+                //ändert Gegner Typ und Gegner Aussehen
                 if (item.isVisible == true)
                 {
                     if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichbar treffen
@@ -138,10 +138,7 @@ namespace Space
                 }
             }
 
-
-
             
-
             gc.Update(gameTime);
 
             base.Update(gameTime);

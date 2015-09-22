@@ -76,6 +76,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Gegner.cs" />
     <Compile Include="GegnerContainer.cs" />
+    <Compile Include="gegnerSchuss.cs" />
     <Compile Include="Hintergrund.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

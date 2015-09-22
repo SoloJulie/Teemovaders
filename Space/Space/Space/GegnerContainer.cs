@@ -11,11 +11,12 @@ namespace Space
 {
     public class GegnerContainer
     {
-        public Texture2D textur, t2;
+        public Texture2D textur, t2, texprojektil;
         public int speed, maxBew, tempBew;
         public List<Gegner> GegnerListe;
+        public List<gegnerSchuss> ListeGegnerProjektil;
         public int spalte, zeile;
-        public int anzahl;
+        public int anzahl, sDelay, sD;
         public Rectangle boundingBox;
         public bool isVisible, zurueck, runter;
   
@@ -23,6 +24,7 @@ namespace Space
         public GegnerContainer()
         {
             GegnerListe = new List<Gegner>();
+            ListeGegnerProjektil = new List<gegnerSchuss>();
             maxBew = 250;
             tempBew = 0;
             zeile = 3;
@@ -31,6 +33,8 @@ namespace Space
             isVisible = true;
             zurueck = false;
             runter = false;
+            sD = 2;
+            sDelay = sD;
         }
 
 
@@ -38,6 +42,7 @@ namespace Space
         {
             textur = Content.Load<Texture2D>("opfer");
             t2 = Content.Load<Texture2D>("opferR");
+            texprojektil = Content.Load<Texture2D>("Projektilblau");
         }
 
         //Draw
@@ -58,6 +63,10 @@ namespace Space
                     }
                 }
             }
+
+            //gegner Schüsse Zeichnen
+            foreach (gegnerSchuss gs in ListeGegnerProjektil) 
+                gs.Draw(spriteBatch);
         }
 
         //Update
@@ -131,6 +140,8 @@ namespace Space
                 runter = false; 
             }
 
+            int q = 0;
+
             foreach (Gegner gegner in GegnerListe)
             {
                 if (gegner.zurueck == false)
@@ -159,16 +170,88 @@ namespace Space
                         gegner.zurueck = false;
                         runter = true;                        
                     }
-                }                
+                }
+
+
+                //Untere Reihe frei zum schießen
+                //bool frei = true;
+
+                //for (int w = q; q < GegnerListe.Count; w = +spalte)
+                //{
+                //    if (GegnerListe.ElementAt(w).isVisible)
+                //    {
+                //        frei = false;
+                //    }
+                //}
+
+                //if (frei && ListeGegnerProjektil.Count <= 3)
+                //{
+                //    Schuss(gegner.getX(), gegner.getY());
+                //    updateGegnerSchussListe();
+                //}
+
+                //q++;
             }                     
            
         }
 
+         public void Schuss(int x, int y)
+         {
+            //Schießt nur wenn Delay auf null ist
+            if (sDelay >= 0)
+            {
+                sDelay--;
+            }
 
-       
+             //delay ist 0, neuer Schuss sichtbar und in Liste schreiben
+            if (sDelay <= 0)            
+            {
+                gegnerSchuss GProjektil = new gegnerSchuss(texprojektil); //KLasse gegnerSchuss wird erstellt und Textur übergeben
+                GProjektil.position = new Vector2(x - 25 + texprojektil.Width / 2, y); //Schuss aus der Mitte von Teemo auslösen
+
+                GProjektil.isVisible = true;
 
 
+                //Maximal 3 Projektile zur selben Zeit möglich
+                if (ListeGegnerProjektil.Count < 3)
+                    ListeGegnerProjektil.Add(GProjektil);
 
+
+                if (sDelay == 0)
+                    sDelay = sD;
+            }
+        }
+
+
+        //Update Gegner Schuss
+         public void updateGegnerSchussListe()
+         {
+             foreach (gegnerSchuss gs in ListeGegnerProjektil)
+             {
+                 //Bounding Box um die Projektile
+                 gs.boundingBox = new Rectangle((int)gs.position.X, (int)gs.position.Y, gs.texgSchuss.Width, gs.texgSchuss.Height);
+
+
+                 //Jedes Projektil mit Geschwindigkeit versehen
+                 gs.position.Y = gs.position.Y - gs.pSpeed;
+
+
+                 //aus Bild raus, werde unsichtbar
+                 if (gs.position.Y <= 0)
+                     gs.isVisible = false;
+             }
+
+
+             // wenn eine Kugel unsichtbar wird, entferne sie aus der Liste
+             for (int i = 0; i < ListeGegnerProjektil.Count; i++)
+             {
+                 if (!ListeGegnerProjektil[i].isVisible) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
+                 {
+                     ListeGegnerProjektil.RemoveAt(i);
+                     i--;
+                 }
+             }
+         }
     }
 
 }

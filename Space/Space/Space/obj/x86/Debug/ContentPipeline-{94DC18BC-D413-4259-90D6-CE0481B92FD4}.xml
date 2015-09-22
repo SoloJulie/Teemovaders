@@ -199,6 +199,15 @@
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Pilzrot.xnb</Output>
       <Time>2015-09-22T19:03:56.9748457+02:00</Time>
     </Item>
+    <Item>
+      <Source>Projektil blau.png</Source>
+      <Name>Projektilblau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projektilblau.xnb</Output>
+      <Time>2015-09-22T23:03:24.0184213+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{94DC18BC-D413-4259-90D6-CE0481B92FD4}</ContentProjectGUID>
