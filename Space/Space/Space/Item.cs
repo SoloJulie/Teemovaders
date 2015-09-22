@@ -13,42 +13,47 @@ namespace Space
 {
     public class Item
     {
-        public Texture2D textur;
+        public Texture2D pilzrot,pgruen,pblau,ptot,pilze;
         public Vector2 position;
         public int ispeed;
         public Rectangle boundingBox;
         public bool isVisible;
-        public int iTyp;
+        public int iTyp,wahl;
 
 
         public Item()
         {
-            textur = null;
+            pilzrot = null;
+            pgruen = null;
+            pblau = null;
+            ptot = null;
             position = new Vector2(0,0);
             ispeed = 1;
             isVisible = true;
             position.X = 0;
             position.Y = 0;
             iTyp = 1;
-
         }
 
         public void LoadContent(ContentManager Content)
         {
-            textur = Content.Load<Texture2D>("Pilz");
+            pilzrot = Content.Load<Texture2D>("Pilzrot");
+            ptot = Content.Load<Texture2D>("Pilztot");
+            pblau = Content.Load<Texture2D>("Pilzblau");
+            pgruen = Content.Load<Texture2D>("Pilzgr");
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (isVisible == true)
-            {
-                spriteBatch.Draw(textur, position, Color.White);
-            }
+            //if (isVisible == true)
+            //{
+                spriteBatch.Draw(ptot, position, Color.White);
+            //}
         }
 
         public void Update(GameTime gameTime)
         {
-            boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
             fallen();
         }
 
@@ -75,6 +80,12 @@ namespace Space
         public void fallen()
         {
             setYPos(getY() + ispeed);
+        }
+
+        public void auswahl()
+        {
+            int [] wahl = new int[] {1, 2, 3, 4};
+
         }
 
         

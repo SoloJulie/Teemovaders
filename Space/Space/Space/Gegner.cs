@@ -15,8 +15,8 @@ namespace Space
         public Vector2 position, bbposition;
         public int speed, tempBew;
         public bool isVisible, zurueck;
-        public int spalte;
-        public int zeile, anzahl;     
+        public int spalte, zeile;
+        public int anzahl, leben;     
         public List<Gegner> GegnerListe;
         public int gtyp; //Für Gegnertypdeklaration
         public Rectangle boundingBox;
@@ -35,6 +35,7 @@ namespace Space
             zurueck = false;
             anzahl = 0;
             gtyp = 0;
+            leben = 1;
             
         }
 
@@ -116,6 +117,11 @@ namespace Space
         public void setTyp(int t)
         {
             gtyp = t;
+        }
+
+        public int getGtyp()
+        {
+            return gtyp;
         }
 
         

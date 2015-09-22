@@ -97,31 +97,41 @@ namespace Space
 
                 foreach (Schuss s in spieler.getSchussListe())
                 {
-                    if (gegner.isVisible && s.isVisible)
+                    if (gegner.isVisible && s.isVisible) //Schuss sichtbar und Gegner
                     {                
-                        if (s.boundingBox.Intersects(gc.boundingBox))
+                        if (s.boundingBox.Intersects(gc.boundingBox)) //Schuss trifft Gegner
                         {
-                            gegner.machUnsichtbar();
-                            effect.Play();
-                            s.isVisible = false;
-                            gc.anzahl--;
-                            break;
+                            if (gegner.leben > 1) //Leben ist größer 1
+                            {
+                                gegner.leben--;
+                                s.isVisible = false;
+                            }
+
+                            else
+                            {
+                                gegner.machUnsichtbar();
+                                effect.Play();
+                                s.isVisible = false;
+                                gc.anzahl--;
+                                break;                                
+                            }
+
                         }                        
                     }
                 }
 
                 //BoundingBox für Item
-                item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.textur.Width, item.textur.Height); 
+                item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.pilzrot.Width, item.pilzrot.Height); 
 
                 // ändert Gegner Typ und Gegner Aussehen
                 if (item.isVisible == true)
                 {
-                    if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox))
-                    {
+                    if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichbar treffen
+                    {                  
 
-                        if (gegner.gtyp != 1)
+                        if (gegner.gtyp != 0) //Gegner nicht normal
                         {
-                            gegner.setTyp(item.iTyp);
+                            gegner.setTyp(item.iTyp); //Übergebe Itemtyp
                             item.isVisible = false;
                         }
                     }
