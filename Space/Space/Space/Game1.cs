@@ -16,11 +16,13 @@ namespace Space
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch; //Punkte
-
-        Spieler spieler;
-
+        Random random = new Random();
         Hintergrund hin;
-        GegnerContainer gc;
+
+
+        GegnerContainer gc; 
+
+        Spieler spieler;    
 
         Item item;
         Schutzpilz schutz;
@@ -28,15 +30,15 @@ namespace Space
         private SoundEffect effect;
 
         private SpriteFont font;
-        private int punkte = 0;   
-
+        private int punkte = 0;
+        private int wahl;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 700;
-            graphics.PreferredBackBufferHeight = 500;
+            graphics.PreferredBackBufferWidth = 700; //X
+            graphics.PreferredBackBufferHeight = 500; //Y
             this.Window.Title = "Teemovaders";
             Content.RootDirectory = "Content";
         }
@@ -47,7 +49,8 @@ namespace Space
             spieler = new Spieler();
             hin = new Hintergrund();
             gc = new GegnerContainer();
-            item = new Item();
+            auswahl(); //zum Random erzeugen eines Items
+            item = new Item(wahl);
             schutz = new Schutzpilz();
 
             base.Initialize();
@@ -89,12 +92,17 @@ namespace Space
 
 
             //Macht alle unsichtbar beim Kontakt
-
             foreach (Gegner gegner in gc.GegnerListe)
             {
                 //Erstelle bounding box immer neu für jeden Gegner an jeder position pro frame
-                gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.textur.Width, gc.textur.Height);
+                gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
 
+                //Bei halber Gegneranzahl erhöhe Gegner Geschwindigkeit
+                if (gc.anzahl < gc.GegnerAnzahl()/2)
+                   gegner.gspeed = 5;
+
+
+                //Schuss trifft
                 foreach (Schuss s in spieler.getSchussListe())
                 {
                     if (gegner.isVisible && s.isVisible) //Schuss sichtbar und Gegner
@@ -115,27 +123,37 @@ namespace Space
                                 gc.anzahl--;
                                 break;                                
                             }
-
                         }                        
                     }
                 }
 
                 //BoundingBox für Item
-                item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.pilzrot.Width, item.pilzrot.Height); 
+                item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.prot.Width, item.prot.Height); 
 
                 //ändert Gegner Typ und Gegner Aussehen
                 if (item.isVisible == true)
                 {
                     if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichbar treffen
-                    {                  
+                    {            
 
-                        if (gegner.gtyp != 0) //Gegner nicht normal
+                        if (gegner.gtyp == 0) //Gegner normal, übergebe Item und ändere Gegnertyp
                         {
-                            gegner.setTyp(item.iTyp); //Übergebe Itemtyp
+                            gegner.setTyp(item.iTyp); //Übergebe Itemtyp 
                             item.isVisible = false;
                         }
                     }
                 }
+
+                //Bounding box für Schutzpilz
+                schutz.boundingBox = new Rectangle((int)schutz.getX(), (int)schutz.getY(), schutz.t1.Width, schutz.t1.Height);
+                    //if (schutz.sichtbar() == true)
+                    //{
+                    //    if (gegner.isVisible && schutz.boundingBox.Intersects(gc.boundingBox)) //Gegner und Pilz sichbar treffen
+                    //    {
+                    //       schutz.isVisible = false;
+                    //    }                    
+                    //}
+
             }
 
             
@@ -160,7 +178,13 @@ namespace Space
             spriteBatch.DrawString(font, "Punkte: " + gc.anzahl, new Vector2(0, 0), Color.Black);
             spriteBatch.End();
 
+
             base.Draw(gameTime);
+        }
+
+        public void auswahl()
+        {
+            wahl = random.Next(1, 5); //5 nicht inklusive
         }
     }
 }

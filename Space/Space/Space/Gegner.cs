@@ -13,7 +13,7 @@ namespace Space
     {
         public Texture2D textur;
         public Vector2 position, bbposition;
-        public int speed, tempBew;
+        public int gspeed, tempBew;
         public bool isVisible, zurueck;
         public int spalte, zeile;
         public int anzahl, leben;     
@@ -27,7 +27,7 @@ namespace Space
             position = new Vector2();  // Erscheinungsposition
             position.X = 0;
             position.Y = 0;
-            speed = 2;
+            gspeed = 2;
             GegnerListe = new List<Gegner>();
             zeile = 3;
             spalte = 5;
@@ -35,8 +35,7 @@ namespace Space
             zurueck = false;
             anzahl = 0;
             gtyp = 0;
-            leben = 1;
-            
+            leben = 1;            
         }
 
 
@@ -91,28 +90,20 @@ namespace Space
             return (int)position.Y;
         }
 
-        public int GegnerAnzahl()
-        {
-            return GegnerListe.Count();
-        }
-
         public void machUnsichtbar()
         {
             isVisible = false;
         }
 
-        public bool visible()
+        public bool sichtbar()
         {
             return isVisible;
-        }
-
-        
+        }        
 
         public Rectangle getBounding()
         {
             return boundingBox;
         }
-
 
         public void setTyp(int t)
         {
@@ -123,6 +114,8 @@ namespace Space
         {
             return gtyp;
         }
+
+        
 
        
         

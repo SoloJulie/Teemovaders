@@ -47,40 +47,13 @@
       <Time>2015-09-08T02:21:31.5959583+02:00</Time>
     </Item>
     <Item>
-      <Source>opfer g rot.png</Source>
-      <Name>opfer g rot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer g rot.xnb</Output>
-      <Time>2015-09-18T15:52:50.2665285+02:00</Time>
-    </Item>
-    <Item>
-      <Source>opfer g.png</Source>
-      <Name>opfer g</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer g.xnb</Output>
-      <Time>2015-09-18T15:52:50.2685286+02:00</Time>
-    </Item>
-    <Item>
-      <Source>opfer r.png</Source>
-      <Name>opferR</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opferR.xnb</Output>
-      <Time>2015-09-18T15:52:50.2695286+02:00</Time>
-    </Item>
-    <Item>
       <Source>P1.png</Source>
       <Name>P1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P1.xnb</Output>
-      <Time>2015-09-19T17:42:38.7909374+02:00</Time>
+      <Time>2015-09-23T17:07:04.979021+02:00</Time>
     </Item>
     <Item>
       <Source>P2.png</Source>
@@ -89,7 +62,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P2.xnb</Output>
-      <Time>2015-09-19T17:42:38.7929375+02:00</Time>
+      <Time>2015-09-23T17:07:31.4249289+02:00</Time>
     </Item>
     <Item>
       <Source>4.wav</Source>
@@ -107,7 +80,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P3.xnb</Output>
-      <Time>2015-09-20T20:45:00.2408984+02:00</Time>
+      <Time>2015-09-23T17:08:15.5483257+02:00</Time>
     </Item>
     <Item>
       <Source>p4.png</Source>
@@ -116,7 +89,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\p4.xnb</Output>
-      <Time>2015-09-20T20:45:00.2428986+02:00</Time>
+      <Time>2015-09-23T17:08:22.9658742+02:00</Time>
     </Item>
     <Item>
       <Source>P5.png</Source>
@@ -125,7 +98,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P5.xnb</Output>
-      <Time>2015-09-20T20:45:00.2438986+02:00</Time>
+      <Time>2015-09-23T17:08:37.4659124+02:00</Time>
     </Item>
     <Item>
       <Source>P6.png</Source>
@@ -134,7 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P6.xnb</Output>
-      <Time>2015-09-20T20:45:00.2448987+02:00</Time>
+      <Time>2015-09-23T17:08:30.8009032+02:00</Time>
     </Item>
     <Item>
       <Source>P7.png</Source>
@@ -143,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P7.xnb</Output>
-      <Time>2015-09-20T20:45:00.2468988+02:00</Time>
+      <Time>2015-09-23T17:09:05.1300919+02:00</Time>
     </Item>
     <Item>
       <Source>P8.png</Source>
@@ -152,7 +125,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P8.xnb</Output>
-      <Time>2015-09-20T20:45:00.2478988+02:00</Time>
+      <Time>2015-09-23T17:08:58.7359701+02:00</Time>
     </Item>
     <Item>
       <Source>P9.png</Source>
@@ -161,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P9.xnb</Output>
-      <Time>2015-09-20T20:45:00.2398984+02:00</Time>
+      <Time>2015-09-23T17:08:51.7259406+02:00</Time>
     </Item>
     <Item>
       <Source>Pilz blauself.png</Source>
@@ -170,7 +143,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Pilzblau.xnb</Output>
-      <Time>2015-09-22T19:03:56.9518444+02:00</Time>
+      <Time>2015-09-23T17:04:34.0041338+02:00</Time>
     </Item>
     <Item>
       <Source>Pilz grün self.png</Source>
@@ -179,7 +152,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Pilzgr.xnb</Output>
-      <Time>2015-09-22T19:03:56.9738457+02:00</Time>
+      <Time>2015-09-23T17:05:15.9013422+02:00</Time>
     </Item>
     <Item>
       <Source>Pilztot elf.png</Source>
@@ -188,7 +161,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Pilztot.xnb</Output>
-      <Time>2015-09-22T19:03:56.9498443+02:00</Time>
+      <Time>2015-09-23T17:06:32.8414484+02:00</Time>
     </Item>
     <Item>
       <Source>Pilz rot self.png</Source>
@@ -197,7 +170,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Pilzrot.xnb</Output>
-      <Time>2015-09-22T19:03:56.9748457+02:00</Time>
+      <Time>2015-09-23T17:06:19.6814302+02:00</Time>
     </Item>
     <Item>
       <Source>Projektil blau.png</Source>
@@ -207,6 +180,33 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projektilblau.xnb</Output>
       <Time>2015-09-22T23:03:24.0184213+02:00</Time>
+    </Item>
+    <Item>
+      <Source>opfer groß.png</Source>
+      <Name>opferGr</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opferGr.xnb</Output>
+      <Time>2015-09-18T15:52:50.2685286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>opferrot.png</Source>
+      <Name>opferR</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opferR.xnb</Output>
+      <Time>2015-09-18T15:52:50.2695286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>opfer g rot.png</Source>
+      <Name>opfer1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer1.xnb</Output>
+      <Time>2015-09-18T15:52:50.2665285+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -11,7 +11,7 @@ namespace Space
 {
     public class GegnerContainer
     {
-        public Texture2D textur, t2, texprojektil;
+        public Texture2D minions, minGr, minKl, texprojektil;
         public int speed, maxBew, tempBew;
         public List<Gegner> GegnerListe;
         public List<gegnerSchuss> ListeGegnerProjektil;
@@ -40,8 +40,10 @@ namespace Space
 
         public void LoadContent(ContentManager Content)
         {
-            textur = Content.Load<Texture2D>("opfer");
-            t2 = Content.Load<Texture2D>("opferR");
+            minions = Content.Load<Texture2D>("opfer");
+            minGr = Content.Load<Texture2D>("opfer1");
+            minKl = Content.Load<Texture2D>("opferR");
+            
             texprojektil = Content.Load<Texture2D>("Projektilblau");
         }
 
@@ -50,17 +52,34 @@ namespace Space
         {
             foreach (Gegner gegner in GegnerListe)
             {
-                if (gegner.visible())
+                if (gegner.sichtbar())
                 {
                     if (gegner.gtyp == 0) //welcher Gegnertyp wird gezeichnet
                     {
-                        spriteBatch.Draw(textur, gegner.getPos(), Color.White);
+                        spriteBatch.Draw(minions, gegner.getPos(), Color.White);
                     }
 
                     else if (gegner.gtyp == 1) //welcher Gegnertyp wird gezeichnet
                     {
-                         spriteBatch.Draw(t2, gegner.getPos(), Color.White);
+                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
                     }
+
+                    else if (gegner.gtyp == 2) //welcher Gegnertyp wird gezeichnet
+                    {
+                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
+                    }
+
+                    else if (gegner.gtyp == 3) //welcher Gegnertyp wird gezeichnet
+                    {
+                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
+                        isVisible = false;
+                    }
+
+                    else if (gegner.gtyp == 4) //welcher Gegnertyp wird gezeichnet
+                    {
+                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
+                    }
+
                 }
             }
 
@@ -146,12 +165,12 @@ namespace Space
             {
                 if (gegner.zurueck == false)
                 {
-                    gegner.setXPos(gegner.getX() + gegner.speed); //eigentliche Bewegung für jeden Gegner
-                    gegner.tempBew += gegner.speed; //Wert um Position nicht Bildschirm überschreiten zu lassen
+                    gegner.setXPos(gegner.getX() + gegner.gspeed); //eigentliche Bewegung für jeden Gegner
+                    gegner.tempBew += gegner.gspeed; //Wert um Position nicht Bildschirm überschreiten zu lassen
                         
                     
                     // Gegner nicht aus Bildschirm
-                    if (gegner.tempBew == maxBew) 
+                    if (gegner.tempBew >= maxBew) 
                     {
                         gegner.tempBew = 0; //für jeden Gegner einzeln prüfen
                         gegner.zurueck = true;
@@ -161,10 +180,10 @@ namespace Space
 
                 else
                 {
-                    gegner.setXPos(gegner.getX() - gegner.speed);
-                    gegner.tempBew += gegner.speed;
+                    gegner.setXPos(gegner.getX() - gegner.gspeed);
+                    gegner.tempBew += gegner.gspeed;
 
-                    if (gegner.tempBew == maxBew)
+                    if (gegner.tempBew >= maxBew)
                     {
                         gegner.tempBew = 0;
                         gegner.zurueck = false;

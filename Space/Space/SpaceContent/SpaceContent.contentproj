@@ -59,16 +59,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="opfer g rot.png">
-      <Name>opfer g rot</Name>
+      <Name>opfer1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="opfer g.png">
-      <Name>opfer g</Name>
+    <Compile Include="opfer groß.png">
+      <Name>opferGr</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="opfer r.png">
+    <Compile Include="opferrot.png">
       <Name>opferR</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

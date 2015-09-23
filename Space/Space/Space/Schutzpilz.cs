@@ -56,10 +56,10 @@ namespace Space
                     for (int j = 0; j < tex.Length / 3; j++)
                     {
                         spriteBatch.Draw(tex[z], position, Color.White);
-                        position.X += 43;
+                        position.X += t1.Width;
                         z++;
                     }
-                    position.Y += 44;
+                    position.Y += t1.Height;
                     position.X = 0; //X Wert zurücksetzen
                 }
 
@@ -73,10 +73,10 @@ namespace Space
                     for (int j = 0; j < tex.Length / 3; j++)
                     {
                         spriteBatch.Draw(tex[m], position, Color.White);
-                        position.X += 43;
+                        position.X += t1.Width;
                         m++;
                     }
-                    position.Y += 44;
+                    position.Y += t1.Height;
                     position.X = 300; //X Wert zurücksetzen
                 }
 
@@ -90,10 +90,10 @@ namespace Space
                     for (int j = 0; j < tex.Length / 3; j++)
                     {
                         spriteBatch.Draw(tex[n], position, Color.White);
-                        position.X += 43;
+                        position.X += t1.Width;
                         n++;
                     }
-                    position.Y += 44;
+                    position.Y += t1.Height;
                     position.X = 575; //X Wert zurücksetzen
                 }
             }
@@ -102,6 +102,22 @@ namespace Space
         public void Update(GameTime gameTime)
         {
         }
+
+        public int getX()
+        {
+            return (int)position.X;
+        }
+
+        public int getY()
+        {
+            return (int)position.Y;
+        }
+
+        public bool sichtbar()
+        {
+            return isVisible;
+        }
+
 
 
 

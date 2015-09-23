@@ -13,43 +13,64 @@ namespace Space
 {
     public class Item
     {
-        public Texture2D pilzrot,pgruen,pblau,ptot,pilze;
+        public Texture2D prot,pgruen,pblau,ptot,pilze;
         public Vector2 position;
-        public int ispeed;
+        public int ispeed, x, y;
         public Rectangle boundingBox;
         public bool isVisible;
         public int iTyp,wahl;
+        public Random random;
 
 
-        public Item()
+        public Item(int i)
         {
-            pilzrot = null;
+            prot = null;
             pgruen = null;
             pblau = null;
             ptot = null;
-            position = new Vector2(0,0);
+            Random random = new Random();
+
+            x = random.Next(1, 500);
+            y = random.Next(1, 250);
+            position = new Vector2(x, y);
             ispeed = 1;
             isVisible = true;
-            position.X = 0;
-            position.Y = 0;
-            iTyp = 1;
+            iTyp = i;
+            
         }
 
         public void LoadContent(ContentManager Content)
         {
-            pilzrot = Content.Load<Texture2D>("Pilzrot");
+            prot = Content.Load<Texture2D>("Pilzrot");
             ptot = Content.Load<Texture2D>("Pilztot");
             pblau = Content.Load<Texture2D>("Pilzblau");
             pgruen = Content.Load<Texture2D>("Pilzgr");
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //if (isVisible == true)
-            //{
-                spriteBatch.Draw(ptot, position, Color.White);
-            //}
+            if (isVisible == true)
+            {
+                if (iTyp == 1)
+                {
+                    spriteBatch.Draw(prot, position, Color.White);
+                }
+                else if (iTyp == 2)
+                {
+                    spriteBatch.Draw(pblau, position, Color.White);
+                }
+
+                else if (iTyp == 3)
+                {
+                    spriteBatch.Draw(ptot, position, Color.White);
+                }
+
+                else if (iTyp == 4)
+                {
+                    spriteBatch.Draw(pgruen, position, Color.White);
+                }
+            }
+            
         }
 
         public void Update(GameTime gameTime)
@@ -84,9 +105,28 @@ namespace Space
 
         public void auswahl()
         {
-            int [] wahl = new int[] {1, 2, 3, 4};
-
+            wahl = random.Next(1, 5); //5 nicht inklusive
         }
+
+        public void setTyp(int i)
+        {
+            iTyp = i;
+        }
+
+        public int getTyp()
+        {
+            return iTyp;
+        }
+
+        //public int randXPosition()
+        //{
+        //    return position.X = random.Next(1, 750);
+        //}
+
+        //public int randYPosition()
+        //{
+        //    return y = random.Next(1, 500);
+        //}
 
         
 
