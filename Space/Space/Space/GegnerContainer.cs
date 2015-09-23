@@ -18,7 +18,7 @@ namespace Space
         public int spalte, zeile;
         public int anzahl, sDelay, sD;
         public Rectangle boundingBox;
-        public bool isVisible, zurueck, runter;
+        public bool zurueck, runter;//isVisible, 
   
 
         public GegnerContainer()
@@ -30,7 +30,7 @@ namespace Space
             zeile = 3;
             spalte = 5;
             anzahl = 0;
-            isVisible = true;
+            //isVisible = true;
             zurueck = false;
             runter = false;
             sD = 2;
@@ -72,7 +72,7 @@ namespace Space
                     else if (gegner.gtyp == 3) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-                        isVisible = false;
+                        gegner.isVisible = false;
                     }
 
                     else if (gegner.gtyp == 4) //welcher Gegnertyp wird gezeichnet
@@ -126,7 +126,7 @@ namespace Space
         {
             foreach (Gegner gegner in GegnerListe)
             {
-                if (isVisible == false)
+                if (gegner.isVisible == false)
                     GegnerListe.Remove(gegner);
             }
 
@@ -150,67 +150,76 @@ namespace Space
 
         public void bewegen()
         {
-            if (runter == true)  //Runter gehen
-            {
-                foreach (Gegner tempGegner in GegnerListe)
+            
+                if (runter == true)  //Runter gehen
                 {
-                    tempGegner.setYPos(tempGegner.getY() + 10);
-                }
-                runter = false; 
-            }
-
-            int q = 0;
-
-            foreach (Gegner gegner in GegnerListe)
-            {
-                if (gegner.zurueck == false)
-                {
-                    gegner.setXPos(gegner.getX() + gegner.gspeed); //eigentliche Bewegung für jeden Gegner
-                    gegner.tempBew += gegner.gspeed; //Wert um Position nicht Bildschirm überschreiten zu lassen
-                        
-                    
-                    // Gegner nicht aus Bildschirm
-                    if (gegner.tempBew >= maxBew) 
+                    foreach (Gegner tempGegner in GegnerListe)
                     {
-                        gegner.tempBew = 0; //für jeden Gegner einzeln prüfen
-                        gegner.zurueck = true;
-                        runter = true;
-                    }                    
-                }
-
-                else
-                {
-                    gegner.setXPos(gegner.getX() - gegner.gspeed);
-                    gegner.tempBew += gegner.gspeed;
-
-                    if (gegner.tempBew >= maxBew)
-                    {
-                        gegner.tempBew = 0;
-                        gegner.zurueck = false;
-                        runter = true;                        
+                        tempGegner.setYPos(tempGegner.getY() + 10);
                     }
+
+                    runter = false;
                 }
 
+                //int q = 0;
 
-                //Untere Reihe frei zum schießen
-                //bool frei = true;
+                foreach (Gegner gegner in GegnerListe)
+                {
+                    if (gegner.isVisible == true)
+                    {
 
-                //for (int w = q; q < GegnerListe.Count; w = +spalte)
-                //{
-                //    if (GegnerListe.ElementAt(w).isVisible)
-                //    {
-                //        frei = false;
-                //    }
-                //}
+                    if (gegner.zurueck == false)
+                    {
+                        gegner.setXPos(gegner.getX() + gegner.gspeed); //eigentliche Bewegung für jeden Gegner
+                       
+                        gegner.tempBew += gegner.gspeed; //Wert um Position nicht Bildschirm überschreiten zu lassen
 
-                //if (frei && ListeGegnerProjektil.Count <= 3)
-                //{
-                //    Schuss(gegner.getX(), gegner.getY());
-                //    updateGegnerSchussListe();
-                //}
 
-                //q++;
-            }                     
+                        // Gegner nicht aus Bildschirm                  
+
+                        if (gegner.tempBew >= maxBew)
+                        {
+                            gegner.tempBew = 0; //für jeden Gegner einzeln prüfen
+                            gegner.zurueck = true;
+                            runter = true;
+
+                        }
+                    }
+
+                    else
+                    {
+                        gegner.setXPos(gegner.getX() - gegner.gspeed);
+                        gegner.tempBew += gegner.gspeed;
+
+                        if (gegner.tempBew >= maxBew)
+                        {
+                            gegner.tempBew = 0;
+                            gegner.zurueck = false;
+                            runter = true;
+                        }
+                    }
+
+
+                    //Untere Reihe frei zum schießen
+                    //bool frei = true;
+
+                    //for (int w = q; q < GegnerListe.Count; w = +spalte)
+                    //{
+                    //    if (GegnerListe.ElementAt(w).isVisible)
+                    //    {
+                    //        frei = false;
+                    //    }
+                    //}
+
+                    //if (frei && ListeGegnerProjektil.Count <= 3)
+                    //{
+                    //    Schuss(gegner.getX(), gegner.getY());
+                    //    updateGegnerSchussListe();
+                    //}
+
+                    //q++;
+                }
+            }  
            
         }
 

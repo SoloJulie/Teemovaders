@@ -89,8 +89,6 @@ namespace Space
             item.Update(gameTime);
             //schutz.Update(gameTime);
 
-
-
             //Macht alle unsichtbar beim Kontakt
             foreach (Gegner gegner in gc.GegnerListe)
             {
@@ -98,8 +96,14 @@ namespace Space
                 gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
 
                 //Bei halber Gegneranzahl erhöhe Gegner Geschwindigkeit
-                if (gc.anzahl < gc.GegnerAnzahl()/2)
-                   gegner.gspeed = 5;
+                if (gc.anzahl < gc.GegnerAnzahl()/1.5)
+                   gegner.gspeed = 3;
+
+                if (gc.anzahl < gc.GegnerAnzahl() / 2)
+                    gegner.gspeed = 4;
+
+                if (gc.anzahl < gc.GegnerAnzahl() / 3)
+                    gegner.gspeed = 5;
 
 
                 //Schuss trifft
@@ -126,6 +130,8 @@ namespace Space
                         }                        
                     }
                 }
+
+                //ITEM
 
                 //BoundingBox für Item
                 item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.prot.Width, item.prot.Height); 

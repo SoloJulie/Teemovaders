@@ -35,7 +35,8 @@ namespace Space
             zurueck = false;
             anzahl = 0;
             gtyp = 0;
-            leben = 1;            
+            leben = 1;
+            isVisible = true;
         }
 
 
