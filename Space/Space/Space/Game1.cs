@@ -18,12 +18,9 @@ namespace Space
         SpriteBatch spriteBatch; //Punkte
         Random random = new Random();
         Hintergrund hin;
-
-
+        
         GegnerContainer gc;
-
         Spieler spieler;
-
         Item item;
         Schutzpilz schutz;
 
@@ -87,26 +84,15 @@ namespace Space
                 this.Exit();
 
             spieler.Update(gameTime);
-            item.Update(gameTime);
-            //schutz.Update(gameTime);
-
-
-
-            //Bounding box für Schutzpilz
-            //schutz.boundingBox = new Rectangle((int)schutz.getX(), (int)schutz.getY(), schutz.t1.Width, schutz.t1.Height);
-            //if (schutz.sichtbar() == true)
-            //{
-            //    if (gegner.isVisible && schutz.boundingBox.Intersects(gc.boundingBox)) //Gegner und Pilz sichbar treffen
-            //    {
-            //       schutz.isVisible = false;
-            //    }                    
-            //}
+            item.Update(gameTime);           
 
             gc.Update(gameTime); //remove, schneller, bewegen
             getroffen(); //iteminteraktion + unsichtbarmachen + punkteberechnung
             itemZerstoeren();
             punkteBerechnung();
-
+            gegnerTrifft();
+            projektilTreffen();
+            schutzGetroffen();
 
 
             base.Update(gameTime);
@@ -124,6 +110,7 @@ namespace Space
             schutz.Draw(spriteBatch);            
             item.Draw(spriteBatch);
             spriteBatch.DrawString(font, "Punkte: " + punkte, new Vector2(0, 0), Color.Black);
+            spriteBatch.DrawString(font, "Leben: " + spieler.leben, new Vector2(600, 0), Color.Black);
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -132,7 +119,6 @@ namespace Space
         {
             wahl = random.Next(1, 5); //5 nicht inklusive
         }
-
 
         public void getroffen() //Spieler trifft + aufruf der Iteminteraktion
         {
@@ -172,8 +158,7 @@ namespace Space
                 itemInterakt(); 
             }
         }
-
-
+        
         public void itemInterakt() //verwandelt Gegner
         {
             foreach (Gegner gegner in gc.ListeGegner)
@@ -210,13 +195,83 @@ namespace Space
                     }
                 }
             }
-        } //Item wird vom Spieler zerstört
+        }
 
+        public void gegnerTrifft() //gegner Trifft Spieler
+        {
+            foreach (gegnerSchuss gs in gc.ListeGProjektil)
+            {          
+
+                if (gs.isVisible == true)
+                {
+                    if (gs.boundingBox.Intersects(spieler.boundingBox))
+                    {
+                        if(spieler.leben>0)
+                        {
+                            spieler.leben--;
+                            gs.isVisible = false;
+                            break;
+                        }
+                    }
+                }
+            }
+        } 
+
+        public void projektilTreffen() //beide Projektile treffen sich
+        { 
+            foreach (gegnerSchuss gs in gc.ListeGProjektil)
+            {          
+                foreach (Schuss s in spieler.getSchussListe())
+                {
+                    if (gs.isVisible == true && s.isVisible == true)
+                    {
+                        if (s.boundingBox.Intersects(gs.boundingBox))
+                        {
+                            s.isVisible = false;
+                            gs.isVisible = false;
+                            tempPunkte += gs.pPunkte;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        public void schutzGetroffen()
+        { 
+            foreach (gegnerSchuss gs in gc.ListeGProjektil)
+            {          
+                foreach (Schuss s in spieler.getSchussListe())
+                {
+                    int temp = 2;
+                    //if (schutz.texVisi[2] == true) //Pilz sichtbar
+                    //{
+                        if (gs.isVisible == true || s.isVisible == true) // Gegner oder Spieler Schuss sichtbar
+                        {
+                            if (s.boundingBox.Intersects(schutz.boundingBox))
+                            {
+                                schutz.isVisible = false;
+                                s.isVisible = false;
+                            }
+
+                            if (gs.boundingBox.Intersects(schutz.boundingBox))
+                            {
+                                schutz.isVisible = false;
+                                gs.isVisible = false;
+                            }
+                        }
+                    }
+                }
+               
+        }
+
+
+
+        //Berechnung Punkte (Item + Gegnerpunkte + Projektile)
         public void punkteBerechnung()
         {
             punkte = tempPunkte + gPunkte;
-        } //Berechnung Punkte (Item + Gegnerpunkte)
-
+        }
 
 
 

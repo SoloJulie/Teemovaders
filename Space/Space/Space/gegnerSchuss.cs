@@ -12,17 +12,19 @@ namespace Space
     public class gegnerSchuss
     {
         public Texture2D texgSchuss;
-        public Vector2 position, origin;
+        public Vector2 position;
         public Rectangle boundingBox;
         public bool isVisible;
-        public float pSpeed;
+        public float gpSpeed;
+        public int pPunkte;
 
 
         public gegnerSchuss(Texture2D newTexture)
         {
             texgSchuss = newTexture;
-            isVisible = false;
-            pSpeed = 10;
+            isVisible = true;
+            gpSpeed = 2;
+            pPunkte = 50;
         }
 
 

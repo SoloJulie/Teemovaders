@@ -11,7 +11,7 @@ namespace Space
 {
     public class GegnerContainer
     {
-        public Texture2D minions, minGr, minKl, texprojektil;
+        public Texture2D minions, minGr, minKl, texProjektil;
         public int speed, maxBew, tempBew;
         public List<Gegner> ListeGegner;
         public List<gegnerSchuss> ListeGProjektil;
@@ -44,7 +44,7 @@ namespace Space
             minGr = Content.Load<Texture2D>("opfer1");
             minKl = Content.Load<Texture2D>("opferR");
 
-            texprojektil = Content.Load<Texture2D>("Projektilblau");
+            texProjektil = Content.Load<Texture2D>("Projektilblau");
         }
 
         //Draw
@@ -52,7 +52,7 @@ namespace Space
         {
             foreach (Gegner gegner in ListeGegner)
             {
-                if (gegner.sichtbar())
+                if (gegner.isVisible == true)
                 {
                     if (gegner.gtyp == 0) //welcher Gegnertyp wird gezeichnet
                     {
@@ -95,6 +95,8 @@ namespace Space
             bewegen();
             remove();
             schneller();
+            Schuss();
+            updateGegnerSchussListe();
         }
 
         public void SpornRechteck()
@@ -154,7 +156,6 @@ namespace Space
 
         public void bewegen()
         {
-
             if (runter == true)  //Runter gehen
             {
                 foreach (Gegner tempGegner in ListeGegner)
@@ -226,31 +227,33 @@ namespace Space
 
         }
 
-        public void Schuss(int x, int y)
+        public void Schuss()
         {
             //Schießt nur wenn Delay auf null ist
-            if (sDelay >= 0)
-            {
-                sDelay--;
-            }
+            //if (sDelay >= 0)
+            //{
+            //    sDelay--;
+            //}
 
             //delay ist 0, neuer Schuss sichtbar und in Liste schreiben
-            if (sDelay <= 0)
+            //if (sDelay <= 0)
+            foreach (Gegner gegner in ListeGegner)
             {
-                gegnerSchuss GProjektil = new gegnerSchuss(texprojektil); //KLasse gegnerSchuss wird erstellt und Textur übergeben
-                GProjektil.position = new Vector2(x - 25 + texprojektil.Width / 2, y); //Schuss aus der Mitte von Teemo auslösen
+                gegnerSchuss GProjektil = new gegnerSchuss(texProjektil); //KLasse gegnerSchuss wird erstellt und Textur übergeben
+                GProjektil.position = new Vector2(gegner.getX() + GProjektil.texgSchuss.Width, gegner.getY() + GProjektil.texgSchuss.Height); //Schuss aus der Mitte von Teemo auslösen           
 
                 GProjektil.isVisible = true;
 
 
                 //Maximal 3 Projektile zur selben Zeit möglich
-                if (ListeGProjektil.Count < 3)
+                if (ListeGProjektil.Count < 10)
                     ListeGProjektil.Add(GProjektil);
 
 
-                if (sDelay == 0)
-                    sDelay = sD;
+                //if (sDelay == 0)
+                //    sDelay = sD;
             }
+            
         }
 
 
@@ -264,11 +267,11 @@ namespace Space
 
 
                 //Jedes Projektil mit Geschwindigkeit versehen
-                gs.position.Y = gs.position.Y + gs.pSpeed;
+                gs.position.Y = gs.position.Y + gs.gpSpeed;
 
 
                 //aus Bild raus, werde unsichtbar
-                if (gs.position.Y <= 0)
+                if (gs.position.Y >= 500)
                     gs.isVisible = false;
             }
 
@@ -276,7 +279,7 @@ namespace Space
             // wenn eine Kugel unsichtbar wird, entferne sie aus der Liste
             for (int i = 0; i < ListeGProjektil.Count; i++)
             {
-                if (!ListeGProjektil[i].isVisible) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
+                if (ListeGProjektil[i].isVisible == false) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
                 {
                     ListeGProjektil.RemoveAt(i);
                     i--;

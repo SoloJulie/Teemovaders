@@ -16,8 +16,7 @@ namespace Space
         public int gspeed, tempBew;
         public bool isVisible, zurueck;
         public int spalte, zeile;
-        public int anzahl, leben, punkte;     
-        //public List<Gegner> GegnerListe;
+        public int anzahl, leben, punkte;   
         public int gtyp; //Für Gegnertypdeklaration
         public Rectangle boundingBox;
 
@@ -64,37 +63,34 @@ namespace Space
         public Vector2 getPos()
         {
             return position;
-        }
-
-        public void setXPos(int x)
-        {
-            position.X = x;
-        }
-
-        public void setYPos(int y)
-        {
-            position.Y = y;
-        }
+        } //gibt Position zurück
 
         public int getX()
         {
             return (int)position.X;
-        }
+        } //gibt X Position zurück
 
         public int getY()
         {
             return (int)position.Y;
+        } //gibt Y Position zurück
+
+
+        public void setXPos(int x) //setzt X Position
+        {
+            position.X = x;
+        }
+
+        public void setYPos(int y) //setzt Y Position
+        {
+            position.Y = y;
         }
 
         public void machUnsichtbar()
         {
             isVisible = false;
-        }
-
-        public bool sichtbar()
-        {
-            return isVisible;
-        }        
+        } // Macht Gegner unsichtbar
+               
 
         public Rectangle getBounding()
         {
@@ -104,12 +100,12 @@ namespace Space
         public void setTyp(int t)
         {
             gtyp = t;
-        }
+        } //Setzt Gegner Typ
 
         public int getGtyp()
         {
             return gtyp;
-        }
+        } // gibt Gegner Typ
 
         public void setPunkte()
         {
@@ -121,14 +117,14 @@ namespace Space
                 punkte = 500;
             else if (gtyp == 4) //Item 3 ist Todespilz, keine Punkte für Gegner da vernichtung
                 punkte = 600;
-        }
+        } //legt Punkte für Gegner fest (unterschiedlich je Typ)
 
         public int addPunkte()
         {
             return punkte;
-        }
+        } // gibt Punkte
 
-        public void berechnungPunkte()
+        public void berechnungPunkte() //berehnet die Punkte 
         {
             setPunkte();
             addPunkte();

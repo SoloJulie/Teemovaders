@@ -12,7 +12,7 @@ namespace Space
 {
     public class Spieler
     {
-        public Texture2D textur, projektilTextur;
+        public Texture2D textur, texProjektil;
         public Vector2 position;
         public int speed, leben;
         public float pDelay, pD; //Verhindern von Dauerfeuer
@@ -40,7 +40,7 @@ namespace Space
         public void LoadContent(ContentManager Content)
         {
             textur = Content.Load<Texture2D>("Teemo");
-            projektilTextur = Content.Load<Texture2D>("Projectilrot");  
+            texProjektil = Content.Load<Texture2D>("Projectilrot");  
         }
 
         //Draw
@@ -66,7 +66,7 @@ namespace Space
             // delay ist 0, neuer Schuss sichtbar und in Liste schreiben
             if (pDelay <= 0)
             {
-                Schuss nProjektil = new Schuss(projektilTextur);
+                Schuss nProjektil = new Schuss(texProjektil);
                 nProjektil.position = new Vector2(position.X + 25 - nProjektil.textur.Width / 2, position.Y); //Schuss aus der Mitte von Teemo auslösen
 
                 nProjektil.isVisible = true;
@@ -104,7 +104,7 @@ namespace Space
             // wenn eine Kugel unsichtbar wird, entferne sie aus der Liste
             for (int i = 0; i < ListeSchuss.Count; i++)
             {
-                if (!ListeSchuss[i].isVisible) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
+                if (ListeSchuss[i].isVisible == false) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
                 {
                     ListeSchuss.RemoveAt(i);
                     i--;
