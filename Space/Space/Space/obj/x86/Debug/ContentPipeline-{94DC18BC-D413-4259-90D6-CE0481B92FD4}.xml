@@ -179,7 +179,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projektilblau.xnb</Output>
-      <Time>2015-09-22T23:03:24.0184213+02:00</Time>
+      <Time>2015-09-26T21:12:53.1800799+02:00</Time>
     </Item>
     <Item>
       <Source>opfer groß.png</Source>
@@ -207,6 +207,33 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer1.xnb</Output>
       <Time>2015-09-18T15:52:50.2665285+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Neues Spiel Button.png</Source>
+      <Name>Neues Spiel Button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Neues Spiel Button.xnb</Output>
+      <Time>2015-09-26T22:10:38.2333196+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Titelbild.png</Source>
+      <Name>Titelbild</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Titelbild.xnb</Output>
+      <Time>2015-09-26T22:24:11.5475343+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Buch1.jpg</Source>
+      <Name>Buch1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Buch1.xnb</Output>
+      <Time>2015-09-26T23:52:29.9410434+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

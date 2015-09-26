@@ -33,7 +33,7 @@ namespace Space
             i2s = 0;
             zurueck = false;
             runter = false;
-            sD = 2;
+            sD = 4;
             sDelay = sD;
         }
 
@@ -229,7 +229,7 @@ namespace Space
 
         public void Schuss()
         {
-            //Schießt nur wenn Delay auf null ist
+           //Schießt nur wenn Delay auf null ist
             //if (sDelay >= 0)
             //{
             //    sDelay--;
@@ -237,22 +237,27 @@ namespace Space
 
             //delay ist 0, neuer Schuss sichtbar und in Liste schreiben
             //if (sDelay <= 0)
-            foreach (Gegner gegner in ListeGegner)
-            {
-                gegnerSchuss GProjektil = new gegnerSchuss(texProjektil); //KLasse gegnerSchuss wird erstellt und Textur übergeben
-                GProjektil.position = new Vector2(gegner.getX() + GProjektil.texgSchuss.Width, gegner.getY() + GProjektil.texgSchuss.Height); //Schuss aus der Mitte von Teemo auslösen           
+            //{
+            //for (int i = 0; anzahl % 5 == 0; i++)
+            //{
+                foreach (Gegner gegner in ListeGegner)
+                {                    
+                    gegnerSchuss GProjektil = new gegnerSchuss(texProjektil); //KLasse gegnerSchuss wird erstellt und Textur übergeben
+                    GProjektil.position = new Vector2(gegner.getX() + GProjektil.texgSchuss.Width+2, gegner.getY() + GProjektil.texgSchuss.Height+25); //Schuss aus der Mitte von Teemo auslösen           
 
-                GProjektil.isVisible = true;
+                    GProjektil.isVisible = true;
 
+                    if (ListeGProjektil.Count < 10)
+                        ListeGProjektil.Add(GProjektil);
+                }
+                //Maximal 10 Projektile zur selben Zeit möglich
 
-                //Maximal 3 Projektile zur selben Zeit möglich
-                if (ListeGProjektil.Count < 10)
-                    ListeGProjektil.Add(GProjektil);
+           // }
 
-
-                //if (sDelay == 0)
-                //    sDelay = sD;
-            }
+                    //if (sDelay == 0)
+                    //    sDelay = sD;
+                
+            
             
         }
 

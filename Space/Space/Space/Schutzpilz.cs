@@ -67,7 +67,7 @@ namespace Space
                 boundingBox = new Rectangle((int)getX(), (int)getY(), t1.Width, t1.Height);
                 for (int i = 0; i < tex.Length / 3; i++)
                 {
-                    if (texVisi[z] == true)
+                    if (texVisi[i] == true)
                     {
                         t++;
                         for (int j = 0; j < tex.Length / 3; j++) //Reihen

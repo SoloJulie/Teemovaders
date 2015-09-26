@@ -14,6 +14,14 @@ namespace Space
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        //Spielstatus festlegen
+        public enum State
+        {
+            Menue,
+            spielen,
+            GameOver
+        }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch; //Punkte
         Random random = new Random();
@@ -30,6 +38,12 @@ namespace Space
         private int gPunkte = 0;
         private int punkte = 0;
         private int wahl, tempPunkte;
+        private Texture2D menuHint;
+        private int status; //Spielstatus an Klassen übergeben
+
+        // Spielstatus beim Start
+        State spielStatus = State.Menue;
+        
 
         public Game1()
         {
@@ -67,8 +81,8 @@ namespace Space
             gc.SpornRechteck();
             schutz.LoadContent(Content);
             effect = Content.Load<SoundEffect>("4");
+            menuHint = Content.Load<Texture2D>("Titelbild");
         }
-
 
         protected override void UnloadContent()
         {
@@ -83,18 +97,44 @@ namespace Space
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            spieler.Update(gameTime);
-            item.Update(gameTime);           
-
-            gc.Update(gameTime); //remove, schneller, bewegen
-            getroffen(); //iteminteraktion + unsichtbarmachen + punkteberechnung
-            itemZerstoeren();
-            punkteBerechnung();
-            gegnerTrifft();
-            projektilTreffen();
-            schutzGetroffen();
-
-
+            //Spielstatus
+            switch(spielStatus) 
+            {
+                case State.Menue:
+                    {
+                        status = 1;
+                        KeyboardState keyState = Keyboard.GetState();
+                        if (keyState.IsKeyDown(Keys.Enter))
+                        {
+                            spielStatus = State.spielen;
+                        }
+                        break;
+                    }
+                case State.spielen:
+                    {
+                        status = 2;
+                        spieler.Update(gameTime);
+                        item.Update(gameTime); 
+                        gc.Update(gameTime); //remove, schneller, bewegen
+                        getroffen(); //iteminteraktion + unsichtbarmachen + punkteberechnung
+                        itemZerstoeren();
+                        punkteBerechnung();
+                        gegnerTrifft();
+                        projektilTreffen();
+                        schutzGetroffen();
+                        minionKontakt();
+                        if (spieler.leben == 0)
+                            spielStatus = State.GameOver;                        
+                        break;
+                    }
+                
+                case State.GameOver:
+                    {
+                        status = 3;
+                        break;
+                    }
+            }       
+            
             base.Update(gameTime);
         }
 
@@ -104,14 +144,45 @@ namespace Space
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            hin.Draw(spriteBatch);  //Erst Hintergrund, da nacheinander gezeichnet wird
-            spieler.Draw(spriteBatch);
-            gc.Draw(spriteBatch);            
-            schutz.Draw(spriteBatch);            
-            item.Draw(spriteBatch);
-            spriteBatch.DrawString(font, "Punkte: " + punkte, new Vector2(0, 0), Color.Black);
-            spriteBatch.DrawString(font, "Leben: " + spieler.leben, new Vector2(600, 0), Color.Black);
+
+            switch (spielStatus)
+            {
+                    //Zeiche Menue
+                case State.Menue:
+                    {
+                        hin.Draw(spriteBatch, status); //Wenn Status Menue, zeichne Menue
+                        break;
+                    }
+
+                //Zeiche Spielinhalte
+                case State.spielen:
+                    {
+                        //Erst Hintergrund, da nacheinander gezeichnet wird
+                        hin.Draw(spriteBatch, status);  
+                        spieler.Draw(spriteBatch);
+                        gc.Draw(spriteBatch);
+                        schutz.Draw(spriteBatch);
+                        item.Draw(spriteBatch);
+                        spriteBatch.DrawString(font, "Punkte: " + punkte, new Vector2(0, 0), Color.Black);
+                        spriteBatch.DrawString(font, "Leben: " + spieler.leben, new Vector2(600, 0), Color.Black);
+                        break;
+                    }
+
+                //Zeiche GameOver
+                case State.GameOver:
+                    {
+                        GraphicsDevice.Clear(Color.Black);
+                        break;
+                    }
+            }
+
+            
             spriteBatch.End();
+
+           
+
+
+
             base.Draw(gameTime);
         }
 
@@ -197,21 +268,21 @@ namespace Space
             }
         }
 
-        public void gegnerTrifft() //gegner Trifft Spieler
+        public void gegnerTrifft() //Gegner Schuss trifft Spieler
         {
             foreach (gegnerSchuss gs in gc.ListeGProjektil)
             {          
-
                 if (gs.isVisible == true)
                 {
                     if (gs.boundingBox.Intersects(spieler.boundingBox))
                     {
-                        if(spieler.leben>0)
+                        if (spieler.leben >= 1)
                         {
                             spieler.leben--;
                             gs.isVisible = false;
                             break;
                         }
+                        
                     }
                 }
             }
@@ -238,7 +309,9 @@ namespace Space
 
 
         public void schutzGetroffen()
-        { 
+        {
+            schutz.boundingBox = new Rectangle((int)schutz.getX(), (int)schutz.getY(), schutz.t1.Width, schutz.t1.Height);
+            
             foreach (gegnerSchuss gs in gc.ListeGProjektil)
             {          
                 foreach (Schuss s in spieler.getSchussListe())
@@ -265,12 +338,34 @@ namespace Space
                
         }
 
+        public void minionKontakt() //Wenn Minion Spieler trifft
+        {
+            foreach (Gegner gegner in gc.ListeGegner)
+            {
+                gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
+
+                if (gegner.isVisible == true)
+                {
+                    if (spieler.boundingBox.Intersects(gc.boundingBox))
+                    {
+                        spieler.leben--;
+                        gegner.isVisible = false;
+                    }
+                }
+            }
+        }
+
 
 
         //Berechnung Punkte (Item + Gegnerpunkte + Projektile)
         public void punkteBerechnung()
         {
             punkte = tempPunkte + gPunkte;
+        }
+
+        public State getGameState()
+        {
+            return spielStatus;
         }
 
 

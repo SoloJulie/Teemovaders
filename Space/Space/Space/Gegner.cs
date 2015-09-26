@@ -42,6 +42,7 @@ namespace Space
             //textur = Content.Load<Texture2D>("opfer");
             //boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
             
+            
         }
 
 
