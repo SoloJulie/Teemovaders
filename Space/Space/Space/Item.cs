@@ -18,7 +18,7 @@ namespace Space
         public int ispeed, x, y;
         public Rectangle boundingBox;
         public bool isVisible;
-        public int iTyp,wahl;
+        public int iTyp, wahl, iPunkte;
         public Random random;
 
 
@@ -28,23 +28,24 @@ namespace Space
             pgruen = null;
             pblau = null;
             ptot = null;
-            Random random = new Random();
 
+            Random random = new Random();
             x = random.Next(1, 500);
             y = random.Next(1, 250);
             position = new Vector2(x, y);
             ispeed = 1;
             isVisible = true;
             iTyp = i;
+            iPunkte = 0;
             
         }
 
         public void LoadContent(ContentManager Content)
         {
-            prot = Content.Load<Texture2D>("Pilzrot");
-            ptot = Content.Load<Texture2D>("Pilztot");
-            pblau = Content.Load<Texture2D>("Pilzblau");
-            pgruen = Content.Load<Texture2D>("Pilzgr");
+            prot = Content.Load<Texture2D>("Pilzrot");      //iT = 1
+            pblau = Content.Load<Texture2D>("Pilzblau");    //iT = 2
+            ptot = Content.Load<Texture2D>("Pilztot");      //iT = 3
+            pgruen = Content.Load<Texture2D>("Pilzgr");     //iT = 4
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -76,6 +77,7 @@ namespace Space
         public void Update(GameTime gameTime)
         {
             fallen();
+            
         }
 
         public int getX()
@@ -127,6 +129,35 @@ namespace Space
         //{
         //    return y = random.Next(1, 500);
         //}
+
+
+        public void setIPunkte()
+        {            
+            if (iTyp == 1)
+                iPunkte = 200;
+            else if (iTyp == 2)
+                iPunkte = 500;
+            else if (iTyp == 3)
+                iPunkte = 700;
+            else if (iTyp == 4) 
+                iPunkte = 1000;
+        }
+
+        public int addIPunkte()
+        {
+            setIPunkte();
+            return iPunkte;
+        }
+
+        public void berechnungIPunkte()
+        {
+            if (isVisible == true)
+            {
+                setIPunkte();
+                addIPunkte();
+            }
+        } 
+
 
         
 

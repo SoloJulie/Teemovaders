@@ -12,12 +12,12 @@ namespace Space
     public class Gegner
     {
         public Texture2D textur;
-        public Vector2 position, bbposition;
+        public Vector2 position;
         public int gspeed, tempBew;
         public bool isVisible, zurueck;
         public int spalte, zeile;
-        public int anzahl, leben;     
-        public List<Gegner> GegnerListe;
+        public int anzahl, leben, punkte;     
+        //public List<Gegner> GegnerListe;
         public int gtyp; //Für Gegnertypdeklaration
         public Rectangle boundingBox;
 
@@ -28,15 +28,12 @@ namespace Space
             position.X = 0;
             position.Y = 0;
             gspeed = 2;
-            GegnerListe = new List<Gegner>();
-            zeile = 3;
-            spalte = 5;
             tempBew = 0;
-            zurueck = false;
             anzahl = 0;
             gtyp = 0;
             leben = 1;
             isVisible = true;
+            punkte = 0;
         }
 
 
@@ -60,11 +57,9 @@ namespace Space
 
         //Update leer
         public void Update(GameTime gameTime)
-        {
-            
+        {            
         }
-
-        
+               
 
         public Vector2 getPos()
         {
@@ -115,6 +110,32 @@ namespace Space
         {
             return gtyp;
         }
+
+        public void setPunkte()
+        {
+            if (gtyp == 0)
+                punkte = 100;
+            else if (gtyp == 1)
+                punkte = 200;
+            else if (gtyp == 2)
+                punkte = 500;
+            else if (gtyp == 4) //Item 3 ist Todespilz, keine Punkte für Gegner da vernichtung
+                punkte = 600;
+        }
+
+        public int addPunkte()
+        {
+            return punkte;
+        }
+
+        public void berechnungPunkte()
+        {
+            setPunkte();
+            addPunkte();
+        }
+
+
+       
 
         
 

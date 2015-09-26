@@ -15,15 +15,14 @@ namespace Space
         public Texture2D t1,t2,t3,t4,t5,t6,t7,t8,t9,tex;
         public Vector2 position;
         public Rectangle boundingBox;
-        public bool isVisible;
+        public bool isVisible, sicht;
         public int iTyp;
 
 
         public Schutzpilz()
         {
             position = new Vector2(0, 0);
-            isVisible = true;        
-            
+            isVisible = true;              
 
         }
 

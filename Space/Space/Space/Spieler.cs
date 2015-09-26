@@ -17,7 +17,7 @@ namespace Space
         public int speed, leben;
         public float pDelay, pD; //Verhindern von Dauerfeuer
         public Rectangle boundingBox;
-        public List<Schuss> schussListe; //Liste um Projektile besser händeln zu können
+        public List<Schuss> ListeSchuss; //Liste um Projektile besser händeln zu können
         public bool isVisible;
         public SoundEffect effect;
         
@@ -26,7 +26,7 @@ namespace Space
 
         public Spieler()
         {
-            schussListe = new List<Schuss>(); 
+            ListeSchuss = new List<Schuss>(); 
             textur = null;
             position = new Vector2(300, 450); //Teemo Sporn 300,450 x,y
             speed = 5;
@@ -48,7 +48,7 @@ namespace Space
         {
             spriteBatch.Draw(textur, position, Color.White);
 
-            foreach (Schuss p in schussListe)
+            foreach (Schuss p in ListeSchuss)
                 p.Draw(spriteBatch);
         }
 
@@ -73,8 +73,8 @@ namespace Space
 
                 
                 //Maximal 20 Projektile zur selben Zeit möglich
-                if (schussListe.Count() < 20)
-                    schussListe.Add(nProjektil);
+                if (ListeSchuss.Count() < 20)
+                    ListeSchuss.Add(nProjektil);
             }
 
             if (pDelay == 0)
@@ -85,7 +85,7 @@ namespace Space
         //Update Schuss
         public void updateSchussList()
         {
-            foreach (Schuss p in schussListe)
+            foreach (Schuss p in ListeSchuss)
             {
                 //Bounding Box um die Projektile
                 p.boundingBox = new Rectangle((int)p.position.X, (int)p.position.Y, p.textur.Width, p.textur.Height);
@@ -102,11 +102,11 @@ namespace Space
 
 
             // wenn eine Kugel unsichtbar wird, entferne sie aus der Liste
-            for (int i = 0; i < schussListe.Count; i++)
+            for (int i = 0; i < ListeSchuss.Count; i++)
             {
-                if (!schussListe[i].isVisible) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
+                if (!ListeSchuss[i].isVisible) //Wenn Projektil an Stelle i nicht sichtbar ist, entferne sie aus der Liste, setze i--
                 {
-                    schussListe.RemoveAt(i);
+                    ListeSchuss.RemoveAt(i);
                     i--;
                 }
             }
@@ -115,7 +115,7 @@ namespace Space
 
         public List<Schuss> getSchussListe()
         {
-            return schussListe;
+            return ListeSchuss;
         }
 
 

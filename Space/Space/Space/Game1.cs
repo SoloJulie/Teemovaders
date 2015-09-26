@@ -20,9 +20,9 @@ namespace Space
         Hintergrund hin;
 
 
-        GegnerContainer gc; 
+        GegnerContainer gc;
 
-        Spieler spieler;    
+        Spieler spieler;
 
         Item item;
         Schutzpilz schutz;
@@ -30,8 +30,9 @@ namespace Space
         private SoundEffect effect;
 
         private SpriteFont font;
+        private int gPunkte = 0;
         private int punkte = 0;
-        private int wahl;
+        private int wahl, tempPunkte;
 
         public Game1()
         {
@@ -60,7 +61,7 @@ namespace Space
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice); 
+            spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Punkte");
             spieler.LoadContent(Content);     //Lade Spieler
             gc.LoadContent(Content);
@@ -69,7 +70,7 @@ namespace Space
             gc.SpornRechteck();
             schutz.LoadContent(Content);
             effect = Content.Load<SoundEffect>("4");
-         }
+        }
 
 
         protected override void UnloadContent()
@@ -89,28 +90,63 @@ namespace Space
             item.Update(gameTime);
             //schutz.Update(gameTime);
 
+
+
+            //Bounding box für Schutzpilz
+            //schutz.boundingBox = new Rectangle((int)schutz.getX(), (int)schutz.getY(), schutz.t1.Width, schutz.t1.Height);
+            //if (schutz.sichtbar() == true)
+            //{
+            //    if (gegner.isVisible && schutz.boundingBox.Intersects(gc.boundingBox)) //Gegner und Pilz sichbar treffen
+            //    {
+            //       schutz.isVisible = false;
+            //    }                    
+            //}
+
+            gc.Update(gameTime); //remove, schneller, bewegen
+            getroffen(); //iteminteraktion + unsichtbarmachen + punkteberechnung
+            itemZerstoeren();
+            punkteBerechnung();
+
+
+
+            base.Update(gameTime);
+        }
+
+
+        //Draw
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            hin.Draw(spriteBatch);  //Erst Hintergrund, da nacheinander gezeichnet wird
+            spieler.Draw(spriteBatch);
+            gc.Draw(spriteBatch);            
+            schutz.Draw(spriteBatch);            
+            item.Draw(spriteBatch);
+            spriteBatch.DrawString(font, "Punkte: " + punkte, new Vector2(0, 0), Color.Black);
+            spriteBatch.End();
+            base.Draw(gameTime);
+        }
+
+        public void auswahl() //Itemtyp zufällig festlegen
+        {
+            wahl = random.Next(1, 5); //5 nicht inklusive
+        }
+
+
+        public void getroffen() //Spieler trifft + aufruf der Iteminteraktion
+        {
             //Macht alle unsichtbar beim Kontakt
-            foreach (Gegner gegner in gc.GegnerListe)
+            foreach (Gegner gegner in gc.ListeGegner)
             {
                 //Erstelle bounding box immer neu für jeden Gegner an jeder position pro frame
                 gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
-
-                //Bei halber Gegneranzahl erhöhe Gegner Geschwindigkeit
-                if (gc.anzahl < gc.GegnerAnzahl()/1.5)
-                   gegner.gspeed = 3;
-
-                if (gc.anzahl < gc.GegnerAnzahl() / 2)
-                    gegner.gspeed = 4;
-
-                if (gc.anzahl < gc.GegnerAnzahl() / 3)
-                    gegner.gspeed = 5;
-
 
                 //Schuss trifft
                 foreach (Schuss s in spieler.getSchussListe())
                 {
                     if (gegner.isVisible && s.isVisible) //Schuss sichtbar und Gegner
-                    {                
+                    {
                         if (s.boundingBox.Intersects(gc.boundingBox)) //Schuss trifft Gegner
                         {
                             if (gegner.leben > 1) //Leben ist größer 1
@@ -123,25 +159,33 @@ namespace Space
                             {
                                 gegner.machUnsichtbar();
                                 effect.Play(); //Sound wird abgespielt
-                                s.isVisible = false;
+                                s.isVisible = false; //Schuss unsichtbar
                                 gc.anzahl--;
-                                break;                                
+                                gegner.berechnungPunkte();
+                                gPunkte += gegner.punkte; //Punkteberechnung aus Gegner
+                                break;
                             }
-                        }                        
+                        }
                     }
                 }
 
-                //ITEM
+                itemInterakt(); 
+            }
+        }
 
+
+        public void itemInterakt() //verwandelt Gegner
+        {
+            foreach (Gegner gegner in gc.ListeGegner)
+            {
                 //BoundingBox für Item
-                item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.prot.Width, item.prot.Height); 
+                item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.prot.Width, item.prot.Height);
 
                 //ändert Gegner Typ und Gegner Aussehen
                 if (item.isVisible == true)
                 {
                     if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichbar treffen
-                    {            
-
+                    {
                         if (gegner.gtyp == 0) //Gegner normal, übergebe Item und ändere Gegnertyp
                         {
                             gegner.setTyp(item.iTyp); //Übergebe Itemtyp 
@@ -149,48 +193,40 @@ namespace Space
                         }
                     }
                 }
-
-                //Bounding box für Schutzpilz
-                schutz.boundingBox = new Rectangle((int)schutz.getX(), (int)schutz.getY(), schutz.t1.Width, schutz.t1.Height);
-                    //if (schutz.sichtbar() == true)
-                    //{
-                    //    if (gegner.isVisible && schutz.boundingBox.Intersects(gc.boundingBox)) //Gegner und Pilz sichbar treffen
-                    //    {
-                    //       schutz.isVisible = false;
-                    //    }                    
-                    //}
-
             }
+        } 
 
-            
-            gc.Update(gameTime);
-
-            base.Update(gameTime);
-        }
-
-
-        //Draw
-        protected override void Draw(GameTime gameTime)
+        public void itemZerstoeren() //Zerstört Items bei schuss des Spielers
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            hin.Draw(spriteBatch);  //Erst Hintergrund, da nacheinander gezeichnet wird
-            gc.Draw(spriteBatch);
-            item.Draw(spriteBatch);
-            schutz.Draw(spriteBatch);
+            if (item.isVisible == true)
+            {
+                foreach (Schuss s in spieler.getSchussListe())
+                {
+                    if (s.boundingBox.Intersects(item.boundingBox))
+                    {
+                        item.isVisible = false;
+                        s.isVisible = false;
+                        tempPunkte = item.addIPunkte();
+                    }
+                }
+            }
+        } //Item wird vom Spieler zerstört
 
-            punkte = gc.GegnerAnzahl();
-            spieler.Draw(spriteBatch);
-            spriteBatch.DrawString(font, "Punkte: " + gc.anzahl, new Vector2(0, 0), Color.Black);
-            spriteBatch.End();
-
-
-            base.Draw(gameTime);
-        }
-
-        public void auswahl()
+        public void punkteBerechnung()
         {
-            wahl = random.Next(1, 5); //5 nicht inklusive
-        }
-    }
+            punkte = tempPunkte + gPunkte;
+        } //Berechnung Punkte (Item + Gegnerpunkte)
+
+
+
+
+
+
+
+
+
+
+
+
+    }           
 }
