@@ -21,6 +21,6 @@ Content\Projektilblau.xnb
 Content\opferGr.xnb
 Content\opferR.xnb
 Content\opfer1.xnb
-Content\Neues Spiel Button.xnb
 Content\Titelbild.xnb
-Content\Buch1.xnb
+Content\GameOver.xnb
+Content\Minions sprite.xnb

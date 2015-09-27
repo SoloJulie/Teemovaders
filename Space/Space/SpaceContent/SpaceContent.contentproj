@@ -165,22 +165,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Neues Spiel Button.png">
-      <Name>Neues Spiel Button</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Titelbild.png">
+    <Compile Include="Titelbild.jpg">
       <Name>Titelbild</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buch1.jpg">
-      <Name>Buch1</Name>
+    <Compile Include="Game Over.jpg">
+      <Name>GameOver</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Minions sprite.png">
+      <Name>Minions sprite</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

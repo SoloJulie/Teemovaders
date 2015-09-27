@@ -28,7 +28,8 @@ namespace Space
         public void LoadContent(ContentManager Content)
         {
             textur = Content.Load<Texture2D>("Hintergrund");
-            titel = Content.Load<Texture2D>("Buch1");
+            titel = Content.Load<Texture2D>("Titelbild");
+            gameover = Content.Load<Texture2D>("GameOver");
         }
 
         //Draw
@@ -44,6 +45,11 @@ namespace Space
             else if (status == 2)
             {            
                 spriteBatch.Draw(textur, position, Color.White);
+            }
+
+            if (status == 3)
+            {
+                spriteBatch.Draw(gameover, position, Color.White);
             }
         }
 

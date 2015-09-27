@@ -25,8 +25,11 @@ namespace Space
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch; //Punkte
         Random random = new Random();
-        Hintergrund hin;
+        List<Animation> listeAnimation = new List<Animation>();
         
+        
+        //Klassen
+        Hintergrund hin;
         GegnerContainer gc;
         Spieler spieler;
         Item item;
@@ -38,7 +41,6 @@ namespace Space
         private int gPunkte = 0;
         private int punkte = 0;
         private int wahl, tempPunkte;
-        private Texture2D menuHint;
         private int status; //Spielstatus an Klassen übergeben
 
         // Spielstatus beim Start
@@ -81,7 +83,6 @@ namespace Space
             gc.SpornRechteck();
             schutz.LoadContent(Content);
             effect = Content.Load<SoundEffect>("4");
-            menuHint = Content.Load<Texture2D>("Titelbild");
         }
 
         protected override void UnloadContent()
@@ -104,9 +105,13 @@ namespace Space
                     {
                         status = 1;
                         KeyboardState keyState = Keyboard.GetState();
-                        if (keyState.IsKeyDown(Keys.Enter))
+                        if (keyState.IsKeyDown(Keys.N))
                         {
                             spielStatus = State.spielen;
+                        }
+                        else if (keyState.IsKeyDown(Keys.Q))
+                        {
+                            this.Exit();
                         }
                         break;
                     }
@@ -121,16 +126,40 @@ namespace Space
                         punkteBerechnung();
                         gegnerTrifft();
                         projektilTreffen();
+                        minionTod();
                         schutzGetroffen();
                         minionKontakt();
+                        foreach (Animation a in listeAnimation)
+                        {
+                            a.Update(gameTime);
+                        }
+                        
+                        
                         if (spieler.leben == 0)
-                            spielStatus = State.GameOver;                        
+                            spielStatus = State.GameOver;
+                        
+
                         break;
                     }
                 
                 case State.GameOver:
                     {
                         status = 3;
+                        KeyboardState keyState = Keyboard.GetState();
+                        if (keyState.IsKeyDown(Keys.N))
+                        {
+                            spieler.leben = 3;
+                            punkte = 0;
+                            gc.ListeGegner.Clear(); //Leert die Gegner Liste 
+                            gc.ListeGProjektil.Clear();
+                            spieler.ListeSchuss.Clear();
+                            gc.SpornRechteck(); //Lässt Gegner wieder neu erscheinen
+                            spielStatus = State.spielen;
+                        }
+                        else if (keyState.IsKeyDown(Keys.Q))
+                        {
+                            this.Exit();
+                        }
                         break;
                     }
             }       
@@ -162,6 +191,10 @@ namespace Space
                         spieler.Draw(spriteBatch);
                         gc.Draw(spriteBatch);
                         schutz.Draw(spriteBatch);
+                        foreach (Animation a in listeAnimation)
+                        {
+                            a.Draw(spriteBatch);
+                        }
                         item.Draw(spriteBatch);
                         spriteBatch.DrawString(font, "Punkte: " + punkte, new Vector2(0, 0), Color.Black);
                         spriteBatch.DrawString(font, "Leben: " + spieler.leben, new Vector2(600, 0), Color.Black);
@@ -171,7 +204,7 @@ namespace Space
                 //Zeiche GameOver
                 case State.GameOver:
                     {
-                        GraphicsDevice.Clear(Color.Black);
+                        hin.Draw(spriteBatch, status);
                         break;
                     }
             }
@@ -215,6 +248,7 @@ namespace Space
                             else
                             {
                                 gegner.machUnsichtbar();
+                                listeAnimation.Add(new Animation(Content.Load<Texture2D>("Minions sprite"), new Vector2(gegner.position.X, gegner.position.Y)));
                                 effect.Play(); //Sound wird abgespielt
                                 s.isVisible = false; //Schuss unsichtbar
                                 gc.anzahl--;
@@ -369,14 +403,16 @@ namespace Space
         }
 
 
-
-
-
-
-
-
-
-
-
+        public void minionTod() //Animation der Minion Tode
+        {
+            for (int i = 0; i < listeAnimation.Count; i++)
+            {
+                if (listeAnimation[i].isVisible == false)
+                {
+                    listeAnimation.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
     }           
 }
