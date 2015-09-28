@@ -40,9 +40,9 @@ namespace Space
 
         public void LoadContent(ContentManager Content)
         {
-            minions = Content.Load<Texture2D>("opfer");
-            minGr = Content.Load<Texture2D>("opfer1");
-            minKl = Content.Load<Texture2D>("opferR");
+            minions = Content.Load<Texture2D>("Minion Magier");
+            minGr = Content.Load<Texture2D>("Minionn Magier 2");
+            minKl = Content.Load<Texture2D>("Minionn Magier 2");
 
             texProjektil = Content.Load<Texture2D>("Projektilblau");
         }
@@ -56,17 +56,21 @@ namespace Space
                 {
                     if (gegner.gtyp == 0) //welcher Gegnertyp wird gezeichnet
                     {
-                        spriteBatch.Draw(minions, gegner.getPos(), Color.White);
+                        spriteBatch.Draw(minions, gegner.getPos(), Color.White);                        
                     }
 
                     else if (gegner.gtyp == 1) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
+                        if (gegner.leben != 0)
+                            gegner.setzeLeben(1);
                     }
 
                     else if (gegner.gtyp == 2) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
+                        if (gegner.leben != 0) 
+                            gegner.setzeLeben(2);
                     }
 
                     else if (gegner.gtyp == 3) //welcher Gegnertyp wird gezeichnet
@@ -79,8 +83,9 @@ namespace Space
                     else if (gegner.gtyp == 4) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
+                        if (gegner.leben != 0)
+                            gegner.setzeLeben(4);
                     }
-
                 }
             }
 
@@ -95,8 +100,8 @@ namespace Space
             bewegen();
             remove();
             schneller();
-            Schuss();
-            updateGegnerSchussListe();
+            //Schuss();
+            //updateGegnerSchussListe();
         }
 
         public void SpornRechteck()
@@ -141,7 +146,6 @@ namespace Space
 
         public void remove()
         {
-
             for (int i = 0; i < ListeGegner.Count; i++)
             {
                 if (ListeGegner.ElementAt(i).isVisible == false)
@@ -150,9 +154,7 @@ namespace Space
                     break;
                 }
             }
-
         }
-
 
         public void bewegen()
         {
@@ -185,7 +187,6 @@ namespace Space
                         gegner.tempBew = 0; //für jeden Gegner einzeln prüfen
                         gegner.zurueck = true;
                         runter = true;
-
                     }
                 }
 

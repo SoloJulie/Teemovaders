@@ -29,6 +29,7 @@ namespace Space
         
         
         //Klassen
+        //Animation ani;
         Hintergrund hin;
         GegnerContainer gc;
         Spieler spieler;
@@ -66,7 +67,6 @@ namespace Space
             auswahl(); //zum Random erzeugen eines Items
             item = new Item(wahl);
             schutz = new Schutzpilz();
-
             base.Initialize();
         }
 
@@ -89,8 +89,7 @@ namespace Space
         {
             // TODO: Unload any non ContentManager content here
         }
-
-
+        
         //Update
         protected override void Update(GameTime gameTime)
         {
@@ -121,14 +120,20 @@ namespace Space
                         spieler.Update(gameTime);
                         item.Update(gameTime); 
                         gc.Update(gameTime); //remove, schneller, bewegen
+                        
+                        //Interaktionen des Spiels
                         getroffen(); //iteminteraktion + unsichtbarmachen + punkteberechnung
                         itemZerstoeren();
                         punkteBerechnung();
                         gegnerTrifft();
+                        minionKontakt();
                         projektilTreffen();
                         minionTod();
                         schutzGetroffen();
-                        minionKontakt();
+                        
+                        //ani.minionTod();
+                        //ani.Update(gameTime);
+
                         foreach (Animation a in listeAnimation)
                         {
                             a.Update(gameTime);
@@ -148,11 +153,12 @@ namespace Space
                         KeyboardState keyState = Keyboard.GetState();
                         if (keyState.IsKeyDown(Keys.N))
                         {
-                            spieler.leben = 3;
-                            punkte = 0;
+                            
                             gc.ListeGegner.Clear(); //Leert die Gegner Liste 
                             gc.ListeGProjektil.Clear();
                             spieler.ListeSchuss.Clear();
+                            spieler.leben = 3;
+                            punkte = 0;
                             gc.SpornRechteck(); //Lässt Gegner wieder neu erscheinen
                             spielStatus = State.spielen;
                         }
@@ -211,13 +217,10 @@ namespace Space
 
             
             spriteBatch.End();
-
-           
-
-
-
             base.Draw(gameTime);
         }
+
+        //Funktionen die während des Spiels laufen
 
         public void auswahl() //Itemtyp zufällig festlegen
         {
@@ -239,9 +242,11 @@ namespace Space
                     {
                         if (s.boundingBox.Intersects(gc.boundingBox)) //Schuss trifft Gegner
                         {
-                            if (gegner.leben > 1) //Leben ist größer 1
+                            if (gegner.leben == 2 ) //Leben ist größer 1
                             {
                                 gegner.leben--;
+                                //gegner.getLeben();
+                                //gegner.machUnsichtbar();
                                 s.isVisible = false;
                             }
 
@@ -260,7 +265,7 @@ namespace Space
                     }
                 }
 
-                itemInterakt(); 
+                itemInterakt();
             }
         }
         
@@ -270,6 +275,7 @@ namespace Space
             {
                 //BoundingBox für Item
                 item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.prot.Width, item.prot.Height);
+                gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
 
                 //ändert Gegner Typ und Gegner Aussehen
                 if (item.isVisible == true)
@@ -340,8 +346,7 @@ namespace Space
                 }
             }
         }
-
-
+        
         public void schutzGetroffen()
         {
             schutz.boundingBox = new Rectangle((int)schutz.getX(), (int)schutz.getY(), schutz.t1.Width, schutz.t1.Height);

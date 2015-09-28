@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 
 namespace Space
 {
@@ -13,6 +17,7 @@ namespace Space
         public int aFrame, sWidth, sHeight;
         public Rectangle sourceRect;
         public bool isVisible;
+        public List<Animation> listeAnimation;
 
 
         public Animation(Texture2D textur, Vector2 position)
@@ -25,11 +30,13 @@ namespace Space
             sWidth = 128;
             sHeight = 128;
             isVisible = true;
+            listeAnimation = new List<Animation>();
         }
 
 
         public void LoadConten(ContentManager Conten)
-        { }
+        { 
+        }
 
         public void Update(GameTime gameTime)
         {
@@ -49,14 +56,36 @@ namespace Space
 
             sourceRect = new Rectangle(aFrame * sWidth, 0, sHeight, sHeight);
             origin = new Vector2(sourceRect.Width / 2, sourceRect.Height / 2);
+
+            //foreach (Animation a in listeAnimation)
+            //{
+            //    a.Update(gameTime);
+            //}
+
+            
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (isVisible == true)
             {
-                spriteBatch.Draw(textur, position, sourceRect, Color.White, 0f, origin, 1.0f, SpriteEffects.None, 0);
-            }
-            
+                //foreach (Animation a in listeAnimation)
+                //{
+                    spriteBatch.Draw(textur, position, sourceRect, Color.White, 0f, origin, 1.0f, SpriteEffects.None, 0);
+                //}
+            }     
         }
-    }         
+
+        public void minionTod() //Animation der Minion Tode
+        {
+            for (int i = 0; i < listeAnimation.Count; i++)
+            {
+                if (listeAnimation[i].isVisible == false)
+                {
+                    listeAnimation.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+    }            
 }

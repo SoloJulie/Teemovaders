@@ -40,7 +40,7 @@ namespace Space
         public void LoadContent(ContentManager Content)
         {
             textur = Content.Load<Texture2D>("Teemo");
-            texProjektil = Content.Load<Texture2D>("Projectilrot");  
+            texProjektil = Content.Load<Texture2D>("teemoPfeil");  
         }
 
         //Draw

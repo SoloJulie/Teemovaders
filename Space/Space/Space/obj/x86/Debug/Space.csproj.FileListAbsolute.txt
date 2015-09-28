@@ -14,11 +14,9 @@ C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Microsoft.Xna
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Space.exe
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\Space.pdb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo.xnb
-C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Hintergrund.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projectilrot.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Punkte.xnb
-C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opferR.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P1.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\P2.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\4.xnb
@@ -39,3 +37,6 @@ C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Titelbild.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\GameOver.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Minions sprite.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Minion Magier.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Minionn Magier 2.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\teemoPfeil.xnb

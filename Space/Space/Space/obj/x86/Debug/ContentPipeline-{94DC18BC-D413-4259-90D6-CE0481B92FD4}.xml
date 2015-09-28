@@ -11,15 +11,6 @@
       <Time>2015-09-21T21:29:23.0494052+02:00</Time>
     </Item>
     <Item>
-      <Source>opfer.png</Source>
-      <Name>opfer</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer.xnb</Output>
-      <Time>2015-09-18T15:52:50.2715288+02:00</Time>
-    </Item>
-    <Item>
       <Source>Hintergrund.jpg</Source>
       <Name>Hintergrund</Name>
       <Importer>TextureImporter</Importer>
@@ -191,15 +182,6 @@
       <Time>2015-09-18T15:52:50.2685286+02:00</Time>
     </Item>
     <Item>
-      <Source>opferrot.png</Source>
-      <Name>opferR</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opferR.xnb</Output>
-      <Time>2015-09-18T15:52:50.2695286+02:00</Time>
-    </Item>
-    <Item>
       <Source>opfer g rot.png</Source>
       <Name>opfer1</Name>
       <Importer>TextureImporter</Importer>
@@ -234,6 +216,33 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Minions sprite.xnb</Output>
       <Time>2015-09-27T18:39:38.5007901+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Minion Magier.png</Source>
+      <Name>Minion Magier</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Minion Magier.xnb</Output>
+      <Time>2015-09-28T01:09:13.8437312+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Minionn Magier 2.png</Source>
+      <Name>Minionn Magier 2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Minionn Magier 2.xnb</Output>
+      <Time>2015-09-28T01:10:25.9546856+02:00</Time>
+    </Item>
+    <Item>
+      <Source>teemoPfeil.png</Source>
+      <Name>teemoPfeil</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\teemoPfeil.xnb</Output>
+      <Time>2015-09-28T02:11:36.9797634+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

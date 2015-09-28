@@ -30,9 +30,9 @@ namespace Space
             tempBew = 0;
             anzahl = 0;
             gtyp = 0;
-            leben = 1;
             isVisible = true;
             punkte = 0;
+            
         }
 
 
@@ -90,6 +90,7 @@ namespace Space
         public void machUnsichtbar()
         {
             isVisible = false;
+            
         } // Macht Gegner unsichtbar
                
 
@@ -131,12 +132,31 @@ namespace Space
             addPunkte();
         }
 
+        public void setzeLeben(int l)
+        {
+            if (gtyp == 0)
+            {
+                leben = 1;
+            }
 
-       
+            else if (gtyp == 1)
+            {
+                leben = 2;
+            }
+            else if (gtyp == 2)
+            {
+                leben = 2;
+            }
+            else if (gtyp == 4)
+            {
+                leben = 2;
+            }
+        }
 
-        
-
-       
+        public int getLeben()
+        {
+            return leben;
+        }    
         
 
         

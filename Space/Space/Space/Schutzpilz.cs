@@ -34,7 +34,6 @@ namespace Space
             texVisi8 = true;
             texVisi9 = true;
             i = 0;
-
         }
 
         public void LoadContent(ContentManager Content)
@@ -49,7 +48,6 @@ namespace Space
             t8 = Content.Load<Texture2D>("P8");
             t9 = Content.Load<Texture2D>("P9");
         }
-
 
         public void Draw(SpriteBatch spriteBatch)
         {
