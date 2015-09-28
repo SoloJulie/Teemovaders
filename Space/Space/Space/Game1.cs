@@ -22,6 +22,12 @@ namespace Space
             GameOver
         }
 
+        public enum Level
+        {
+            Lvl1,
+            Lvl2
+        }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch; //Punkte
         Random random = new Random();
@@ -35,8 +41,9 @@ namespace Space
         Spieler spieler;
         Item item;
         Schutzpilz schutz;
+        Sounds sound;
 
-        private SoundEffect effect;
+        //private SoundEffect effect;
 
         private SpriteFont font;
         private int gPunkte = 0;
@@ -46,6 +53,8 @@ namespace Space
 
         // Spielstatus beim Start
         State spielStatus = State.Menue;
+
+        Level level = Level.Lvl1;
         
 
         public Game1()
@@ -67,6 +76,7 @@ namespace Space
             auswahl(); //zum Random erzeugen eines Items
             item = new Item(wahl);
             schutz = new Schutzpilz();
+            sound = new Sounds();
             base.Initialize();
         }
 
@@ -82,7 +92,7 @@ namespace Space
             hin.LoadContent(Content);
             gc.SpornRechteck();
             schutz.LoadContent(Content);
-            effect = Content.Load<SoundEffect>("4");
+            sound.LoadContent(Content);
         }
 
         protected override void UnloadContent()
@@ -114,46 +124,71 @@ namespace Space
                         }
                         break;
                     }
+
                 case State.spielen:
                     {
                         status = 2;
                         spieler.Update(gameTime);
-                        item.Update(gameTime); 
-                        gc.Update(gameTime); //remove, schneller, bewegen
-                        
-                        //Interaktionen des Spiels
                         getroffen(); //iteminteraktion + unsichtbarmachen + punkteberechnung
                         itemZerstoeren();
                         punkteBerechnung();
                         gegnerTrifft();
                         minionKontakt();
                         projektilTreffen();
-                        minionTod();
                         schutzGetroffen();
-                        
-                        //ani.minionTod();
-                        //ani.Update(gameTime);
+                        minionTod();
 
-                        foreach (Animation a in listeAnimation)
+                        switch(level) //Je nachdem welches Level geladen wird andere Funktionen
                         {
-                            a.Update(gameTime);
-                        }
-                        
-                        
+                            case Level.Lvl1:
+                            {                                   
+                                    item.Update(gameTime);
+                                    gc.Update(gameTime); //remove, schneller, bewegen
+
+                                    //Interaktionen des Spiels
+                                    
+                                    
+                                    
+
+                                    //ani.minionTod();
+                                    //ani.Update(gameTime);
+
+                                    foreach (Animation a in listeAnimation)
+                                    {
+                                        a.Update(gameTime);
+                                    }
+
+                                    neuesLevel();                            
+
+                                    break;
+                                }
+
+                                case Level.Lvl2:
+                                  {
+                                      status = 22;
+                                      
+                                      break;
+                                  }
+                              
+                                
+                             }
                         if (spieler.leben == 0)
                             spielStatus = State.GameOver;
                         
 
                         break;
-                    }
+                        }
+                        
+                        
+                        
+                    
                 
                 case State.GameOver:
                     {
                         status = 3;
                         KeyboardState keyState = Keyboard.GetState();
                         if (keyState.IsKeyDown(Keys.N))
-                        {
-                            
+                        {                            
                             gc.ListeGegner.Clear(); //Leert die Gegner Liste 
                             gc.ListeGProjektil.Clear();
                             spieler.ListeSchuss.Clear();
@@ -254,7 +289,12 @@ namespace Space
                             {
                                 gegner.machUnsichtbar();
                                 listeAnimation.Add(new Animation(Content.Load<Texture2D>("Minions sprite"), new Vector2(gegner.position.X, gegner.position.Y)));
-                                effect.Play(); //Sound wird abgespielt
+
+                                //Zufälliger Sound wird abgespielt
+                                sound.wahlLachen();
+                                sound.playLachen(sound.swahl);
+
+                                //Gegner
                                 s.isVisible = false; //Schuss unsichtbar
                                 gc.anzahl--;
                                 gegner.berechnungPunkte();
@@ -418,6 +458,15 @@ namespace Space
                     i--;
                 }
             }
+        }
+
+        public void neuesLevel()
+        {
+            if (gc.ListeGegner.Count == 0)
+            {
+                level = Level.Lvl2;
+            }
+
         }
     }           
 }
