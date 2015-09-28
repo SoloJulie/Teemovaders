@@ -62,15 +62,13 @@ namespace Space
                     else if (gegner.gtyp == 1) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-                        if (gegner.leben != 0)
-                            gegner.setzeLeben(1);
+                                                
                     }
 
                     else if (gegner.gtyp == 2) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-                        if (gegner.leben != 0) 
-                            gegner.setzeLeben(2);
+                        
                     }
 
                     else if (gegner.gtyp == 3) //welcher Gegnertyp wird gezeichnet
@@ -83,8 +81,7 @@ namespace Space
                     else if (gegner.gtyp == 4) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-                        if (gegner.leben != 0)
-                            gegner.setzeLeben(4);
+                        
                     }
                 }
             }
@@ -100,8 +97,8 @@ namespace Space
             bewegen();
             remove();
             schneller();
-            //Schuss();
-            //updateGegnerSchussListe();
+            Schuss();
+            updateGegnerSchussListe();
         }
 
         public void SpornRechteck()
@@ -115,14 +112,17 @@ namespace Space
                     gegner.setXPos(x * 80);
                     gegner.setYPos(y * 80);
 
+                    gegner.setzeLeben(gegner.getGtyp());
+
 
                     //gegner.boundingBox = new Rectangle((int)gegner.position.X, (int)gegner.position.Y, textur.Width, textur.Height);
 
                     ListeGegner.Add(gegner);
                     anzahl++;
-                    groesse = anzahl;
+                      
                 }
             }
+            groesse = anzahl; //zur Berechnung der Geschwindigtkeit, die originalgröße der Liste übergeben
         }
 
 

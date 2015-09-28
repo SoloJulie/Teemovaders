@@ -142,43 +142,41 @@ namespace Space
                         {
                             case Level.Lvl1:
                             {                                   
-                                    item.Update(gameTime);
-                                    gc.Update(gameTime); //remove, schneller, bewegen
+                                item.Update(gameTime);
+                                gc.Update(gameTime); //remove, schneller, bewegen
 
-                                    //Interaktionen des Spiels
+                                //Interaktionen des Spiels             
                                     
-                                    
-                                    
+                                //ani.minionTod();
+                                //ani.Update(gameTime);
 
-                                    //ani.minionTod();
-                                    //ani.Update(gameTime);
-
-                                    foreach (Animation a in listeAnimation)
-                                    {
-                                        a.Update(gameTime);
-                                    }
-
-                                    neuesLevel();                            
-
-                                    break;
+                                foreach (Animation a in listeAnimation)
+                                {
+                                    a.Update(gameTime);
                                 }
 
-                                case Level.Lvl2:
-                                  {
-                                      status = 22;
-                                      
-                                      break;
-                                  }
-                              
-                                
-                             }
+                                neuesLevel();                            
+
+                                break;
+                            } //Case Lvl1 Ende
+
+                            case Level.Lvl2:
+                            {
+                                status = 22;                                      
+                                break;
+                            }    //Case Lvl2 Ende                   
+                        } //Case Level Ende
+
+
+                        //Spieler hat kein Leben mehr
                         if (spieler.leben == 0)
+                        {
+                            punkte = 0;
                             spielStatus = State.GameOver;
-                        
+                        }                     
 
                         break;
-                        }
-                        
+                    } //Case State:spielen ende                     
                         
                         
                     
@@ -187,7 +185,7 @@ namespace Space
                     {
                         status = 3;
                         KeyboardState keyState = Keyboard.GetState();
-                        if (keyState.IsKeyDown(Keys.N))
+                        if (keyState.IsKeyDown(Keys.J))
                         {                            
                             gc.ListeGegner.Clear(); //Leert die Gegner Liste 
                             gc.ListeGProjektil.Clear();
@@ -227,8 +225,8 @@ namespace Space
                 //Zeiche Spielinhalte
                 case State.spielen:
                     {
-                        //Erst Hintergrund, da nacheinander gezeichnet wird
-                        hin.Draw(spriteBatch, status);  
+
+                        hin.Draw(spriteBatch, status);  //Erst Hintergrund, da nacheinander gezeichnet wird, //übergebe status zahl für hintergrund
                         spieler.Draw(spriteBatch);
                         gc.Draw(spriteBatch);
                         schutz.Draw(spriteBatch);
@@ -245,12 +243,10 @@ namespace Space
                 //Zeiche GameOver
                 case State.GameOver:
                     {
-                        hin.Draw(spriteBatch, status);
+                        hin.Draw(spriteBatch, status);                        
                         break;
                     }
-            }
-
-            
+            }            
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -279,7 +275,7 @@ namespace Space
                         {
                             if (gegner.leben == 2 ) //Leben ist größer 1
                             {
-                                gegner.leben--;
+                                gegner.leben = 1;
                                 //gegner.getLeben();
                                 //gegner.machUnsichtbar();
                                 s.isVisible = false;
@@ -326,6 +322,7 @@ namespace Space
                         {
                             gegner.setTyp(item.iTyp); //Übergebe Itemtyp 
                             item.isVisible = false;
+                            gegner.leben = 2;
                         }
                     }
                 }
@@ -342,7 +339,7 @@ namespace Space
                     {
                         item.isVisible = false;
                         s.isVisible = false;
-                        tempPunkte = item.addIPunkte();
+                        tempPunkte = item.addIPunkte(); //Punkte für Itemzerstörung
                     }
                 }
             }
@@ -380,44 +377,46 @@ namespace Space
                         {
                             s.isVisible = false;
                             gs.isVisible = false;
-                            tempPunkte += gs.pPunkte;
+                            tempPunkte += gs.pPunkte; //Punkte für zerströrte Gegner je nach Typ
                         }
                     }
                 }
             }
         }
         
-        public void schutzGetroffen()
+        public void schutzGetroffen() //Schutzpilz wird getroffen
         {
-            schutz.boundingBox = new Rectangle((int)schutz.getX(), (int)schutz.getY(), schutz.t1.Width, schutz.t1.Height);
-            
-            foreach (gegnerSchuss gs in gc.ListeGProjektil)
-            {          
-                foreach (Schuss s in spieler.getSchussListe())
-                {
-                    int temp = 2;
-                    //if (schutz.texVisi[2] == true) //Pilz sichtbar
-                    //{
-                        if (gs.isVisible == true || s.isVisible == true) // Gegner oder Spieler Schuss sichtbar
-                        {
-                            if (s.boundingBox.Intersects(schutz.boundingBox))
-                            {
-                                schutz.isVisible = false;
-                                s.isVisible = false;
-                            }
+            int u = -1; //Laufvariable für einzelne Texturen
 
-                            if (gs.boundingBox.Intersects(schutz.boundingBox))
-                            {
-                                schutz.isVisible = false;
-                                gs.isVisible = false;
-                            }
+            foreach (Rectangle sp in schutz.Listebb)
+            {
+                u++;
+                if (schutz.texVisi[u] == true) //Textur sichtbar an stelle u
+                {
+                    foreach (gegnerSchuss gs in gc.ListeGProjektil) //Gegner Schuss
+                    {
+                        if (gs.isVisible == true && gs.boundingBox.Intersects(sp)) //Gegnerschuss sichtbar und trifft Schutz
+                        {
+                            schutz.texVisi[u] = false;
+                            gs.isVisible = false;
                         }
                     }
-                }
-               
+
+                    foreach (Schuss s in spieler.getSchussListe()) //Teemo Schuss
+                    {
+                        if (s.isVisible == true && s.boundingBox.Intersects(sp))
+                        {
+                            schutz.texVisi[u] = false;
+                            s.isVisible = false;
+                            punkte -= 300; 
+                        }
+                    }
+                }                
+            }              
         }
 
-        public void minionKontakt() //Wenn Minion Spieler trifft
+        //Wenn Minion Spieler trifft
+        public void minionKontakt() 
         {
             foreach (Gegner gegner in gc.ListeGegner)
             {
@@ -437,15 +436,12 @@ namespace Space
 
 
         //Berechnung Punkte (Item + Gegnerpunkte + Projektile)
-        public void punkteBerechnung()
-        {
-            punkte = tempPunkte + gPunkte;
-        }
+       
 
         public State getGameState()
         {
             return spielStatus;
-        }
+        } //Gib Spielstatus
 
 
         public void minionTod() //Animation der Minion Tode
@@ -460,13 +456,25 @@ namespace Space
             }
         }
 
-        public void neuesLevel()
+        public void neuesLevel() //Wenn alle gegner tot starte neues level
         {
             if (gc.ListeGegner.Count == 0)
             {
                 level = Level.Lvl2;
             }
-
         }
+
+
+
+        public int getPunkte()
+        {
+            return punkte;
+        }
+
+        public void punkteBerechnung()
+        {
+            punkte = tempPunkte + gPunkte; //Itempunkte + Gegnerpunkte
+        }
+
     }           
 }

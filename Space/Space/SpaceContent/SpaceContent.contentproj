@@ -82,13 +82,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="4.wav">
-      <Name>4</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="P3.png">
       <Name>P3</Name>
       <Importer>TextureImporter</Importer>
@@ -121,28 +114,6 @@
     </Compile>
     <Compile Include="P9.png">
       <Name>P9</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Pilz blauself.png">
-      <Name>Pilzblau</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Pilz grün self.png">
-      <Name>Pilzgr</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Pilz rot self.png">
-      <Name>Pilzrot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Pilztot elf.png">
-      <Name>Pilztot</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -190,6 +161,62 @@
   <ItemGroup>
     <Compile Include="teemoPfeil.png">
       <Name>teemoPfeil</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Teemo Bewaffnet!.wav">
+      <Name>Teemo Bewaffnet!</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Teemo Das muss wehtun.wav">
+      <Name>Teemo Dmw</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Teemo Lacht 2.wav">
+      <Name>Teemo Lacht 2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Teemo Lacht.wav">
+      <Name>Teemo Lacht</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Teemo Tod.wav">
+      <Name>Teemo Tod</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About_Human_World_by_NevoAngelo_Arm.jpg">
+      <Name>About_Human_World_by_NevoAngelo_Arm</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pilzblau.png">
+      <Name>Pilzblau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Pilzgrün.png">
+      <Name>Pilzgrün</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Pilzrot.png">
+      <Name>Pilzrot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Pilztot.png">
+      <Name>Pilztot</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

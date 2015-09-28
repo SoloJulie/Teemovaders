@@ -11,7 +11,7 @@ namespace Space
 {
     class Hintergrund
     {
-        public Texture2D textur, titel, gameover;
+        public Texture2D textur, titel, gameover, backLvl2;
         public Vector2 position;
         public int status;
 
@@ -21,6 +21,7 @@ namespace Space
             textur = null;
             titel = null;
             gameover = null;
+            backLvl2 = null;
 
             position = new Vector2(0, 0);
         }
@@ -30,6 +31,7 @@ namespace Space
             textur = Content.Load<Texture2D>("Hintergrund");
             titel = Content.Load<Texture2D>("Titelbild");
             gameover = Content.Load<Texture2D>("GameOver");
+            backLvl2 = Content.Load<Texture2D>("About_Human_World_by_NevoAngelo_Arm");
         }
 
         //Draw
@@ -45,12 +47,18 @@ namespace Space
             else if (status == 2)
             {            
                 spriteBatch.Draw(textur, position, Color.White);
+            }            
+
+            if (status == 22)
+            {
+                spriteBatch.Draw(backLvl2, position, Color.White);
             }
 
             if (status == 3)
             {
                 spriteBatch.Draw(gameover, position, Color.White);
             }
+
         }
 
         //Update

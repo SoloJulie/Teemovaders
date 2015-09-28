@@ -45,7 +45,7 @@ namespace Space
             prot = Content.Load<Texture2D>("Pilzrot");      //iT = 1
             pblau = Content.Load<Texture2D>("Pilzblau");    //iT = 2
             ptot = Content.Load<Texture2D>("Pilztot");      //iT = 3
-            pgruen = Content.Load<Texture2D>("Pilzgr");     //iT = 4
+            pgruen = Content.Load<Texture2D>("Pilzgrün");     //iT = 4
         }
 
         public void Draw(SpriteBatch spriteBatch)

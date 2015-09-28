@@ -84,6 +84,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Schuss.cs" />
     <Compile Include="Schutzpilz.cs" />
+    <Compile Include="Sounds.cs" />
     <Compile Include="Spieler.cs" />
   </ItemGroup>
   <ItemGroup>
