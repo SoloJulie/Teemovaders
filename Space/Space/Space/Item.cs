@@ -42,31 +42,31 @@ namespace Space
 
         public void LoadContent(ContentManager Content)
         {
-            prot = Content.Load<Texture2D>("Pilzrot");      //iT = 1
-            pblau = Content.Load<Texture2D>("Pilzblau");    //iT = 2
-            ptot = Content.Load<Texture2D>("Pilztot");      //iT = 3
-            pgruen = Content.Load<Texture2D>("Pilzgrün");     //iT = 4
+            prot = Content.Load<Texture2D>("Pilzrot");      //iTyp = 1
+            pblau = Content.Load<Texture2D>("Pilzblau");    //iTyp = 2
+            ptot = Content.Load<Texture2D>("Pilztot");      //iTyp = 3
+            pgruen = Content.Load<Texture2D>("Pilzgrün");     //iTyp = 4
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (isVisible == true)
+            if (isVisible == true) //Nur zeichnen wenn der Pilz nicht zerstört ist
             {
-                if (iTyp == 1)
+                if (iTyp == 1) // roter Pilz
                 {
                     spriteBatch.Draw(prot, position, Color.White);
                 }
-                else if (iTyp == 2)
+                else if (iTyp == 2) //blauer Pilz
                 {
                     spriteBatch.Draw(pblau, position, Color.White);
                 }
 
-                else if (iTyp == 3)
+                else if (iTyp == 3) //Todespilz
                 {
                     spriteBatch.Draw(ptot, position, Color.White);
                 }
 
-                else if (iTyp == 4)
+                else if (iTyp == 4) //Lebenspilz
                 {
                     spriteBatch.Draw(pgruen, position, Color.White);
                 }
@@ -76,8 +76,7 @@ namespace Space
 
         public void Update(GameTime gameTime)
         {
-            fallen();
-            
+            fallen();            
         }
 
         public int getX()
@@ -119,18 +118,7 @@ namespace Space
         {
             return iTyp;
         }
-
-        //public int randXPosition()
-        //{
-        //    return position.X = random.Next(1, 750);
-        //}
-
-        //public int randYPosition()
-        //{
-        //    return y = random.Next(1, 500);
-        //}
-
-
+        
         public void setIPunkte()
         {            
             if (iTyp == 1)

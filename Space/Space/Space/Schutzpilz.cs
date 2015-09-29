@@ -10,9 +10,10 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 namespace Space
 {
+    //KLasse Schutzpilz um 3 Pilze zu zeichnen die den Spieler schützen. Bestehen aus je 9 einzelnen gleichgroßen Texturen
     public class Schutzpilz
     {
-        public Texture2D t1, t2, t3, t4, t5, t6, t7, t8, t9, tex;
+        public Texture2D t1, t2, t3, t4, t5, t6, t7, t8, t9, tex; //Pilz Texturen + Array
         public Vector2 position;
         public bool[] texVisi; //Array für sichtbarkeit
         public int x, y, a, b, c, d, tw, th; //Positionen für die Pilz Rectangles 
@@ -21,7 +22,7 @@ namespace Space
         public Schutzpilz()
         {
             texVisi = new bool[27]; //27 Boxen - Bilder
-            position = new Vector2(0, 0);
+            position = new Vector2();
 
             //Array 27 mit true füllen
             for (int i = 0; i < 27; i++)
@@ -128,9 +129,8 @@ namespace Space
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-
             Texture2D[] tex = new Texture2D[] { t1, t2, t3, t4, t5, t6, t7, t8, t9 };
-            int h = 0; //Laufvbariable um sichtbarkeit der Pilztextur zu testen
+            int h = 0; //Laufvbariable um sichtbarkeit der Pilztextur zu testen, da nur dann gezeichnet wird
 
             //1. Pilz
             position.X = x; //0

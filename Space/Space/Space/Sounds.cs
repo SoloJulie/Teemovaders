@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace Space
-{
+{ //Managed die einzelnen Sounds, Teemo lachen, Musik, etc
     public class Sounds
     {
         public SoundEffect effect, tl1, tl2, tl3, tl4, lachen;
@@ -28,7 +28,6 @@ namespace Space
             tl2 = Content.Load<SoundEffect>("Teemo Lacht 2");
             tl3 = Content.Load<SoundEffect>("Teemo Dmw");
             tl4 = Content.Load<SoundEffect>("Teemo Dmw");
-
         }
 
         public void playLachen(int i)

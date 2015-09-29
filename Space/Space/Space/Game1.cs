@@ -32,30 +32,40 @@ namespace Space
         SpriteBatch spriteBatch; //Punkte
         Random random = new Random();
         List<Animation> listeAnimation = new List<Animation>();
-        
-        
+        List<Item> ListeItem = new List<Item>();
+
+
         //Klassen
         //Animation ani;
         Hintergrund hin;
         GegnerContainer gc;
         Spieler spieler;
-        Item item;
+        //Item item;
+
         Schutzpilz schutz;
         Sounds sound;
 
         //private SoundEffect effect;
 
         private SpriteFont font;
+
+        private int wahl;
+        private int status; //Spielstatus an Klassen übergeben
+
+        //Punkte
         private int gPunkte = 0;
         private int punkte = 0;
-        private int wahl, tempPunkte;
-        private int status; //Spielstatus an Klassen übergeben
+        private int tempPunkte = 0;
+        private int schutzPunkte = 0;
+        private bool[] hasSporned; //Array für Item Liste
+        private int zahl = 0; 
+
 
         // Spielstatus beim Start
         State spielStatus = State.Menue;
 
         Level level = Level.Lvl1;
-        
+
 
         public Game1()
         {
@@ -65,6 +75,7 @@ namespace Space
             graphics.PreferredBackBufferHeight = 500; //Y
             this.Window.Title = "Teemovaders";
             Content.RootDirectory = "Content";
+
         }
 
 
@@ -73,10 +84,13 @@ namespace Space
             spieler = new Spieler();
             hin = new Hintergrund();
             gc = new GegnerContainer();
-            auswahl(); //zum Random erzeugen eines Items
-            item = new Item(wahl);
             schutz = new Schutzpilz();
             sound = new Sounds();
+
+            hasSporned = new bool[3]; //Item auf 3 pro Level begrenzt, zu beginn false
+            for (int i = 0; i < 3; i++)
+                hasSporned[i] = false;
+
             base.Initialize();
         }
 
@@ -88,9 +102,9 @@ namespace Space
             font = Content.Load<SpriteFont>("Punkte");
             spieler.LoadContent(Content);     //Lade Spieler
             gc.LoadContent(Content);
-            item.LoadContent(Content);
-            hin.LoadContent(Content);
-            gc.SpornRechteck();
+            gc.spornRechteck();
+            //gc.spornDreieck();
+            hin.LoadContent(Content);            
             schutz.LoadContent(Content);
             sound.LoadContent(Content);
         }
@@ -99,7 +113,8 @@ namespace Space
         {
             // TODO: Unload any non ContentManager content here
         }
-        
+
+
         //Update
         protected override void Update(GameTime gameTime)
         {
@@ -108,7 +123,7 @@ namespace Space
                 this.Exit();
 
             //Spielstatus
-            switch(spielStatus) 
+            switch (spielStatus) //Entscheidung welcher Spielstatus erreicht wurde  Menü, spielen GameOVer
             {
                 case State.Menue:
                     {
@@ -127,44 +142,54 @@ namespace Space
 
                 case State.spielen:
                     {
+                        KeyboardState keyState = Keyboard.GetState();
+                        if (keyState.IsKeyDown(Keys.S))
+                        {
+                            level = Level.Lvl2;
+                        }
                         status = 2;
                         spieler.Update(gameTime);
                         getroffen(); //iteminteraktion + unsichtbarmachen + punkteberechnung
-                        itemZerstoeren();
-                        punkteBerechnung();
+                        itemZerstoeren();             
                         gegnerTrifft();
                         minionKontakt();
                         projektilTreffen();
                         schutzGetroffen();
                         minionTod();
+                        punkteBerechnung();
+                        gc.Update(gameTime); //remove, schneller, bewegen
 
-                        switch(level) //Je nachdem welches Level geladen wird andere Funktionen
+                        switch (level) //Je nachdem welches Level geladen wird andere Funktionen
                         {
                             case Level.Lvl1:
-                            {                                   
-                                item.Update(gameTime);
-                                gc.Update(gameTime); //remove, schneller, bewegen
+                                {   //Interaktionen des Spiels             
 
-                                //Interaktionen des Spiels             
-                                    
-                                //ani.minionTod();
-                                //ani.Update(gameTime);
+                                    //ani.minionTod();
+                                    //ani.Update(gameTime);
 
-                                foreach (Animation a in listeAnimation)
-                                {
-                                    a.Update(gameTime);
-                                }
+                                    foreach (Animation a in listeAnimation)
+                                        a.Update(gameTime);
 
-                                neuesLevel();                            
+                                    foreach (Item it in ListeItem)
+                                        it.Update(gameTime);
 
-                                break;
-                            } //Case Lvl1 Ende
+                                    itemSporn();
+                                    neuesLevel();
+                                    break;
+                                } //Case Lvl1 Ende
 
                             case Level.Lvl2:
-                            {
-                                status = 22;                                      
-                                break;
-                            }    //Case Lvl2 Ende                   
+                                {
+                                    status = 22; //Für Hintergrundklasse Hintergrund Lvl 2 zeichnen                                    
+                                    itemSporn();
+
+                                    if (zahl == 0)
+                                    {
+                                        gc.spornDreieck();
+                                        zahl++;
+                                    }
+                                    break;
+                                }    //Case Lvl2 Ende                   
                         } //Case Level Ende
 
 
@@ -173,26 +198,27 @@ namespace Space
                         {
                             punkte = 0;
                             spielStatus = State.GameOver;
-                        }                     
+                        }
 
                         break;
                     } //Case State:spielen ende                     
-                        
-                        
-                    
-                
+
+
+
+
                 case State.GameOver:
                     {
-                        status = 3;
+                        status = 3; //GameOver Hintergrund
                         KeyboardState keyState = Keyboard.GetState();
                         if (keyState.IsKeyDown(Keys.J))
-                        {                            
+                        {
+                            //Clearen & Neustart vorbereiten
                             gc.ListeGegner.Clear(); //Leert die Gegner Liste 
-                            gc.ListeGProjektil.Clear();
-                            spieler.ListeSchuss.Clear();
+                            gc.ListeGProjektil.Clear(); //Löscht Gegnerprojektile
+                            spieler.ListeSchuss.Clear(); //Löscht eigene Schüsse     
+                            ListeItem.Clear(); //Leert Itemliste
+                            gc.spornRechteck(); //Lässt Gegner wieder neu erscheinen
                             spieler.leben = 3;
-                            punkte = 0;
-                            gc.SpornRechteck(); //Lässt Gegner wieder neu erscheinen
                             spielStatus = State.spielen;
                         }
                         else if (keyState.IsKeyDown(Keys.Q))
@@ -201,8 +227,7 @@ namespace Space
                         }
                         break;
                     }
-            }       
-            
+            }
             base.Update(gameTime);
         }
 
@@ -215,27 +240,42 @@ namespace Space
 
             switch (spielStatus)
             {
-                    //Zeiche Menue
+                //Zeiche Menue
                 case State.Menue:
                     {
-                        hin.Draw(spriteBatch, status); //Wenn Status Menue, zeichne Menue
+                        hin.Draw(spriteBatch, status); //Wenn Status Menue, zeichne Menue Übergabe der Statusvariable an Hintergrundklasse
                         break;
                     }
 
                 //Zeiche Spielinhalte
                 case State.spielen:
                     {
-
                         hin.Draw(spriteBatch, status);  //Erst Hintergrund, da nacheinander gezeichnet wird, //übergebe status zahl für hintergrund
                         spieler.Draw(spriteBatch);
                         gc.Draw(spriteBatch);
-                        schutz.Draw(spriteBatch);
+                         schutz.Draw(spriteBatch);
+                         foreach (Item it in ListeItem)
+                            it.Draw(spriteBatch);
+
                         foreach (Animation a in listeAnimation)
-                        {
                             a.Draw(spriteBatch);
+
+                        switch (level)
+                        {
+                            case Level.Lvl1:
+                                {
+                                    break;
+                                }
+                            case Level.Lvl2:
+                                {
+                                    
+                                        gc.spornDreieck();
+                                        zahl++;
+                                   
+                                    break;
+                                }
                         }
-                        item.Draw(spriteBatch);
-                        spriteBatch.DrawString(font, "Punkte: " + punkte, new Vector2(0, 0), Color.Black);
+                        spriteBatch.DrawString(font, "Punkte: " + gc.anzahl, new Vector2(0, 0), Color.Black);
                         spriteBatch.DrawString(font, "Leben: " + spieler.leben, new Vector2(600, 0), Color.Black);
                         break;
                     }
@@ -243,10 +283,10 @@ namespace Space
                 //Zeiche GameOver
                 case State.GameOver:
                     {
-                        hin.Draw(spriteBatch, status);                        
+                        hin.Draw(spriteBatch, status);
                         break;
                     }
-            }            
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -273,7 +313,7 @@ namespace Space
                     {
                         if (s.boundingBox.Intersects(gc.boundingBox)) //Schuss trifft Gegner
                         {
-                            if (gegner.leben == 2 ) //Leben ist größer 1
+                            if (gegner.leben == 2) //Leben ist größer 1
                             {
                                 gegner.leben = 1;
                                 //gegner.getLeben();
@@ -304,42 +344,48 @@ namespace Space
                 itemInterakt();
             }
         }
-        
+
         public void itemInterakt() //verwandelt Gegner
         {
             foreach (Gegner gegner in gc.ListeGegner)
             {
                 //BoundingBox für Item
-                item.boundingBox = new Rectangle((int)item.getX(), (int)item.getY(), item.prot.Width, item.prot.Height);
+                foreach (Item it in ListeItem)
+                    it.boundingBox = new Rectangle((int)it.getX(), (int)it.getY(), it.prot.Width, it.prot.Height);
+
                 gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
 
+
                 //ändert Gegner Typ und Gegner Aussehen
-                if (item.isVisible == true)
-                {
-                    if (gegner.isVisible && item.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichbar treffen
+                foreach (Item it in ListeItem)
+                    if (it.isVisible == true)
                     {
-                        if (gegner.gtyp == 0) //Gegner normal, übergebe Item und ändere Gegnertyp
+                        if (gegner.isVisible && it.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichbar treffen
                         {
-                            gegner.setTyp(item.iTyp); //Übergebe Itemtyp 
-                            item.isVisible = false;
-                            gegner.leben = 2;
+                            if (gegner.gtyp == 0) //Gegner normal, übergebe Item und ändere Gegnertyp
+                            {
+                                gegner.setTyp(it.iTyp); //Übergebe Itemtyp 
+                                it.isVisible = false;
+                                gegner.leben = 2;
+                            }
                         }
                     }
-                }
             }
-        } 
+        }
 
         public void itemZerstoeren() //Zerstört Items bei schuss des Spielers
         {
-            if (item.isVisible == true)
-            {
+            //foreach (Item it in ListeItem)
+            foreach (Item it in ListeItem)
+                if (it.isVisible == true)
+                {
                 foreach (Schuss s in spieler.getSchussListe())
                 {
-                    if (s.boundingBox.Intersects(item.boundingBox))
+                    if (s.boundingBox.Intersects(it.boundingBox))
                     {
-                        item.isVisible = false;
+                        it.isVisible = false;
                         s.isVisible = false;
-                        tempPunkte = item.addIPunkte(); //Punkte für Itemzerstörung
+                        tempPunkte = it.addIPunkte(); //Punkte für Itemzerstörung
                     }
                 }
             }
@@ -348,7 +394,7 @@ namespace Space
         public void gegnerTrifft() //Gegner Schuss trifft Spieler
         {
             foreach (gegnerSchuss gs in gc.ListeGProjektil)
-            {          
+            {
                 if (gs.isVisible == true)
                 {
                     if (gs.boundingBox.Intersects(spieler.boundingBox))
@@ -359,16 +405,16 @@ namespace Space
                             gs.isVisible = false;
                             break;
                         }
-                        
+
                     }
                 }
             }
-        } 
+        }
 
         public void projektilTreffen() //beide Projektile treffen sich
-        { 
+        {
             foreach (gegnerSchuss gs in gc.ListeGProjektil)
-            {          
+            {
                 foreach (Schuss s in spieler.getSchussListe())
                 {
                     if (gs.isVisible == true && s.isVisible == true)
@@ -383,14 +429,14 @@ namespace Space
                 }
             }
         }
-        
+
         public void schutzGetroffen() //Schutzpilz wird getroffen
         {
-            int u = -1; //Laufvariable für einzelne Texturen
+            int u = -1; //Laufvariable für einzelne Texturen Maximaler u wert 26 da insgesamt 27 einzelne Pilztexturen
 
             foreach (Rectangle sp in schutz.Listebb)
             {
-                u++;
+                u++; //Vorhererhöhung um nicht durcheinander zu kommen
                 if (schutz.texVisi[u] == true) //Textur sichtbar an stelle u
                 {
                     foreach (gegnerSchuss gs in gc.ListeGProjektil) //Gegner Schuss
@@ -408,15 +454,15 @@ namespace Space
                         {
                             schutz.texVisi[u] = false;
                             s.isVisible = false;
-                            punkte -= 300; 
+                            schutzPunkte -= 300;
                         }
                     }
-                }                
-            }              
+                }
+            }
         }
 
         //Wenn Minion Spieler trifft
-        public void minionKontakt() 
+        public void minionKontakt()
         {
             foreach (Gegner gegner in gc.ListeGegner)
             {
@@ -433,10 +479,6 @@ namespace Space
             }
         }
 
-
-
-        //Berechnung Punkte (Item + Gegnerpunkte + Projektile)
-       
 
         public State getGameState()
         {
@@ -458,13 +500,16 @@ namespace Space
 
         public void neuesLevel() //Wenn alle gegner tot starte neues level
         {
-            if (gc.ListeGegner.Count == 0)
-            {
-                level = Level.Lvl2;
-            }
+                if (gc.ListeGegner.Count == 0)
+                {                   
+                        level = Level.Lvl2;
+                        ListeItem.Clear();
+                        gc.ListeGProjektil.Clear();
+                        zahl++;//Gegner Projektile beim Levelübergang löschen
+                }
         }
 
-
+        //Berechnung Punkte (Item + Gegnerpunkte + Projektile)
 
         public int getPunkte()
         {
@@ -473,8 +518,51 @@ namespace Space
 
         public void punkteBerechnung()
         {
-            punkte = tempPunkte + gPunkte; //Itempunkte + Gegnerpunkte
+            if (spieler.leben == 0)
+            {
+                punkte = 0;
+                tempPunkte = 0;
+                gPunkte = 0;
+                schutzPunkte = 0;
+            }
+            else
+            {
+                punkte = tempPunkte + gPunkte + schutzPunkte; //Itempunkte + Gegnerpunkte
+            }
         }
 
-    }           
+
+        public void itemSporn()
+        {
+            if (gc.ListeGegner.Count == 10 && hasSporned[0] == false)
+            {
+                hasSporned[0] = true;
+                auswahl();
+                Item item = new Item(wahl);
+                item.LoadContent(Content);
+                ListeItem.Add(item);
+            }//gegner kleienr gegner anzahl * 0,75 && isSporn[0] == false) {  //zum Random erzeugen eines Items    Item item = new Item(wahl); ListeItem.add(item)
+
+            if (gc.ListeGegner.Count == 5 && hasSporned[1] == false)
+            {
+                hasSporned[1] = true;
+                auswahl();
+                Item item = new Item(wahl);
+                item.LoadContent(Content);
+                ListeItem.Add(item);
+            }
+
+            if (gc.ListeGegner.Count == 1 && hasSporned[2] == false)
+            {
+                hasSporned[2] = true;
+                auswahl();
+                Item item = new Item(wahl);
+                item.LoadContent(Content);
+                ListeItem.Add(item);
+            }
+
+        } //Anzahl Items über eine LIste max 3
+
+
+    }
 }

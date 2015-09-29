@@ -14,8 +14,9 @@ namespace Space
         public Texture2D minions, minGr, minKl, texProjektil;
         public int speed, maxBew, tempBew;
         public List<Gegner> ListeGegner;
+        public List<Gegner> ListeGegner2;
         public List<gegnerSchuss> ListeGProjektil;
-        public int spalte, zeile, groesse; //größe rechteck, Anzahl Grgner im Rechteck
+        public int groesseRecht, groesseDrei; //größe rechteck, Anzahl Grgner im Rechteck
         public int anzahl, sDelay, sD, i2s;
         public Rectangle boundingBox;
         public bool zurueck, runter; 
@@ -24,17 +25,13 @@ namespace Space
         public GegnerContainer()
         {
             ListeGegner = new List<Gegner>();
+            ListeGegner2 = new List<Gegner>();
             ListeGProjektil = new List<gegnerSchuss>();
             maxBew = 250;
             tempBew = 0;
-            zeile = 3;
-            spalte = 5;
             anzahl = 0;
-            i2s = 0;
             zurueck = false;
             runter = false;
-            sD = 4;
-            sDelay = sD;
         }
 
 
@@ -94,45 +91,72 @@ namespace Space
         //Update
         public void Update(GameTime gameTime)
         {
-            bewegen();
+            //bewegen();
             remove();
-            schneller();
-            Schuss();
-            updateGegnerSchussListe();
+            //schneller();
+            //Schuss();
+            //updateGegnerSchussListe();
         }
 
-        public void SpornRechteck()
+        public void spornRechteck()
         {
-            for (int y = 0; y <= zeile; y++) //Beginn bei 20px Abstand oben, max px nach unten, 70px erhöhen ( Abstand zwischen Opfern)
+            int zeile = 4;
+            int spalte = 5;
+            int abstand = 80;
+
+            for (int y = 0; y < zeile; y++) //Beginn bei 20px Abstand oben, max px nach unten, 80px erhöhen ( Abstand zwischen Opfern)
             {
-                for (int x = 0; x <= spalte; x++)
+                for (int x = 0; x < spalte; x++)
                 {
                     Gegner gegner = new Gegner();
                     gegner.isVisible = true;
-                    gegner.setXPos(x * 80);
-                    gegner.setYPos(y * 80);
-
+                    gegner.setXPos(x * abstand);
+                    gegner.setYPos(y * abstand);
                     gegner.setzeLeben(gegner.getGtyp());
-
-
-                    //gegner.boundingBox = new Rectangle((int)gegner.position.X, (int)gegner.position.Y, textur.Width, textur.Height);
-
                     ListeGegner.Add(gegner);
-                    anzahl++;
-                      
+                    anzahl++;                      
                 }
             }
-            groesse = anzahl; //zur Berechnung der Geschwindigtkeit, die originalgröße der Liste übergeben
+            groesseRecht = anzahl; //zur Berechnung der Geschwindigtkeit, die originalgröße der Liste übergeben
         }
 
 
-        public int GegnerAnzahl()
+        public void spornDreieck()
         {
-            return ListeGegner.Count();
+            int x = 200;
+            int y = 0;
+            int max = 5; //Anzahl Reihen
+            int tempX = 80;
+            int tempY = 50;
+            int tempX2 = 35;
+
+            for (int i = 1; i <= max; i++) //Spalte
+            {
+                for (int j = 0; j < i; j++) //Spalte
+                {
+                    Gegner gegner2 = new Gegner();
+                    gegner2.isVisible = true;
+                    gegner2.setXPos(x + ((max - i) * tempX2) + j * tempX);
+                    gegner2.setYPos(y + i * tempY);
+                    gegner2.setzeLeben(gegner2.getGtyp());
+                    
+                    anzahl++;
+
+                    if (i == 1 && j == 0)
+                    {
+                        gegner2.gtyp = 1;
+                    }
+                    else
+                    {
+                        gegner2.gtyp = 0;
+                    }
+                    ListeGegner.Add(gegner2);
+                }                            
+            }
+            groesseDrei = anzahl;
         }
 
-
-
+        
         public void sichtbar()
         {
             foreach (Gegner gegner in ListeGegner)
@@ -158,12 +182,11 @@ namespace Space
 
         public void bewegen()
         {
-            if (runter == true)  //Runter gehen
+            if (runter == true)  //Runter ist true, also nach unten gehen 
             {
-                foreach (Gegner tempGegner in ListeGegner)
+                foreach (Gegner gegner in ListeGegner)
                 {
-                    tempGegner.setYPos(tempGegner.getY() + 10);
-                    i2s += 1;
+                    gegner.setYPos(gegner.getY() + 10);
                 }
 
                 runter = false;
@@ -228,38 +251,18 @@ namespace Space
 
         }
 
-        public void Schuss()
-        {
-           //Schießt nur wenn Delay auf null ist
-            //if (sDelay >= 0)
-            //{
-            //    sDelay--;
-            //}
-
-            //delay ist 0, neuer Schuss sichtbar und in Liste schreiben
-            //if (sDelay <= 0)
-            //{
-            //for (int i = 0; anzahl % 5 == 0; i++)
-            //{
+        public void Schuss() //Sorgt für die Anzahl Schüsse der Gegner, die Position bei den Gegnern und deren Sichtbarkeit
+        {           
                 foreach (Gegner gegner in ListeGegner)
                 {                    
                     gegnerSchuss GProjektil = new gegnerSchuss(texProjektil); //KLasse gegnerSchuss wird erstellt und Textur übergeben
-                    GProjektil.position = new Vector2(gegner.getX() + GProjektil.texgSchuss.Width+2, gegner.getY() + GProjektil.texgSchuss.Height+25); //Schuss aus der Mitte von Teemo auslösen           
+                    GProjektil.position = new Vector2(gegner.getX() + GProjektil.texgSchuss.Width+2, gegner.getY() + GProjektil.texgSchuss.Height+50); //Schuss aus der Mitte von Teemo auslösen           
 
                     GProjektil.isVisible = true;
 
-                    if (ListeGProjektil.Count < 10)
+                    if (ListeGProjektil.Count < 1) //Maximal 8 Projektile zur selben Zeit möglich
                         ListeGProjektil.Add(GProjektil);
-                }
-                //Maximal 10 Projektile zur selben Zeit möglich
-
-           // }
-
-                    //if (sDelay == 0)
-                    //    sDelay = sD;
-                
-            
-            
+                }            
         }
 
 
@@ -271,11 +274,9 @@ namespace Space
                 //Bounding Box um die Projektile
                 gs.boundingBox = new Rectangle((int)gs.position.X, (int)gs.position.Y, gs.texgSchuss.Width, gs.texgSchuss.Height);
 
-
                 //Jedes Projektil mit Geschwindigkeit versehen
                 gs.position.Y = gs.position.Y + gs.gpSpeed;
-
-
+                
                 //aus Bild raus, werde unsichtbar
                 if (gs.position.Y >= 500)
                     gs.isVisible = false;
@@ -299,13 +300,13 @@ namespace Space
             foreach (Gegner gegner in ListeGegner)
             {
                 //Bei halber Gegneranzahl erhöhe Gegner Geschwindigkeit
-                if (anzahl < groesse / 1.5)
+                if (anzahl < groesseRecht / 1.5)
                     gegner.gspeed = 3;
 
-                if (anzahl < groesse / 2)
+                if (anzahl < groesseRecht / 2)
                     gegner.gspeed = 4;
 
-                if (anzahl < groesse / 3)
+                if (anzahl < groesseRecht / 3)
                     gegner.gspeed = 5;
             }
         }

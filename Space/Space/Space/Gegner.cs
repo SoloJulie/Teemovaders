@@ -31,8 +31,7 @@ namespace Space
             anzahl = 0;
             gtyp = 0;
             isVisible = true;
-            punkte = 0;
-            
+            punkte = 0;            
         }
 
 
@@ -58,8 +57,7 @@ namespace Space
         //Update leer
         public void Update(GameTime gameTime)
         {            
-        }
-               
+        }               
 
         public Vector2 getPos()
         {
@@ -89,8 +87,7 @@ namespace Space
 
         public void machUnsichtbar()
         {
-            isVisible = false;
-            
+            isVisible = false;            
         } // Macht Gegner unsichtbar
                
 
@@ -132,7 +129,7 @@ namespace Space
             addPunkte();
         }
 
-        public void setzeLeben(int l)
+        public void setzeLeben(int l) //unterschiedliche Leben je nach Gegnertyp
         {
             if (gtyp == 0)
             {
@@ -152,12 +149,7 @@ namespace Space
                 leben = 2;
             }
         }
-
-        public int getLeben()
-        {
-            return leben;
-        }    
-        
+                   
 
         
     }
