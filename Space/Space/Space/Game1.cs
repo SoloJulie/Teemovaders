@@ -107,6 +107,7 @@ namespace Space
             hin.LoadContent(Content);            
             schutz.LoadContent(Content);
             sound.LoadContent(Content);
+            
         }
 
         protected override void UnloadContent()
@@ -128,15 +129,18 @@ namespace Space
                 case State.Menue:
                     {
                         status = 1;
+                        //
                         KeyboardState keyState = Keyboard.GetState();
                         if (keyState.IsKeyDown(Keys.N))
                         {
                             spielStatus = State.spielen;
+                            MediaPlayer.Play(sound.bgrSong);
                         }
                         else if (keyState.IsKeyDown(Keys.Q))
                         {
                             this.Exit();
                         }
+                        
                         break;
                     }
 
