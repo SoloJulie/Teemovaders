@@ -164,15 +164,6 @@
       <Time>2015-09-28T22:41:08.1138273+02:00</Time>
     </Item>
     <Item>
-      <Source>Minions sprite.png</Source>
-      <Name>Minions sprite</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Minions sprite.xnb</Output>
-      <Time>2015-09-27T18:39:38.5007901+02:00</Time>
-    </Item>
-    <Item>
       <Source>Minion Magier.png</Source>
       <Name>Minion Magier</Name>
       <Importer>TextureImporter</Importer>
@@ -290,34 +281,6 @@
       <Time>2015-09-30T00:30:30.7874598+02:00</Time>
     </Item>
     <Item>
-      <Source>Menusong.wav</Source>
-      <Name>Menusong</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Menusong.xnb</Output>
-      <Time>2015-09-29T23:53:27.4922945+02:00</Time>
-    </Item>
-    <Item>
-      <Source>GameOver.wav</Source>
-      <Name>GOwav</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\GOwav.xnb</Output>
-      <Time>2015-09-29T23:54:55.5133291+02:00</Time>
-    </Item>
-    <Item>
-      <Source>14 Super Galaxy Rumble.mp3</Source>
-      <Name>lvlSong</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\lvlSong.xnb</Output>
-      <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\lvlSong.wma</Extra>
-      <Time>2015-09-29T23:58:38.5730873+02:00</Time>
-    </Item>
-    <Item>
       <Source>Veigar Minion.png</Source>
       <Name>Veigar Minion</Name>
       <Importer>TextureImporter</Importer>
@@ -333,7 +296,45 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Garen schwert 2.xnb</Output>
-      <Time>2015-09-30T00:34:59.3498206+02:00</Time>
+      <Time>2015-09-30T22:45:48.9529089+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Minion M fade2.png</Source>
+      <Name>Minion M fade2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Minion M fade2.xnb</Output>
+      <Time>2015-09-30T21:35:32.6397496+02:00</Time>
+    </Item>
+    <Item>
+      <Source>LvlSound.mp3</Source>
+      <Name>lvlSong</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\lvlSong.xnb</Output>
+      <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\lvlSong.wma</Extra>
+      <Time>2015-09-29T23:58:38.5730873+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Menu.mp3</Source>
+      <Name>MenuSong</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\MenuSong.xnb</Output>
+      <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\MenuSong.wma</Extra>
+      <Time>2015-09-30T22:32:05.7618251+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Demacia.wav</Source>
+      <Name>Demacia</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Demacia.xnb</Output>
+      <Time>2015-09-30T23:10:00.8789543+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -13,7 +13,7 @@ namespace Space
 {
     public class Item
     {
-        public Texture2D prot,pgruen,pblau,ptot,pilze;
+        public Texture2D prot,pgruen,pblau,ptot,pilze, demacia;
         public Vector2 position;
         public int ispeed, x, y;
         public Rectangle boundingBox;
@@ -28,6 +28,7 @@ namespace Space
             pgruen = null;
             pblau = null;
             ptot = null;
+            demacia = null;
 
             Random random = new Random();
             x = random.Next(1, 500);
@@ -46,6 +47,7 @@ namespace Space
             pblau = Content.Load<Texture2D>("Pilzblau");    //iTyp = 2
             ptot = Content.Load<Texture2D>("Pilztot");      //iTyp = 3
             pgruen = Content.Load<Texture2D>("Pilzgrün");     //iTyp = 4
+            demacia = Content.Load<Texture2D>("Garen schwert 2"); //DEMACIAAAAAAAA!!!!!!!!!!!!
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -70,6 +72,11 @@ namespace Space
                 {
                     spriteBatch.Draw(pgruen, position, Color.White);
                 }
+                else if (iTyp == 5) //Lebenspilz
+                {
+                    spriteBatch.Draw(demacia, position, Color.White);
+                }
+
             }
             
         }
@@ -103,12 +110,7 @@ namespace Space
         {
             setYPos(getY() + ispeed);
         }
-
-        public void auswahl()
-        {
-            wahl = random.Next(1, 5); //5 nicht inklusive
-        }
-
+        
         public void setTyp(int i)
         {
             iTyp = i;

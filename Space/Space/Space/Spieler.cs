@@ -14,13 +14,12 @@ namespace Space
     {
         public Texture2D textur, texProjektil;
         public Vector2 position;
-        public int speed, leben;
+        public int speed, leben, spTyp;
         public float pDelay, pD; //Verhindern von Dauerfeuer
         public Rectangle boundingBox;
         public List<Schuss> ListeSchuss; //Liste um Projektile besser händeln zu können
         public bool isVisible;
-        public SoundEffect effect;
-        
+        public SoundEffect effect;     
 
 
 
@@ -34,6 +33,7 @@ namespace Space
             pDelay = pD;
             isVisible = true;
             leben = 3;
+            spTyp = 1;
         }
 
 

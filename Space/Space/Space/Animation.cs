@@ -24,17 +24,17 @@ namespace Space
         {
             this.textur = textur;
             this.position = position;
-            timer = 0f;
-            interval = 20f;
-            aFrame = 1;
-            sWidth = 128;
-            sHeight = 128;
+            timer = 0f; //Zählt die vergangene ZEit
+            interval = 30f; //Wie schnell werden die Bilder abgespielt
+            aFrame = 1; //aktuelles Frame
+            sWidth = 50; //Weite pro einzelbild
+            sHeight = 50;  //Höhe pro einzelbild
             isVisible = true;
             listeAnimation = new List<Animation>();
         }
 
 
-        public void LoadConten(ContentManager Conten)
+        public void LoadConten(ContentManager Content)
         { 
         }
 
@@ -48,14 +48,14 @@ namespace Space
             }
 
             // wenn am letzten Bild angekommen, unsichtbar und auf erstes Frame zurücksetzen
-            if (aFrame == 4)
+            if (aFrame == 10)
             {
                 isVisible = false;
                 aFrame = 0;
             }
 
-            sourceRect = new Rectangle(aFrame * sWidth, 0, sHeight, sHeight);
-            origin = new Vector2(sourceRect.Width / 2, sourceRect.Height / 2);
+            sourceRect = new Rectangle(aFrame * sWidth, 0, sWidth, sHeight); //
+            origin = new Vector2(sourceRect.Width / 40, sourceRect.Height / 40);
 
             //foreach (Animation a in listeAnimation)
             //{

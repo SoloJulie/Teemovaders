@@ -13,9 +13,9 @@ namespace Space
 { //Managed die einzelnen Sounds, Teemo lachen, Musik, etc
     public class Sounds
     {
-        public SoundEffect effect, tl1, tl2, tl3, tl4, lachen, menuSong, goSong;
+        public SoundEffect effect, tl1, tl2, tl3, tl4, lachen,  goSong, demacia;
         public Random random;
-        public Song bgrSong;
+        public Song bgrSong, menuSong;
         public int swahl;
 
 
@@ -29,8 +29,9 @@ namespace Space
             tl2 = Content.Load<SoundEffect>("Teemo Lacht 2");
             tl3 = Content.Load<SoundEffect>("Teemo Dmw");
             tl4 = Content.Load<SoundEffect>("Teemo Dmw");
-            goSong = Content.Load<SoundEffect>("GOwav");
-            menuSong = Content.Load<SoundEffect>("Menusong");
+            demacia = Content.Load<SoundEffect>("Demacia");
+            //goSong = Content.Load<SoundEffect>("GOwav");
+            menuSong = Content.Load<Song>("MenuSong");
             bgrSong = Content.Load<Song>("lvlSong");
         }
 

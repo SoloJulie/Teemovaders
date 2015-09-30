@@ -91,9 +91,9 @@ namespace Space
         //Update
         public void Update(GameTime gameTime)
         {
-            //bewegen();
+            bewegen();
             remove();
-            //schneller();
+            schneller();
             //Schuss();
             //updateGegnerSchussListe();
         }
@@ -123,36 +123,37 @@ namespace Space
 
         public void spornDreieck()
         {
-            int x = 200;
-            int y = 0;
-            int max = 5; //Anzahl Reihen
-            int tempX = 80;
-            int tempY = 50;
-            int tempX2 = 35;
+                    int x = 200;
+                    int y = 0;
+                    int max = 5; //Anzahl Reihen
+                    int tempX = 80;
+                    int tempY = 50;
+                    int tempX2 = 35;
 
-            for (int i = 1; i <= max; i++) //Spalte
-            {
-                for (int j = 0; j < i; j++) //Spalte
-                {
-                    Gegner gegner2 = new Gegner();
-                    gegner2.isVisible = true;
-                    gegner2.setXPos(x + ((max - i) * tempX2) + j * tempX);
-                    gegner2.setYPos(y + i * tempY);
-                    gegner2.setzeLeben(gegner2.getGtyp());
-                    
-                    anzahl++;
+                    for (int i = 1; i <= max; i++) //Spaltei
+                    {
+                        for (int j = 0; j < i; j++) 
+                        {
+                            Gegner gegner = new Gegner();
+                            gegner.isVisible = true;
+                            gegner.setXPos(x + ((max - i) * tempX2) + j * tempX);
+                            gegner.setYPos(y + i * tempY);
+                            gegner.setzeLeben(gegner.getGtyp());
+                            anzahl++;
 
-                    if (i == 1 && j == 0)
-                    {
-                        gegner2.gtyp = 1;
-                    }
-                    else
-                    {
-                        gegner2.gtyp = 0;
-                    }
-                    ListeGegner.Add(gegner2);
-                }                            
-            }
+                            if (i == 1 && j == 0)
+                            {
+                                gegner.gtyp = 1;
+                            }
+                            else
+                            {
+                                gegner.gtyp = 0;
+                            }
+                            ListeGegner.Add(gegner);
+                        }
+                        
+                    }                    
+                            
             groesseDrei = anzahl;
         }
 

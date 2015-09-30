@@ -58,8 +58,7 @@ namespace Space
         private int tempPunkte = 0;
         private int schutzPunkte = 0;
         private bool[] hasSporned; //Array für Item Liste
-        private int zahl = 0; 
-
+        private bool skipLvl2 = true;
 
         // Spielstatus beim Start
         State spielStatus = State.Menue;
@@ -102,12 +101,11 @@ namespace Space
             font = Content.Load<SpriteFont>("Punkte");
             spieler.LoadContent(Content);     //Lade Spieler
             gc.LoadContent(Content);
-            gc.spornRechteck();
-            //gc.spornDreieck();
+            gc.spornRechteck();          
             hin.LoadContent(Content);            
             schutz.LoadContent(Content);
             sound.LoadContent(Content);
-            
+            MediaPlayer.Play(sound.menuSong);
         }
 
         protected override void UnloadContent()
@@ -161,6 +159,7 @@ namespace Space
                         schutzGetroffen();
                         minionTod();
                         punkteBerechnung();
+                        itemTeemo();
                         gc.Update(gameTime); //remove, schneller, bewegen
 
                         switch (level) //Je nachdem welches Level geladen wird andere Funktionen
@@ -177,7 +176,7 @@ namespace Space
                                     foreach (Item it in ListeItem)
                                         it.Update(gameTime);
 
-                                    itemSporn();
+                                    eventTrigger();
                                     neuesLevel();
                                     break;
                                 } //Case Lvl1 Ende
@@ -185,13 +184,8 @@ namespace Space
                             case Level.Lvl2:
                                 {
                                     status = 22; //Für Hintergrundklasse Hintergrund Lvl 2 zeichnen                                    
-                                    itemSporn();
-
-                                    if (zahl == 0)
-                                    {
-                                        gc.spornDreieck();
-                                        zahl++;
-                                    }
+                                    eventTrigger();
+                                    
                                     break;
                                 }    //Case Lvl2 Ende                   
                         } //Case Level Ende
@@ -257,7 +251,8 @@ namespace Space
                         hin.Draw(spriteBatch, status);  //Erst Hintergrund, da nacheinander gezeichnet wird, //übergebe status zahl für hintergrund
                         spieler.Draw(spriteBatch);
                         gc.Draw(spriteBatch);
-                         schutz.Draw(spriteBatch);
+                        schutz.Draw(spriteBatch);
+
                          foreach (Item it in ListeItem)
                             it.Draw(spriteBatch);
 
@@ -271,10 +266,8 @@ namespace Space
                                     break;
                                 }
                             case Level.Lvl2:
-                                {
+                                {                           
                                     
-                                        gc.spornDreieck();
-                                        zahl++;
                                    
                                     break;
                                 }
@@ -299,7 +292,7 @@ namespace Space
 
         public void auswahl() //Itemtyp zufällig festlegen
         {
-            wahl = random.Next(1, 5); //5 nicht inklusive
+            wahl = random.Next(5, 6); //5 nicht inklusive
         }
 
         public void getroffen() //Spieler trifft + aufruf der Iteminteraktion
@@ -328,7 +321,7 @@ namespace Space
                             else
                             {
                                 gegner.machUnsichtbar();
-                                listeAnimation.Add(new Animation(Content.Load<Texture2D>("Minions sprite"), new Vector2(gegner.position.X, gegner.position.Y)));
+                                listeAnimation.Add(new Animation(Content.Load<Texture2D>("Minion M fade2"), new Vector2(gegner.position.X, gegner.position.Y)));
 
                                 //Zufälliger Sound wird abgespielt
                                 sound.wahlLachen();
@@ -349,7 +342,7 @@ namespace Space
             }
         }
 
-        public void itemInterakt() //verwandelt Gegner
+        public void itemInterakt() //Gegner interaktion mit Items
         {
             foreach (Gegner gegner in gc.ListeGegner)
             {
@@ -378,8 +371,7 @@ namespace Space
         }
 
         public void itemZerstoeren() //Zerstört Items bei schuss des Spielers
-        {
-            //foreach (Item it in ListeItem)
+        {            
             foreach (Item it in ListeItem)
                 if (it.isVisible == true)
                 {
@@ -394,6 +386,30 @@ namespace Space
                 }
             }
         }
+
+        public void itemTeemo() //Item Interaktion mit Teemo
+        {
+            foreach (Item it in ListeItem)
+                if (it.isVisible == true)
+                {
+                    if (spieler.boundingBox.Intersects(it.boundingBox))
+                    {
+                        it.isVisible = false;
+                         if (it.iTyp == 1) //roterPilz
+                             spieler.spTyp = 2;
+                         if (it.iTyp == 2) //blaue Pilz
+                            spieler.speed += 6;
+                         if (it.iTyp == 3) //Todespilz
+                            spieler.leben -= 1;
+                         if (it.iTyp == 4) //Lebenspilz
+                            spieler.leben += 1;
+                         if (it.iTyp == 5) //Lebenspilz
+                             sound.demacia.Play();
+                             spieler.leben += 1;
+                    }
+                }
+        }
+        
 
         public void gegnerTrifft() //Gegner Schuss trifft Spieler
         {
@@ -505,21 +521,19 @@ namespace Space
         public void neuesLevel() //Wenn alle gegner tot starte neues level
         {
                 if (gc.ListeGegner.Count == 0)
-                {                   
-                        level = Level.Lvl2;
-                        ListeItem.Clear();
-                        gc.ListeGProjektil.Clear();
-                        zahl++;//Gegner Projektile beim Levelübergang löschen
+                {
+                    ListeItem.Clear();
+                    listeAnimation.Clear();
+                    foreach (Animation la in listeAnimation)
+                        la.aFrame=0  ;
+                    gc.ListeGProjektil.Clear(); //Gegner Projektile beim Levelübergang löschen
+                    level = Level.Lvl2;              
+                    
                 }
         }
 
-        //Berechnung Punkte (Item + Gegnerpunkte + Projektile)
-
-        public int getPunkte()
-        {
-            return punkte;
-        }
-
+        
+        
         public void punkteBerechnung()
         {
             if (spieler.leben == 0)
@@ -533,11 +547,12 @@ namespace Space
             {
                 punkte = tempPunkte + gPunkte + schutzPunkte; //Itempunkte + Gegnerpunkte
             }
-        }
+        }//Berechnung Punkte (Item + Gegnerpunkte + Projektile + Schutz)
 
 
-        public void itemSporn()
+        public void eventTrigger() //ItemSporn Liste + auslösen lvl 2
         {
+            //Anzahl Items über eine LIste max 3
             if (gc.ListeGegner.Count == 10 && hasSporned[0] == false)
             {
                 hasSporned[0] = true;
@@ -545,7 +560,7 @@ namespace Space
                 Item item = new Item(wahl);
                 item.LoadContent(Content);
                 ListeItem.Add(item);
-            }//gegner kleienr gegner anzahl * 0,75 && isSporn[0] == false) {  //zum Random erzeugen eines Items    Item item = new Item(wahl); ListeItem.add(item)
+            }
 
             if (gc.ListeGegner.Count == 5 && hasSporned[1] == false)
             {
@@ -565,8 +580,15 @@ namespace Space
                 ListeItem.Add(item);
             }
 
-        } //Anzahl Items über eine LIste max 3
+            if (gc.ListeGegner.Count == 0 && skipLvl2 == true)
+            {
+                skipLvl2 = false;
+                gc.ListeGegner.Clear();
+                level = Level.Lvl2;
+                gc.spornDreieck();
+            }                    
 
+        }       
 
     }
 }

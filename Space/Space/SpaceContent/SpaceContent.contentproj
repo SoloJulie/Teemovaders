@@ -140,13 +140,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Minions sprite.png">
-      <Name>Minions sprite</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Minion Magier.png">
       <Name>Minion Magier</Name>
       <Importer>TextureImporter</Importer>
@@ -222,21 +215,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menusong.wav">
-      <Name>Menusong</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="GameOver.wav">
-      <Name>GOwav</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="14 Super Galaxy Rumble.mp3">
+    <Compile Include="LvlSound.mp3">
       <Name>lvlSong</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
@@ -254,6 +233,27 @@
       <Name>Garen schwert 2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Minion M fade2.png">
+      <Name>Minion M fade2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu.mp3">
+      <Name>MenuSong</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Demacia.wav">
+      <Name>Demacia</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
