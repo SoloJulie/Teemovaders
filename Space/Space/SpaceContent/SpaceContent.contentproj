@@ -215,13 +215,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LvlSound.mp3">
-      <Name>lvlSong</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Veigar Minion.png">
       <Name>Veigar Minion</Name>
       <Importer>TextureImporter</Importer>
@@ -243,17 +236,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menu.mp3">
-      <Name>MenuSong</Name>
+    <Compile Include="Demacia.wav">
+      <Name>Demacia</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lvl song.mp3">
+      <Name>Lvl song</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Menusong.mp3">
+      <Name>Menusong</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demacia.wav">
-      <Name>Demacia</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
+    <Compile Include="GameOver.mp3">
+      <Name>GOsong</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

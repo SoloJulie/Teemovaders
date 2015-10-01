@@ -14,7 +14,6 @@ namespace Space
         public Texture2D minions, minGr, minKl, texProjektil;
         public int speed, maxBew, tempBew;
         public List<Gegner> ListeGegner;
-        public List<Gegner> ListeGegner2;
         public List<gegnerSchuss> ListeGProjektil;
         public int groesseRecht, groesseDrei; //größe rechteck, Anzahl Grgner im Rechteck
         public int anzahl, sDelay, sD, i2s;
@@ -25,7 +24,6 @@ namespace Space
         public GegnerContainer()
         {
             ListeGegner = new List<Gegner>();
-            ListeGegner2 = new List<Gegner>();
             ListeGProjektil = new List<gegnerSchuss>();
             maxBew = 250;
             tempBew = 0;
@@ -40,7 +38,6 @@ namespace Space
             minions = Content.Load<Texture2D>("Minion Magier");
             minGr = Content.Load<Texture2D>("Minionn Magier 2");
             minKl = Content.Load<Texture2D>("Minionn Magier 2");
-
             texProjektil = Content.Load<Texture2D>("Projektilblau");
         }
 
@@ -91,11 +88,16 @@ namespace Space
         //Update
         public void Update(GameTime gameTime)
         {
-            bewegen();
+                    bewegen();
+            
+                   // bewegenG2();
+            
+         
+
             remove();
             schneller();
-            //Schuss();
-            //updateGegnerSchussListe();
+            Schuss();
+            updateGegnerSchussListe();
         }
 
         public void spornRechteck()
@@ -183,6 +185,7 @@ namespace Space
 
         public void bewegen()
         {
+            int tempY = 0;
             if (runter == true)  //Runter ist true, also nach unten gehen 
             {
                 foreach (Gegner gegner in ListeGegner)
@@ -193,19 +196,17 @@ namespace Space
                 runter = false;
             }
 
-            //int q = 0;
-
+            // Gegnerbewegung auf X nach rechts
             foreach (Gegner gegner in ListeGegner)
             {
-                if (gegner.zurueck == false)
+                if (gegner.zurueck == false && gegner.gtyp == 0)
                 {
                     gegner.setXPos(gegner.getX() + gegner.gspeed); //eigentliche Bewegung für jeden Gegner
 
                     gegner.tempBew += gegner.gspeed; //Wert um Position nicht Bildschirm überschreiten zu lassen
 
 
-                    // Gegner nicht aus Bildschirm             
-
+                    // Gegner nicht aus Bildschirm
                     if (gegner.tempBew >= maxBew)
                     {
                         gegner.tempBew = 0; //für jeden Gegner einzeln prüfen
@@ -214,18 +215,31 @@ namespace Space
                     }
                 }
 
-                else
-                {
-                    gegner.setXPos(gegner.getX() - gegner.gspeed);
-                    gegner.tempBew += gegner.gspeed;
-
-                    if (gegner.tempBew >= maxBew)
+                else if (gegner.gtyp == 0)
                     {
-                        gegner.tempBew = 0;
-                        gegner.zurueck = false;
-                        runter = true;
+                        gegner.setXPos(gegner.getX() - gegner.gspeed);
+                        gegner.tempBew += gegner.gspeed;
+
+                        if (gegner.tempBew >= maxBew && gegner.gtyp == 0)
+                        {
+                            gegner.tempBew = 0;
+                            gegner.zurueck = false;
+                            runter = true;
+                        }
                     }
-                }
+            }                
+                    foreach (Gegner gegner in ListeGegner)
+                    {
+                        if (gegner.gtyp == 1)
+                        {
+                            gegner.setYPos(gegner.getY() + gegner.gspeed);
+                            if (gegner.getY () > 300)
+                                gegner.setYPos(gegner.getY() - gegner.gspeed); 
+
+                        }
+                
+                     }
+
 
 
 
@@ -248,7 +262,7 @@ namespace Space
 
                 //q++;
 
-            }
+            
 
         }
 
@@ -311,6 +325,9 @@ namespace Space
                     gegner.gspeed = 5;
             }
         }
+
+        
+            
     }
 
 }

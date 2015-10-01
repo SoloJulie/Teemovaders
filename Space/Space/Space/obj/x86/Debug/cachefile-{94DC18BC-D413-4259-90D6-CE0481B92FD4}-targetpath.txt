@@ -32,8 +32,10 @@ Content\Pilztot.xnb
 Content\Veigar Minion.xnb
 Content\Garen schwert 2.xnb
 Content\Minion M fade2.xnb
-Content\lvlSong.xnb
-Content\lvlSong.wma
-Content\MenuSong.xnb
-Content\MenuSong.wma
 Content\Demacia.xnb
+Content\Lvl song.xnb
+Content\Lvl song.wma
+Content\Menusong.xnb
+Content\Menusong.wma
+Content\GOsong.xnb
+Content\GOsong.wma

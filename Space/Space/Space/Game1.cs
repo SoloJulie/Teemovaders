@@ -176,7 +176,8 @@ namespace Space
                                     foreach (Item it in ListeItem)
                                         it.Update(gameTime);
 
-                                    eventTrigger();
+                                    lvlSkip();
+                                    ItemSporn();
                                     neuesLevel();
                                     break;
                                 } //Case Lvl1 Ende
@@ -184,7 +185,8 @@ namespace Space
                             case Level.Lvl2:
                                 {
                                     status = 22; //Für Hintergrundklasse Hintergrund Lvl 2 zeichnen                                    
-                                    eventTrigger();
+                                    ItemSporn();
+                                    //lvlSkip();
                                     
                                     break;
                                 }    //Case Lvl2 Ende                   
@@ -195,6 +197,7 @@ namespace Space
                         if (spieler.leben == 0)
                         {
                             punkte = 0;
+                            MediaPlayer.Play(sound.goSong);
                             spielStatus = State.GameOver;
                         }
 
@@ -292,7 +295,7 @@ namespace Space
 
         public void auswahl() //Itemtyp zufällig festlegen
         {
-            wahl = random.Next(5, 6); //5 nicht inklusive
+            wahl = random.Next(1, 1); //5 nicht inklusive
         }
 
         public void getroffen() //Spieler trifft + aufruf der Iteminteraktion
@@ -524,11 +527,15 @@ namespace Space
                 {
                     ListeItem.Clear();
                     listeAnimation.Clear();
+
+                    foreach (Item it in ListeItem)
+                        it.isVisible = false;
+                    ListeItem.Clear();
                     foreach (Animation la in listeAnimation)
-                        la.aFrame=0  ;
+                        la.isVisible= false;
+                        
                     gc.ListeGProjektil.Clear(); //Gegner Projektile beim Levelübergang löschen
-                    level = Level.Lvl2;              
-                    
+                    level = Level.Lvl2;                                 
                 }
         }
 
@@ -550,7 +557,7 @@ namespace Space
         }//Berechnung Punkte (Item + Gegnerpunkte + Projektile + Schutz)
 
 
-        public void eventTrigger() //ItemSporn Liste + auslösen lvl 2
+        public void ItemSporn() //ItemSporn Liste 
         {
             //Anzahl Items über eine LIste max 3
             if (gc.ListeGegner.Count == 10 && hasSporned[0] == false)
@@ -580,15 +587,20 @@ namespace Space
                 ListeItem.Add(item);
             }
 
+                                
+
+        }
+
+        public void lvlSkip() // auslösen lvl 2
+        {
             if (gc.ListeGegner.Count == 0 && skipLvl2 == true)
             {
                 skipLvl2 = false;
                 gc.ListeGegner.Clear();
                 level = Level.Lvl2;
                 gc.spornDreieck();
-            }                    
-
-        }       
+            }
+        }
 
     }
 }

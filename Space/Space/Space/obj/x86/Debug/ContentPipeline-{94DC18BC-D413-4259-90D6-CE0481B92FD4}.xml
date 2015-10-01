@@ -308,26 +308,6 @@
       <Time>2015-09-30T21:35:32.6397496+02:00</Time>
     </Item>
     <Item>
-      <Source>LvlSound.mp3</Source>
-      <Name>lvlSong</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\lvlSong.xnb</Output>
-      <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\lvlSong.wma</Extra>
-      <Time>2015-09-29T23:58:38.5730873+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Menu.mp3</Source>
-      <Name>MenuSong</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\MenuSong.xnb</Output>
-      <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\MenuSong.wma</Extra>
-      <Time>2015-09-30T22:32:05.7618251+02:00</Time>
-    </Item>
-    <Item>
       <Source>Demacia.wav</Source>
       <Name>Demacia</Name>
       <Importer>WavImporter</Importer>
@@ -335,6 +315,36 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Demacia.xnb</Output>
       <Time>2015-09-30T23:10:00.8789543+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Lvl song.mp3</Source>
+      <Name>Lvl song</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl song.xnb</Output>
+      <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl song.wma</Extra>
+      <Time>2015-10-01T13:59:18.7949867+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Menusong.mp3</Source>
+      <Name>Menusong</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Menusong.xnb</Output>
+      <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Menusong.wma</Extra>
+      <Time>2015-10-01T13:59:18.7249866+02:00</Time>
+    </Item>
+    <Item>
+      <Source>GameOver.mp3</Source>
+      <Name>GOsong</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\GOsong.xnb</Output>
+      <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\GOsong.wma</Extra>
+      <Time>2015-10-01T14:00:01.2750453+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
