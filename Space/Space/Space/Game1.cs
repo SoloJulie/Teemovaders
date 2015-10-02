@@ -37,6 +37,7 @@ namespace Space
         List<Item> ListeItem = new List<Item>();
 
         //3D Modell
+        //3D Model Code komplett aus http://rbwhitaker.wikidot.com/using-3d-models übernommen, auch der untere Aufruf, allerdings wurde dementsprechend des Models angepasst.
         private Model defeat;
         private Matrix world = Matrix.CreateTranslation(new Vector3(0, 0, 0));
         private Matrix view = Matrix.CreateLookAt(new Vector3(0, 5, 5), new Vector3(0, -1, 0), Vector3.UnitY); //5 = Abstand zum model, -1 verschiebt nach oben
@@ -852,7 +853,7 @@ namespace Space
 
                 mesh.Draw();
             }
-        } //3D Modell
+        } //3D Modell //Code übernommen aus http://rbwhitaker.wikidot.com/using-3d-models
 
     }
 }
