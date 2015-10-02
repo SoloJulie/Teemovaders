@@ -18,7 +18,9 @@ namespace Space
         public int groesseRecht, groesseDrei; //größe rechteck, Anzahl Grgner im Rechteck
         public int anzahl, sDelay, sD, i2s;
         public Rectangle boundingBox;
-        public bool zurueck, runter; 
+        public bool zurueck, runter;
+        public Random random;
+        public int m;
 
 
         public GegnerContainer()
@@ -77,6 +79,12 @@ namespace Space
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
                         
                     }
+
+                    else if (gegner.gtyp == 5) //welcher Gegnertyp wird gezeichnet
+                    {
+                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
+
+                    }
                 }
             }
 
@@ -88,12 +96,7 @@ namespace Space
         //Update
         public void Update(GameTime gameTime)
         {
-                    bewegen();
-            
-                   // bewegenG2();
-            
-         
-
+            bewegen();
             remove();
             schneller();
             Schuss();
@@ -153,9 +156,7 @@ namespace Space
                             }
                             ListeGegner.Add(gegner);
                         }
-                        
-                    }                    
-                            
+                    }       
             groesseDrei = anzahl;
         }
 
@@ -167,25 +168,26 @@ namespace Space
                 if (gegner.isVisible == false)
                     ListeGegner.Remove(gegner);
             }
-
         }
 
 
         public void remove()
         {
-            for (int i = 0; i < ListeGegner.Count; i++)
+            for (int w = 0; w < groesseRecht; w++) //Falls mehrere pro Frame getroffen werden
             {
-                if (ListeGegner.ElementAt(i).isVisible == false)
+                for (int i = 0; i < ListeGegner.Count; i++)
                 {
-                    ListeGegner.RemoveAt(i);
-                    break;
+                    if (ListeGegner.ElementAt(i).isVisible == false)
+                    {
+                        ListeGegner.RemoveAt(i);
+                        break;
+                    }
                 }
             }
         }
 
         public void bewegen()
         {
-            int tempY = 0;
             if (runter == true)  //Runter ist true, also nach unten gehen 
             {
                 foreach (Gegner gegner in ListeGegner)
@@ -199,7 +201,7 @@ namespace Space
             // Gegnerbewegung auf X nach rechts
             foreach (Gegner gegner in ListeGegner)
             {
-                if (gegner.zurueck == false && gegner.gtyp == 0)
+                if (gegner.zurueck == false)
                 {
                     gegner.setXPos(gegner.getX() + gegner.gspeed); //eigentliche Bewegung für jeden Gegner
 
@@ -215,69 +217,39 @@ namespace Space
                     }
                 }
 
-                else if (gegner.gtyp == 0)
-                    {
-                        gegner.setXPos(gegner.getX() - gegner.gspeed);
-                        gegner.tempBew += gegner.gspeed;
+                else
+                {
+                    gegner.setXPos(gegner.getX() - gegner.gspeed);
+                    gegner.tempBew += gegner.gspeed;
 
-                        if (gegner.tempBew >= maxBew && gegner.gtyp == 0)
-                        {
-                            gegner.tempBew = 0;
-                            gegner.zurueck = false;
-                            runter = true;
-                        }
+                    if (gegner.tempBew >= maxBew)
+                    {
+                        gegner.tempBew = 0;
+                        gegner.zurueck = false;
+                        runter = true;
                     }
-            }                
-                    foreach (Gegner gegner in ListeGegner)
-                    {
-                        if (gegner.gtyp == 1)
-                        {
-                            gegner.setYPos(gegner.getY() + gegner.gspeed);
-                            if (gegner.getY () > 300)
-                                gegner.setYPos(gegner.getY() - gegner.gspeed); 
+                }
+            }
+        }            
 
-                        }
-                
-                     }
-
-
-
-
-                //Untere Reihe frei zum schießen
-                //bool frei = true;
-
-                //for (int w = q; q < GegnerListe.Count; w = +spalte)
-                //{
-                //    if (GegnerListe.ElementAt(w).isVisible)
-                //    {
-                //        frei = false;
-                //    }
-                //}
-
-                //if (frei && ListeGegnerProjektil.Count <= 3)
-                //{
-                //    Schuss(gegner.getX(), gegner.getY());
-                //    updateGegnerSchussListe();
-                //}
-
-                //q++;
-
-            
-
-        }
 
         public void Schuss() //Sorgt für die Anzahl Schüsse der Gegner, die Position bei den Gegnern und deren Sichtbarkeit
-        {           
-                foreach (Gegner gegner in ListeGegner)
-                {                    
-                    gegnerSchuss GProjektil = new gegnerSchuss(texProjektil); //KLasse gegnerSchuss wird erstellt und Textur übergeben
-                    GProjektil.position = new Vector2(gegner.getX() + GProjektil.texgSchuss.Width+2, gegner.getY() + GProjektil.texgSchuss.Height+50); //Schuss aus der Mitte von Teemo auslösen           
+        {
+            //randomZahl();
+            //int rGl = m;
+            //ListeGegner[rGl] mit gegner tauschen
+            
+            foreach (Gegner gegner in ListeGegner)
+            {
+                gegnerSchuss GProjektil = new gegnerSchuss(texProjektil); //KLasse gegnerSchuss wird erstellt und Textur übergeben
 
-                    GProjektil.isVisible = true;
+                        GProjektil.position = new Vector2(gegner.getX() + GProjektil.texgSchuss.Width + 2, gegner.getY() + GProjektil.texgSchuss.Height + 50); //Schuss           
 
-                    if (ListeGProjektil.Count < 1) //Maximal 8 Projektile zur selben Zeit möglich
-                        ListeGProjektil.Add(GProjektil);
-                }            
+                        GProjektil.isVisible = true;
+
+                        if (ListeGProjektil.Count < 5) //Maximal 5 Projektile zur selben Zeit möglich
+                            ListeGProjektil.Add(GProjektil);
+                }
         }
 
 
@@ -326,8 +298,13 @@ namespace Space
             }
         }
 
-        
+        public void randomZahl()
+        {
+            Random random = new Random();
+            m = random.Next(1, 20); 
+        }
+
+       
             
     }
-
 }

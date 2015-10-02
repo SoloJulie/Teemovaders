@@ -128,24 +128,6 @@
       <Time>2015-09-26T21:12:53.1800799+02:00</Time>
     </Item>
     <Item>
-      <Source>opfer groß.png</Source>
-      <Name>opferGr</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opferGr.xnb</Output>
-      <Time>2015-09-18T15:52:50.2685286+02:00</Time>
-    </Item>
-    <Item>
-      <Source>opfer g rot.png</Source>
-      <Name>opfer1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\opfer1.xnb</Output>
-      <Time>2015-09-18T15:52:50.2665285+02:00</Time>
-    </Item>
-    <Item>
       <Source>Titelbild.jpg</Source>
       <Name>Titelbild</Name>
       <Importer>TextureImporter</Importer>
@@ -314,7 +296,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Demacia.xnb</Output>
-      <Time>2015-09-30T23:10:00.8789543+02:00</Time>
+      <Time>2015-10-02T01:46:43.2058993+02:00</Time>
     </Item>
     <Item>
       <Source>Lvl song.mp3</Source>
@@ -324,7 +306,7 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl song.xnb</Output>
       <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl song.wma</Extra>
-      <Time>2015-10-01T13:59:18.7949867+02:00</Time>
+      <Time>2015-10-02T01:48:58.9026607+02:00</Time>
     </Item>
     <Item>
       <Source>Menusong.mp3</Source>
@@ -345,6 +327,24 @@
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\GOsong.xnb</Output>
       <Extra>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\GOsong.wma</Extra>
       <Time>2015-10-01T14:00:01.2750453+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Garen schwert Gegner.png</Source>
+      <Name>Garen schwert Gegner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Garen schwert Gegner.xnb</Output>
+      <Time>2015-10-02T01:43:34.7171184+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Teemo lacht 3.wav</Source>
+      <Name>Teemo lacht 3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo lacht 3.xnb</Output>
+      <Time>2015-10-02T02:00:23.4258132+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

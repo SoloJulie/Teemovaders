@@ -40,17 +40,16 @@ namespace Space
         Hintergrund hin;
         GegnerContainer gc;
         Spieler spieler;
-        //Item item;
 
         Schutzpilz schutz;
         Sounds sound;
 
-        //private SoundEffect effect;
 
         private SpriteFont font;
 
-        private int wahl;
+        private int wahl; //Zufallszahl für Item
         private int status; //Spielstatus an Klassen übergeben
+        public float warten;
 
         //Punkte
         private int gPunkte = 0;
@@ -59,6 +58,7 @@ namespace Space
         private int schutzPunkte = 0;
         private bool[] hasSporned; //Array für Item Liste
         private bool skipLvl2 = true;
+        private bool garen = false;
 
         // Spielstatus beim Start
         State spielStatus = State.Menue;
@@ -86,10 +86,11 @@ namespace Space
             schutz = new Schutzpilz();
             sound = new Sounds();
 
-            hasSporned = new bool[3]; //Item auf 3 pro Level begrenzt, zu beginn false
+            hasSporned = new bool[4]; //Item auf 3 pro Level begrenzt, zu beginn false
             for (int i = 0; i < 3; i++)
                 hasSporned[i] = false;
 
+            
             base.Initialize();
         }
 
@@ -99,6 +100,7 @@ namespace Space
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Punkte");
+            //Klassen
             spieler.LoadContent(Content);     //Lade Spieler
             gc.LoadContent(Content);
             gc.spornRechteck();          
@@ -120,6 +122,8 @@ namespace Space
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            
+            warten += (float)gameTime.ElapsedGameTime.TotalSeconds; //speichert vergangene Spielzeit in Sekunden
 
             //Spielstatus
             switch (spielStatus) //Entscheidung welcher Spielstatus erreicht wurde  Menü, spielen GameOVer
@@ -133,6 +137,7 @@ namespace Space
                         {
                             spielStatus = State.spielen;
                             MediaPlayer.Play(sound.bgrSong);
+                            sound.bewaffnet.Play();
                         }
                         else if (keyState.IsKeyDown(Keys.Q))
                         {
@@ -149,45 +154,41 @@ namespace Space
                         {
                             level = Level.Lvl2;
                         }
+
+                        //Fkt die Lvl unabhängig sind
                         status = 2;
                         spieler.Update(gameTime);
-                        getroffen(); //iteminteraktion + unsichtbarmachen + punkteberechnung
+                        gc.Update(gameTime); //remove, schneller, bewegen
+
+                        spielerTrifft(); //iteminteraktion + unsichtbarmachen + punkteberechnung
                         itemZerstoeren();             
                         gegnerTrifft();
                         minionKontakt();
                         projektilTreffen();
                         schutzGetroffen();
                         minionTod();
+                        itemInteraktGeg(); //Prüft ob Iteminteraktion stattfindet
                         punkteBerechnung();
                         itemTeemo();
-                        gc.Update(gameTime); //remove, schneller, bewegen
+                        foreach (Item it in ListeItem)
+                            it.Update(gameTime);
+                        foreach (Animation a in listeAnimation)
+                            a.Update(gameTime);
+                        ItemSporn();
+                        
+                        neuesLevel();
+                        lvlSkip();
 
                         switch (level) //Je nachdem welches Level geladen wird andere Funktionen
                         {
                             case Level.Lvl1:
-                                {   //Interaktionen des Spiels             
-
-                                    //ani.minionTod();
-                                    //ani.Update(gameTime);
-
-                                    foreach (Animation a in listeAnimation)
-                                        a.Update(gameTime);
-
-                                    foreach (Item it in ListeItem)
-                                        it.Update(gameTime);
-
-                                    lvlSkip();
-                                    ItemSporn();
-                                    neuesLevel();
+                                {   
                                     break;
                                 } //Case Lvl1 Ende
 
                             case Level.Lvl2:
                                 {
                                     status = 22; //Für Hintergrundklasse Hintergrund Lvl 2 zeichnen                                    
-                                    ItemSporn();
-                                    //lvlSkip();
-                                    
                                     break;
                                 }    //Case Lvl2 Ende                   
                         } //Case Level Ende
@@ -196,7 +197,7 @@ namespace Space
                         //Spieler hat kein Leben mehr
                         if (spieler.leben == 0)
                         {
-                            punkte = 0;
+                            sound.tod.Play();
                             MediaPlayer.Play(sound.goSong);
                             spielStatus = State.GameOver;
                         }
@@ -221,6 +222,13 @@ namespace Space
                             gc.spornRechteck(); //Lässt Gegner wieder neu erscheinen
                             spieler.leben = 3;
                             spielStatus = State.spielen;
+                            status = 2;
+                            for (int i = 0; i < 27; i++)  //Pilz weieder komplett sichtbar machen
+                                schutz.texVisi[i] = true;
+                            
+                            MediaPlayer.Play(sound.bgrSong);
+                            sound.bewaffnet.Play();
+
                         }
                         else if (keyState.IsKeyDown(Keys.Q))
                         {
@@ -262,6 +270,7 @@ namespace Space
                         foreach (Animation a in listeAnimation)
                             a.Draw(spriteBatch);
 
+
                         switch (level)
                         {
                             case Level.Lvl1:
@@ -269,13 +278,11 @@ namespace Space
                                     break;
                                 }
                             case Level.Lvl2:
-                                {                           
-                                    
-                                   
+                                {
                                     break;
                                 }
                         }
-                        spriteBatch.DrawString(font, "Punkte: " + gc.anzahl, new Vector2(0, 0), Color.Black);
+                        spriteBatch.DrawString(font, "Punkte: " + punkte, new Vector2(0, 0), Color.Black);
                         spriteBatch.DrawString(font, "Leben: " + spieler.leben, new Vector2(600, 0), Color.Black);
                         break;
                     }
@@ -295,10 +302,10 @@ namespace Space
 
         public void auswahl() //Itemtyp zufällig festlegen
         {
-            wahl = random.Next(1, 1); //5 nicht inklusive
+            wahl = random.Next(5, 5); //5 nicht inklusive
         }
 
-        public void getroffen() //Spieler trifft + aufruf der Iteminteraktion
+        public void spielerTrifft() //Spieler trifft + aufruf der Iteminteraktion
         {
             //Macht alle unsichtbar beim Kontakt
             foreach (Gegner gegner in gc.ListeGegner)
@@ -313,22 +320,24 @@ namespace Space
                     {
                         if (s.boundingBox.Intersects(gc.boundingBox)) //Schuss trifft Gegner
                         {
-                            if (gegner.leben == 2) //Leben ist größer 1
+                            if (gegner.leben > 1) //Leben ist größer 1
                             {
-                                gegner.leben = 1;
-                                //gegner.getLeben();
-                                //gegner.machUnsichtbar();
+                                gegner.leben -= 1;
                                 s.isVisible = false;
                             }
 
-                            else
+                            else //Gegner hat nur 1 Leben
                             {
                                 gegner.machUnsichtbar();
                                 listeAnimation.Add(new Animation(Content.Load<Texture2D>("Minion M fade2"), new Vector2(gegner.position.X, gegner.position.Y)));
 
                                 //Zufälliger Sound wird abgespielt
-                                sound.wahlLachen();
-                                sound.playLachen(sound.swahl);
+                                if (warten >= 1.5) //Das keine Lachschleife entsteht
+                                {
+                                    sound.wahlLachen();
+                                    sound.playLachen(sound.swahl);
+                                    warten = 0;
+                                }
 
                                 //Gegner
                                 s.isVisible = false; //Schuss unsichtbar
@@ -341,35 +350,54 @@ namespace Space
                     }
                 }
 
-                itemInterakt();
+                
             }
         }
 
-        public void itemInterakt() //Gegner interaktion mit Items
+        public void itemInteraktGeg() //Gegner interaktion mit Items
         {
-            foreach (Gegner gegner in gc.ListeGegner)
+            foreach (Gegner gegner in gc.ListeGegner)            
             {
-                //BoundingBox für Item
-                foreach (Item it in ListeItem)
-                    it.boundingBox = new Rectangle((int)it.getX(), (int)it.getY(), it.prot.Width, it.prot.Height);
+                if (gegner.isVisible == true)
+                {
+                    gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);                
 
-                gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
-
-
-                //ändert Gegner Typ und Gegner Aussehen
-                foreach (Item it in ListeItem)
-                    if (it.isVisible == true)
+                    //ändert Gegner Typ und Gegner Aussehen
+                    foreach (Item it in ListeItem)
                     {
-                        if (gegner.isVisible && it.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichbar treffen
+                        if (it.iTyp != 6)
+                            it.boundingBox = new Rectangle((int)it.getX(), (int)it.getY(), it.prot.Width, it.prot.Height);
+
+                        else
+                            it.boundingBox = new Rectangle((int)it.getX(), (int)it.getY(), it.demacia.Width, it.demacia.Height);
+
+
+                        if (it.isVisible == true && it.iTyp != 6)
                         {
-                            if (gegner.gtyp == 0) //Gegner normal, übergebe Item und ändere Gegnertyp
+                            if (gegner.isVisible && it.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichtbar treffen
                             {
-                                gegner.setTyp(it.iTyp); //Übergebe Itemtyp 
-                                it.isVisible = false;
-                                gegner.leben = 2;
+                                if (gegner.gtyp == 0) //Gegner normal, übergebe Item und ändere Gegnertyp
+                                {
+                                    gegner.setTyp(it.iTyp); //Übergebe Itemtyp 
+                                    it.isVisible = false;
+                                    gegner.leben = 2;                                   
+                                }
+                            }
+                        }
+
+                        if (it.iTyp == 6)
+                        {
+                            if (gegner.isVisible && it.boundingBox.Intersects(gc.boundingBox)) //Gegner und Item sichtbar treffen
+                            {
+                                if (it.boundingBox.Intersects(gc.boundingBox))
+                                {
+                                    gegner.machUnsichtbar();
+                                    gc.anzahl--;
+                                }
                             }
                         }
                     }
+                }
             }
         }
 
@@ -398,17 +426,20 @@ namespace Space
                     if (spieler.boundingBox.Intersects(it.boundingBox))
                     {
                         it.isVisible = false;
-                         if (it.iTyp == 1) //roterPilz
-                             spieler.spTyp = 2;
-                         if (it.iTyp == 2) //blaue Pilz
+                        if (it.iTyp == 1) //roterPilz
+                            spieler.spTyp = 2;
+                        if (it.iTyp == 2) //blaue Pilz
                             spieler.speed += 6;
-                         if (it.iTyp == 3) //Todespilz
+                        if (it.iTyp == 3) //Todespilz
                             spieler.leben -= 1;
-                         if (it.iTyp == 4) //Lebenspilz
+                        if (it.iTyp == 4) //Lebenspilz
                             spieler.leben += 1;
-                         if (it.iTyp == 5) //Lebenspilz
-                             sound.demacia.Play();
-                             spieler.leben += 1;
+                        if (it.iTyp == 5) //Demacia
+                        {
+                            sound.demacia.Play();
+                            ItemSporn();
+                            garen = true;
+                        }
                     }
                 }
         }
@@ -425,6 +456,7 @@ namespace Space
                         if (spieler.leben >= 1)
                         {
                             spieler.leben--;
+                            sound.tod.Play();
                             gs.isVisible = false;
                             break;
                         }
@@ -457,6 +489,7 @@ namespace Space
         {
             int u = -1; //Laufvariable für einzelne Texturen Maximaler u wert 26 da insgesamt 27 einzelne Pilztexturen
 
+            //Gegner trifft den Schutz
             foreach (Rectangle sp in schutz.Listebb)
             {
                 u++; //Vorhererhöhung um nicht durcheinander zu kommen
@@ -471,13 +504,29 @@ namespace Space
                         }
                     }
 
-                    foreach (Schuss s in spieler.getSchussListe()) //Teemo Schuss
+                    //Teemo Schuss zerstört Pilz
+                    foreach (Schuss s in spieler.getSchussListe())
                     {
                         if (s.isVisible == true && s.boundingBox.Intersects(sp))
                         {
                             schutz.texVisi[u] = false;
                             s.isVisible = false;
                             schutzPunkte -= 300;
+                        }
+                    }
+
+                    //Wenn gegner Pilz berühre, Pilz wird zerstört
+                    foreach (Gegner gegner in gc.ListeGegner)
+                    {
+                        gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
+                        if (gegner.isVisible == true)
+                        {
+                            if (gc.boundingBox.Intersects(sp))
+                            {
+                                schutz.texVisi[u] = false;
+                                gegner.machUnsichtbar();
+                                gc.anzahl--;
+                            }
                         }
                     }
                 }
@@ -497,6 +546,7 @@ namespace Space
                     {
                         spieler.leben--;
                         gegner.isVisible = false;
+                        sound.tod.Play();
                     }
                 }
             }
@@ -527,10 +577,11 @@ namespace Space
                 {
                     ListeItem.Clear();
                     listeAnimation.Clear();
-
+                    ListeItem.Clear();
+                    
                     foreach (Item it in ListeItem)
                         it.isVisible = false;
-                    ListeItem.Clear();
+                    
                     foreach (Animation la in listeAnimation)
                         la.isVisible= false;
                         
@@ -587,8 +638,13 @@ namespace Space
                 ListeItem.Add(item);
             }
 
-                                
-
+            if (garen == true)
+            {
+                Item item = new Item(6, 300, 0);
+                item.LoadContent(Content);
+                ListeItem.Add(item);
+                garen = false;
+            }
         }
 
         public void lvlSkip() // auslösen lvl 2
@@ -599,6 +655,9 @@ namespace Space
                 gc.ListeGegner.Clear();
                 level = Level.Lvl2;
                 gc.spornDreieck();
+                hasSporned = new bool[4]; //Item auf 3 pro Level begrenzt, zu beginn false
+                for (int i = 0; i < 3; i++)
+                    hasSporned[i] = false;
             }
         }
 

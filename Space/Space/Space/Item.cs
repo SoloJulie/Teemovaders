@@ -13,7 +13,7 @@ namespace Space
 {
     public class Item
     {
-        public Texture2D prot,pgruen,pblau,ptot,pilze, demacia;
+        public Texture2D prot, pgruen, pblau, ptot, pilze, demacia, demaciaTeemo;
         public Vector2 position;
         public int ispeed, x, y;
         public Rectangle boundingBox;
@@ -41,13 +41,27 @@ namespace Space
             
         }
 
+        public Item(int i, int a, int b) //Konstruktor für Item 6
+        {            
+            demaciaTeemo = null;
+            x = a;
+            y = b;
+            position = new Vector2(x, y);
+            ispeed = 3;
+            isVisible = true;
+            iTyp = i;
+
+        }
+
         public void LoadContent(ContentManager Content)
         {
             prot = Content.Load<Texture2D>("Pilzrot");      //iTyp = 1
             pblau = Content.Load<Texture2D>("Pilzblau");    //iTyp = 2
             ptot = Content.Load<Texture2D>("Pilztot");      //iTyp = 3
             pgruen = Content.Load<Texture2D>("Pilzgrün");     //iTyp = 4
-            demacia = Content.Load<Texture2D>("Garen schwert 2"); //DEMACIAAAAAAAA!!!!!!!!!!!!
+            demacia = Content.Load<Texture2D>("Garen schwert 2");//DEMACIAAAAAAAA!!!!!!!!!!!!
+            demaciaTeemo = Content.Load<Texture2D>("Garen schwert Gegner"); 
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -58,6 +72,7 @@ namespace Space
                 {
                     spriteBatch.Draw(prot, position, Color.White);
                 }
+
                 else if (iTyp == 2) //blauer Pilz
                 {
                     spriteBatch.Draw(pblau, position, Color.White);
@@ -72,18 +87,20 @@ namespace Space
                 {
                     spriteBatch.Draw(pgruen, position, Color.White);
                 }
-                else if (iTyp == 5) //Lebenspilz
+                else if (iTyp == 5) //Demacia
                 {
                     spriteBatch.Draw(demacia, position, Color.White);
                 }
-
+                else if (iTyp == 6) //Teemo Demacia
+                {
+                    spriteBatch.Draw(demaciaTeemo, position, Color.White);
+                } 
             }
-            
         }
 
         public void Update(GameTime gameTime)
         {
-            fallen();            
+                fallen();   
         }
 
         public int getX()

@@ -25,7 +25,7 @@ namespace Space
             this.textur = textur;
             this.position = position;
             timer = 0f; //Zählt die vergangene ZEit
-            interval = 30f; //Wie schnell werden die Bilder abgespielt
+            interval = 50f; //Wie schnell werden die Bilder abgespielt
             aFrame = 1; //aktuelles Frame
             sWidth = 50; //Weite pro einzelbild
             sHeight = 50;  //Höhe pro einzelbild

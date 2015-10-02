@@ -58,18 +58,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="opfer g rot.png">
-      <Name>opfer1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="opfer groß.png">
-      <Name>opferGr</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="P1.png">
       <Name>P1</Name>
       <Importer>TextureImporter</Importer>
@@ -236,13 +224,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demacia.wav">
-      <Name>Demacia</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Lvl song.mp3">
       <Name>Lvl song</Name>
       <Importer>Mp3Importer</Importer>
@@ -259,6 +240,27 @@
       <Name>GOsong</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Garen schwert Gegner.png">
+      <Name>Garen schwert Gegner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Demacia.wav">
+      <Name>Demacia</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Teemo lacht 3.wav">
+      <Name>Teemo lacht 3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

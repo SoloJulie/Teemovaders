@@ -12,8 +12,6 @@ Content\P7.xnb
 Content\P8.xnb
 Content\P9.xnb
 Content\Projektilblau.xnb
-Content\opferGr.xnb
-Content\opfer1.xnb
 Content\Titelbild.xnb
 Content\GameOver.xnb
 Content\Minion Magier.xnb
@@ -39,3 +37,5 @@ Content\Menusong.xnb
 Content\Menusong.wma
 Content\GOsong.xnb
 Content\GOsong.wma
+Content\Garen schwert Gegner.xnb
+Content\Teemo lacht 3.xnb

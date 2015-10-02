@@ -27,7 +27,6 @@ namespace Space
             pPunkte = 50;
         }
 
-
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
