@@ -29,10 +29,10 @@ namespace Space
 
         public void LoadContent(ContentManager Content)
         {
-            textur = Content.Load<Texture2D>("Hintergrund");
+            textur = Content.Load<Texture2D>("Lvl 1 Forrest2");
             titel = Content.Load<Texture2D>("Titelbild");
             gameover = Content.Load<Texture2D>("GameOver");
-            backLvl2 = Content.Load<Texture2D>("About_Human_World_by_NevoAngelo_Arm");
+            backLvl2 = Content.Load<Texture2D>("Lvl 2");
         }
 
         //Draw

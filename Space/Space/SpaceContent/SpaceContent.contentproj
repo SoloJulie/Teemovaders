@@ -174,13 +174,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About_Human_World_by_NevoAngelo_Arm.jpg">
-      <Name>About_Human_World_by_NevoAngelo_Arm</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Pilzblau.png">
       <Name>Pilzblau</Name>
       <Importer>TextureImporter</Importer>
@@ -261,6 +254,20 @@
       <Name>Teemo lacht 3</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lvl 1 Forrest2.jpg">
+      <Name>Lvl 1 Forrest2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Lvl 2.jpg">
+      <Name>Lvl 2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

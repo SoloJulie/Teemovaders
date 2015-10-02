@@ -40,7 +40,6 @@ C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Lacht 2.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Lacht.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Tod.xnb
-C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\About_Human_World_by_NevoAngelo_Arm.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Pilzgrün.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Menusong.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Veigar Minion.xnb
@@ -54,3 +53,5 @@ C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl s
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\GOsong.wma
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Garen schwert Gegner.xnb
 C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo lacht 3.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl 1 Forrest2.xnb
+C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl 2.xnb

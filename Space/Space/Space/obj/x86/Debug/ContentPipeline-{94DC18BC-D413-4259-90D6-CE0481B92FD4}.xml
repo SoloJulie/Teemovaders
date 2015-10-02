@@ -134,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Titelbild.xnb</Output>
-      <Time>2015-09-27T18:08:02.6009695+02:00</Time>
+      <Time>2015-10-02T03:39:56.6624628+02:00</Time>
     </Item>
     <Item>
       <Source>Game Over.jpg</Source>
@@ -216,15 +216,6 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Tod.xnb</Output>
       <Time>2015-09-28T16:40:30.683043+02:00</Time>
-    </Item>
-    <Item>
-      <Source>About_Human_World_by_NevoAngelo_Arm.jpg</Source>
-      <Name>About_Human_World_by_NevoAngelo_Arm</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\About_Human_World_by_NevoAngelo_Arm.xnb</Output>
-      <Time>2015-09-28T17:36:56.050675+02:00</Time>
     </Item>
     <Item>
       <Source>Pilzblau.png</Source>
@@ -345,6 +336,24 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo lacht 3.xnb</Output>
       <Time>2015-10-02T02:00:23.4258132+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Lvl 1 Forrest2.jpg</Source>
+      <Name>Lvl 1 Forrest2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl 1 Forrest2.xnb</Output>
+      <Time>2015-10-02T03:41:40.5774064+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Lvl 2.jpg</Source>
+      <Name>Lvl 2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl 2.xnb</Output>
+      <Time>2015-10-02T03:41:56.0822932+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

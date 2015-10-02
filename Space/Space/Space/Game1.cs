@@ -35,6 +35,13 @@ namespace Space
         List<Item> ListeItem = new List<Item>();
 
 
+        //Würfel Test
+        Model cubeModel;
+
+        Matrix worldMatrix;
+        Matrix viewMatrix;
+        Matrix projectionMatrix;
+
         //Klassen
         //Animation ani;
         Hintergrund hin;
@@ -97,6 +104,23 @@ namespace Space
         //LoadContent
         protected override void LoadContent()
         {
+            //Würfel
+            // setup the matrices
+            this.worldMatrix = Matrix.Identity;
+            this.viewMatrix = Matrix.CreateLookAt(new Vector3(5.0f, 5.0f, 5.0f), new Vector3(0.0f, 0.0f, 0.0f), Vector3.Up);
+            this.projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 1.0f, 100.0f);
+
+            // Load and setup the model
+            //this.cubeModel = Content.Load<Model>("testXNA");
+            //foreach (ModelMesh m in this.cubeModel.Meshes)
+            //{
+            //    foreach (BasicEffect e in m.Effects)
+            //    {
+            //        e.EnableDefaultLighting();
+            //    }
+            //}
+
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Punkte");
@@ -246,6 +270,7 @@ namespace Space
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
+            
 
             switch (spielStatus)
             {
@@ -253,6 +278,7 @@ namespace Space
                 case State.Menue:
                     {
                         hin.Draw(spriteBatch, status); //Wenn Status Menue, zeichne Menue Übergabe der Statusvariable an Hintergrundklasse
+                        //this.cubeModel.Draw(this.worldMatrix, this.viewMatrix, this.projectionMatrix);
                         break;
                     }
 
@@ -655,7 +681,7 @@ namespace Space
                 gc.ListeGegner.Clear();
                 level = Level.Lvl2;
                 gc.spornDreieck();
-                hasSporned = new bool[4]; //Item auf 3 pro Level begrenzt, zu beginn false
+                hasSporned = new bool[4]; //Item auf 4 pro Level begrenzt, zu beginn false
                 for (int i = 0; i < 3; i++)
                     hasSporned[i] = false;
             }
