@@ -448,7 +448,10 @@ namespace Space
             {
                 if (gegner.isVisible == true)
                 {
-                    gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
+                    if (gegner.gtyp != 2)
+                        gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.minions.Width, gc.minions.Height);
+                    else
+                        gc.boundingBox = new Rectangle((int)gegner.getX(), (int)gegner.getY(), gc.veigar.Width, gc.veigar.Height);
 
                     //ändert Gegner Typ und Gegner Aussehen
                     foreach (Item it in ListeItem)
@@ -574,7 +577,7 @@ namespace Space
 
                         if (it.iTyp == 2) //blaue Pilz
                         {
-                            spieler.speed += 6;
+                            spieler.speed += 4;
                             sound.lspeed.Play();
                         }
 
