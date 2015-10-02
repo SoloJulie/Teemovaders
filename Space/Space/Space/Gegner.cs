@@ -38,20 +38,12 @@ namespace Space
         //Content
         public void LoadContent(ContentManager Content)
         {
-            //textur = Content.Load<Texture2D>("opfer");
-            //boundingBox = new Rectangle((int)position.X, (int)position.Y, textur.Width, textur.Height);
-            
-            
         }
 
 
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            //foreach (Gegner gegner in GegnerListe)
-            //{
-            //    spriteBatch.Draw(textur, gegner.getPos(), Color.White);
-            //}
         }
 
         //Update leer
@@ -90,12 +82,7 @@ namespace Space
             isVisible = false;            
         } // Macht Gegner unsichtbar
                
-
-        public Rectangle getBounding()
-        {
-            return boundingBox;
-        }
-
+        
         public void setTyp(int t)
         {
             gtyp = t;
@@ -140,13 +127,10 @@ namespace Space
             {
                 leben = 2;
             }
+
             else if (gtyp == 2)
             {
-                leben = 2;
-            }
-            else if (gtyp == 4)
-            {
-                leben = 2;
+                leben = 10;
             }
         }
                    

@@ -13,7 +13,7 @@ namespace Space
 {
     public class Item
     {
-        public Texture2D prot, pgruen, pblau, ptot, pilze, demacia, demaciaTeemo;
+        public Texture2D prot, pgruen, pblau, ptot, pilze, demacia, demaciaTeemo, demaciaMinion;
         public Vector2 position;
         public int ispeed, x, y;
         public Rectangle boundingBox;
@@ -29,6 +29,7 @@ namespace Space
             pblau = null;
             ptot = null;
             demacia = null;
+            demaciaMinion = null;
 
             Random random = new Random();
             x = random.Next(1, 500);
@@ -37,11 +38,10 @@ namespace Space
             ispeed = 1;
             isVisible = true;
             iTyp = i;
-            iPunkte = 0;
-            
+            iPunkte = 0;            
         }
 
-        public Item(int i, int a, int b) //Konstruktor für Item 6
+        public Item(int i, int a, int b) //Konstruktor für Item 6 & 7
         {            
             demaciaTeemo = null;
             x = a;
@@ -50,7 +50,6 @@ namespace Space
             ispeed = 3;
             isVisible = true;
             iTyp = i;
-
         }
 
         public void LoadContent(ContentManager Content)
@@ -60,7 +59,8 @@ namespace Space
             ptot = Content.Load<Texture2D>("Pilztot");      //iTyp = 3
             pgruen = Content.Load<Texture2D>("Pilzgrün");     //iTyp = 4
             demacia = Content.Load<Texture2D>("Garen schwert 2");//DEMACIAAAAAAAA!!!!!!!!!!!!
-            demaciaTeemo = Content.Load<Texture2D>("Garen schwert Gegner"); 
+            demaciaTeemo = Content.Load<Texture2D>("Garen schwert Gegner");
+            demaciaMinion = Content.Load<Texture2D>("Garen schwert Gegner"); 
             
         }
 
@@ -94,6 +94,10 @@ namespace Space
                 else if (iTyp == 6) //Teemo Demacia
                 {
                     spriteBatch.Draw(demaciaTeemo, position, Color.White);
+                }
+                else if (iTyp == 7) //Gegner Demacia
+                {
+                    spriteBatch.Draw(demaciaMinion, position, Color.Black);
                 } 
             }
         }
@@ -148,6 +152,8 @@ namespace Space
                 iPunkte = 700;
             else if (iTyp == 4) 
                 iPunkte = 1000;
+            else if (iTyp == 5)
+                iPunkte = 1500;
         }
 
         public int addIPunkte()

@@ -2,6 +2,64 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
+      <Source>Punkte.spritefont</Source>
+      <Name>Punkte</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Punkte.xnb</Output>
+      <Time>2015-09-08T02:21:31.5959583+02:00</Time>
+    </Item>
+    <Item>
+      <Source>psp.fbx</Source>
+      <Name>psp</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\psp.xnb</Output>
+      <Time>2015-10-02T15:06:38.787897+02:00</Time>
+      <Dependency>
+        <Key>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\psp_0.xml</Key>
+        <Value>2015-10-02T15:06:49.2394948+02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>psp.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\psp_0.xml</Output>
+      <Time>2015-10-02T15:06:38.787897+02:00</Time>
+    </Item>
+    <Item>
+      <Source>123.fbx</Source>
+      <Name>123</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\123.xnb</Output>
+      <Time>2015-10-02T15:17:50.293305+02:00</Time>
+      <Dependency>
+        <Key>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\123_0.xml</Key>
+        <Value>2015-10-02T15:17:53.6114947+02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>123.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\obj\x86\Debug\123_0.xml</Output>
+      <Time>2015-10-02T15:17:50.293305+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Defeat 3D 512.jpg</Source>
+      <Name>Defeat 3D 512</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Defeat 3D 512.xnb</Output>
+      <Time>2015-10-02T15:39:28.88258+02:00</Time>
+    </Item>
+    <Item>
       <Source>Teemo.png</Source>
       <Name>Teemo</Name>
       <Importer>TextureImporter</Importer>
@@ -27,15 +85,6 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projectilrot.xnb</Output>
       <Time>2015-09-03T00:33:12.7250644+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Punkte.spritefont</Source>
-      <Name>Punkte</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Punkte.xnb</Output>
-      <Time>2015-09-08T02:21:31.5959583+02:00</Time>
     </Item>
     <Item>
       <Source>P1.png</Source>
@@ -173,51 +222,6 @@
       <Time>2015-09-28T02:11:36.9797634+02:00</Time>
     </Item>
     <Item>
-      <Source>Teemo Bewaffnet!.wav</Source>
-      <Name>Teemo Bewaffnet!</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Bewaffnet!.xnb</Output>
-      <Time>2015-09-28T16:40:30.525034+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Teemo Das muss wehtun.wav</Source>
-      <Name>Teemo Dmw</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Dmw.xnb</Output>
-      <Time>2015-09-28T16:40:30.5710366+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Teemo Lacht 2.wav</Source>
-      <Name>Teemo Lacht 2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Lacht 2.xnb</Output>
-      <Time>2015-09-28T16:40:30.6080387+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Teemo Lacht.wav</Source>
-      <Name>Teemo Lacht</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Lacht.xnb</Output>
-      <Time>2015-09-28T16:40:30.6490411+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Teemo Tod.wav</Source>
-      <Name>Teemo Tod</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Tod.xnb</Output>
-      <Time>2015-09-28T16:40:30.683043+02:00</Time>
-    </Item>
-    <Item>
       <Source>Pilzblau.png</Source>
       <Name>Pilzblau</Name>
       <Importer>TextureImporter</Importer>
@@ -281,6 +285,69 @@
       <Time>2015-09-30T21:35:32.6397496+02:00</Time>
     </Item>
     <Item>
+      <Source>Garen schwert Gegner.png</Source>
+      <Name>Garen schwert Gegner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Garen schwert Gegner.xnb</Output>
+      <Time>2015-10-02T01:43:34.7171184+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Lvl 1 Forrest2.jpg</Source>
+      <Name>Lvl 1 Forrest2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl 1 Forrest2.xnb</Output>
+      <Time>2015-10-02T03:41:40.5774064+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Teemo Bewaffnet!.wav</Source>
+      <Name>Teemo Bewaffnet!</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Bewaffnet!.xnb</Output>
+      <Time>2015-09-28T16:40:30.525034+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Teemo Das muss wehtun.wav</Source>
+      <Name>Teemo Dmw</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Dmw.xnb</Output>
+      <Time>2015-09-28T16:40:30.5710366+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Teemo Lacht 2.wav</Source>
+      <Name>Teemo Lacht 2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Lacht 2.xnb</Output>
+      <Time>2015-09-28T16:40:30.6080387+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Teemo Lacht.wav</Source>
+      <Name>Teemo Lacht</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Lacht.xnb</Output>
+      <Time>2015-09-28T16:40:30.6490411+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Teemo Tod.wav</Source>
+      <Name>Teemo Tod</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo Tod.xnb</Output>
+      <Time>2015-09-28T16:40:30.683043+02:00</Time>
+    </Item>
+    <Item>
       <Source>Demacia.wav</Source>
       <Name>Demacia</Name>
       <Importer>WavImporter</Importer>
@@ -288,6 +355,15 @@
       <Options>None</Options>
       <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Demacia.xnb</Output>
       <Time>2015-10-02T01:46:43.2058993+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Teemo lacht 3.wav</Source>
+      <Name>Teemo lacht 3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo lacht 3.xnb</Output>
+      <Time>2015-10-02T02:00:23.4258132+02:00</Time>
     </Item>
     <Item>
       <Source>Lvl song.mp3</Source>
@@ -320,40 +396,130 @@
       <Time>2015-10-01T14:00:01.2750453+02:00</Time>
     </Item>
     <Item>
-      <Source>Garen schwert Gegner.png</Source>
-      <Name>Garen schwert Gegner</Name>
+      <Source>Projektil violett.png</Source>
+      <Name>Projektil violett</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Garen schwert Gegner.xnb</Output>
-      <Time>2015-10-02T01:43:34.7171184+02:00</Time>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Projektil violett.xnb</Output>
+      <Time>2015-10-02T17:06:53.3595469+02:00</Time>
     </Item>
     <Item>
-      <Source>Teemo lacht 3.wav</Source>
-      <Name>Teemo lacht 3</Name>
+      <Source>Super Teemo.png</Source>
+      <Name>Super Teemo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Super Teemo.xnb</Output>
+      <Time>2015-10-02T17:11:33.1225485+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Super Teemo - Emblem.png</Source>
+      <Name>Super Teemo - Emblem</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Super Teemo - Emblem.xnb</Output>
+      <Time>2015-10-02T17:26:21.1703419+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Lulu ariba.wav</Source>
+      <Name>Lulu ariba</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Teemo lacht 3.xnb</Output>
-      <Time>2015-10-02T02:00:23.4258132+02:00</Time>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lulu ariba.xnb</Output>
+      <Time>2015-10-02T18:08:06.0196111+02:00</Time>
     </Item>
     <Item>
-      <Source>Lvl 1 Forrest2.jpg</Source>
-      <Name>Lvl 1 Forrest2</Name>
+      <Source>Lulu brumm.wav</Source>
+      <Name>Lulu brumm</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lulu brumm.xnb</Output>
+      <Time>2015-10-02T18:08:05.9906094+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Lulu verwandlibus.wav</Source>
+      <Name>Lulu verwandlibus</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lulu verwandlibus.xnb</Output>
+      <Time>2015-10-02T18:08:06.0166109+02:00</Time>
+    </Item>
+    <Item>
+      <Source>lvl 1.jpg</Source>
+      <Name>lvl1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl 1 Forrest2.xnb</Output>
-      <Time>2015-10-02T03:41:40.5774064+02:00</Time>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\lvl1.xnb</Output>
+      <Time>2015-10-02T19:37:59.8531207+02:00</Time>
     </Item>
     <Item>
-      <Source>Lvl 2.jpg</Source>
-      <Name>Lvl 2</Name>
+      <Source>forest.jpg</Source>
+      <Name>forest</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Lvl 2.xnb</Output>
-      <Time>2015-10-02T03:41:56.0822932+02:00</Time>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\forest.xnb</Output>
+      <Time>2015-10-02T19:42:46.1124938+02:00</Time>
+    </Item>
+    <Item>
+      <Source>dark-forest.jpg</Source>
+      <Name>dark-forest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\dark-forest.xnb</Output>
+      <Time>2015-10-02T20:07:46.0012825+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Veigar Angst.wav</Source>
+      <Name>Veigar Angst</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Veigar Angst.xnb</Output>
+      <Time>2015-10-02T20:36:42.9306292+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Veigar aufgeben.wav</Source>
+      <Name>Veigar aufgeben</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Veigar aufgeben.xnb</Output>
+      <Time>2015-10-02T20:36:42.9196286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Veigar Familie.wav</Source>
+      <Name>Veigar Familie</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Veigar Familie.xnb</Output>
+      <Time>2015-10-02T20:36:42.9246289+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Veigar Seele.wav</Source>
+      <Name>Veigar Seele</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Veigar Seele.xnb</Output>
+      <Time>2015-10-02T20:36:42.8166227+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Victory700.png</Source>
+      <Name>Victory700</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julie\Desktop\Teemovaders\Space\Space\Space\bin\x86\Debug\Content\Victory700.xnb</Output>
+      <Time>2015-10-02T21:27:58.4415384+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

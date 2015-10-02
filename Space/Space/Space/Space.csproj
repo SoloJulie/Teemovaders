@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Gegner.cs" />
     <Compile Include="GegnerContainer.cs" />
     <Compile Include="gegnerSchuss.cs" />

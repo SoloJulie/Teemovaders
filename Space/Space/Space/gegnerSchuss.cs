@@ -28,9 +28,9 @@ namespace Space
         }
 
         //Draw
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Texture2D akTex)
         {
-            spriteBatch.Draw(texgSchuss, position, Color.White);
+            spriteBatch.Draw(akTex, position, Color.White);
         }
     }
 }

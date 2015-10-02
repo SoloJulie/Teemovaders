@@ -12,7 +12,7 @@ namespace Space
     //Bestimmt welcher Hintergrund gezeichnet wird, je nach übergebener Statusvariable aus der Game Klasse
     class Hintergrund
     {
-        public Texture2D textur, titel, gameover, backLvl2;
+        public Texture2D textur, titel, gameover, backLvl2, backlvl3, gewonnen;
         public Vector2 position;
         public int status;
 
@@ -23,16 +23,19 @@ namespace Space
             titel = null;
             gameover = null;
             backLvl2 = null;
-
+            backlvl3 = null;
+            gewonnen = null;
             position = new Vector2(0, 0);
         }
 
         public void LoadContent(ContentManager Content)
         {
-            textur = Content.Load<Texture2D>("Lvl 1 Forrest2");
+            textur = Content.Load<Texture2D>("lvl1");
             titel = Content.Load<Texture2D>("Titelbild");
             gameover = Content.Load<Texture2D>("GameOver");
-            backLvl2 = Content.Load<Texture2D>("Lvl 2");
+            backLvl2 = Content.Load<Texture2D>("forest");
+            backlvl3 = Content.Load<Texture2D>("dark-forest");
+            gewonnen = Content.Load<Texture2D>("Victory700"); 
         }
 
         //Draw
@@ -50,16 +53,24 @@ namespace Space
                 spriteBatch.Draw(textur, position, Color.White);
             }
 
-            if (status == 22) //spielen, lvl2
+            else if (status == 22 || status == 21) //spielen, lvl2
             {
                 spriteBatch.Draw(backLvl2, position, Color.White);
             }
 
-            if (status == 3) //gameOver
+            else if (status == 23) //spielen, lvl2
+            {
+                spriteBatch.Draw(backlvl3, position, Color.White);
+            }
+            
+            else if (status == 3) //gameOver
             {
                 spriteBatch.Draw(gameover, position, Color.White);
             }
-
+            else if (status == 4) //Gewonnen
+            {
+                spriteBatch.Draw(gewonnen, position, Color.White);
+            }
         }
 
         //Update

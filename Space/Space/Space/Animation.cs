@@ -14,7 +14,7 @@ namespace Space
         public Texture2D textur;
         public Vector2 position, origin;
         public float timer, interval;
-        public int aFrame, sWidth, sHeight;
+        public int aFrame, sWidth, sHeight, abstand;
         public Rectangle sourceRect;
         public bool isVisible;
         public List<Animation> listeAnimation;
@@ -24,6 +24,7 @@ namespace Space
         {
             this.textur = textur;
             this.position = position;
+            abstand = 40;
             timer = 0f; //Zählt die vergangene ZEit
             interval = 50f; //Wie schnell werden die Bilder abgespielt
             aFrame = 1; //aktuelles Frame
@@ -54,38 +55,16 @@ namespace Space
                 aFrame = 0;
             }
 
-            sourceRect = new Rectangle(aFrame * sWidth, 0, sWidth, sHeight); //
-            origin = new Vector2(sourceRect.Width / 40, sourceRect.Height / 40);
-
-            //foreach (Animation a in listeAnimation)
-            //{
-            //    a.Update(gameTime);
-            //}
-
-            
+            sourceRect = new Rectangle(aFrame * sWidth, 0, sWidth, sHeight);
+            origin = new Vector2(sourceRect.Width / abstand, sourceRect.Height / abstand);            
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             if (isVisible == true)
             {
-                //foreach (Animation a in listeAnimation)
-                //{
-                    spriteBatch.Draw(textur, position, sourceRect, Color.White, 0f, origin, 1.0f, SpriteEffects.None, 0);
-                //}
+                    spriteBatch.Draw(textur, position, sourceRect, Color.White, 0f, origin, 1.0f, SpriteEffects.None, 0);            
             }     
-        }
-
-        public void minionTod() //Animation der Minion Tode
-        {
-            for (int i = 0; i < listeAnimation.Count; i++)
-            {
-                if (listeAnimation[i].isVisible == false)
-                {
-                    listeAnimation.RemoveAt(i);
-                    i--;
-                }
-            }
         }
     }            
 }

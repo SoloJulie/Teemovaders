@@ -11,7 +11,7 @@ namespace Space
 {
     public class GegnerContainer
     {
-        public Texture2D minions, minGr, minKl, texProjektil;
+        public Texture2D minions, minGr, minVei, texProjektil, veigar;
         public int speed, maxBew, tempBew;
         public List<Gegner> ListeGegner;
         public List<gegnerSchuss> ListeGProjektil;
@@ -21,17 +21,21 @@ namespace Space
         public bool zurueck, runter;
         public Random random;
         public int m;
+        public float warten;
 
 
         public GegnerContainer()
         {
             ListeGegner = new List<Gegner>();
             ListeGProjektil = new List<gegnerSchuss>();
-            maxBew = 250;
-            tempBew = 0;
             anzahl = 0;
             zurueck = false;
             runter = false;
+            veigar = null;
+            minions = null;
+            minGr = null;
+            minVei = null;
+            texProjektil = null;
         }
 
 
@@ -39,8 +43,9 @@ namespace Space
         {
             minions = Content.Load<Texture2D>("Minion Magier");
             minGr = Content.Load<Texture2D>("Minionn Magier 2");
-            minKl = Content.Load<Texture2D>("Minionn Magier 2");
-            texProjektil = Content.Load<Texture2D>("Projektilblau");
+            texProjektil = Content.Load<Texture2D>("Projektil violett");
+            veigar = Content.Load<Texture2D>("Veigar Minion");
+            minVei = Content.Load<Texture2D>("Minion Magier");
         }
 
         //Draw
@@ -52,55 +57,48 @@ namespace Space
                 {
                     if (gegner.gtyp == 0) //welcher Gegnertyp wird gezeichnet
                     {
-                        spriteBatch.Draw(minions, gegner.getPos(), Color.White);                        
+                        spriteBatch.Draw(minions, gegner.getPos(), Color.White);
                     }
 
                     else if (gegner.gtyp == 1) //welcher Gegnertyp wird gezeichnet
                     {
                         spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-                                                
                     }
 
-                    else if (gegner.gtyp == 2) //welcher Gegnertyp wird gezeichnet
+                    else //welcher Gegnertyp wird gezeichnet
                     {
-                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-                        
-                    }
-
-                    else if (gegner.gtyp == 3) //welcher Gegnertyp wird gezeichnet
-                    {
-                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-                        gegner.isVisible = false;
-                        anzahl--;
-                    }
-
-                    else if (gegner.gtyp == 4) //welcher Gegnertyp wird gezeichnet
-                    {
-                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-                        
-                    }
-
-                    else if (gegner.gtyp == 5) //welcher Gegnertyp wird gezeichnet
-                    {
-                        spriteBatch.Draw(minGr, gegner.getPos(), Color.White);
-
+                        spriteBatch.Draw(veigar, gegner.getPos(), Color.White);
                     }
                 }
-            }
 
-            //gegner Schüsse Zeichnen
-            foreach (gegnerSchuss gs in ListeGProjektil)
-                gs.Draw(spriteBatch);
+                //gegner Schüsse Zeichnen
+                if (gegner.gtyp == 1 || gegner.gtyp == 0)
+                {
+                    foreach (gegnerSchuss gs in ListeGProjektil)
+                        gs.Draw(spriteBatch, texProjektil);
+                }
+
+                else
+                {
+                    foreach (gegnerSchuss gs in ListeGProjektil)
+                        gs.Draw(spriteBatch, minVei);
+                }
+            }
         }
 
         //Update
         public void Update(GameTime gameTime)
         {
-            bewegen();
-            remove();
-            schneller();
-            Schuss();
-            updateGegnerSchussListe();
+            warten += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (warten >= 0.5)
+            {
+                bewegen();
+                remove();
+                schneller();
+                Schuss();
+                updateGegnerSchussListe();
+            }
+            
         }
 
         public void spornRechteck()
@@ -124,52 +122,59 @@ namespace Space
             }
             groesseRecht = anzahl; //zur Berechnung der Geschwindigtkeit, die originalgröße der Liste übergeben
         }
-
-
+        
         public void spornDreieck()
         {
-                    int x = 200;
-                    int y = 0;
-                    int max = 5; //Anzahl Reihen
-                    int tempX = 80;
-                    int tempY = 50;
-                    int tempX2 = 35;
+                int x = 200;
+                int y = 0;
+                int max = 5; //Anzahl Reihen
+                int tempX = 80;
+                int tempY = 50;
+                int tempX2 = 35;
 
-                    for (int i = 1; i <= max; i++) //Spaltei
+                for (int i = 1; i <= max; i++) //Reihe
+                {
+                    for (int j = 0; j < i; j++) 
                     {
-                        for (int j = 0; j < i; j++) 
-                        {
-                            Gegner gegner = new Gegner();
-                            gegner.isVisible = true;
-                            gegner.setXPos(x + ((max - i) * tempX2) + j * tempX);
-                            gegner.setYPos(y + i * tempY);
-                            gegner.setzeLeben(gegner.getGtyp());
-                            anzahl++;
+                        Gegner gegner = new Gegner();
+                        gegner.isVisible = true;
+                        gegner.setXPos(x + ((max - i) * tempX2) + j * tempX);
+                        gegner.setYPos(y + i * tempY);
+                        gegner.setzeLeben(gegner.getGtyp());
+                        anzahl++;
 
-                            if (i == 1 && j == 0)
-                            {
-                                gegner.gtyp = 1;
-                            }
-                            else
-                            {
-                                gegner.gtyp = 0;
-                            }
-                            ListeGegner.Add(gegner);
+                        if ((i == 1 && j == 0) || (i == 3 && j < 5)) //Verwandlung einiger Minions in KLasse 2 Minion
+                        {
+                            gegner.gtyp = 1;
+                            gegner.setzeLeben(gegner.getGtyp());
+
                         }
-                    }       
+                        else
+                        {
+                            gegner.gtyp = 0;
+                        }
+                        
+                        ListeGegner.Add(gegner);
+                    }
+                }       
             groesseDrei = anzahl;
         }
 
-        
-        public void sichtbar()
+        public void spornVeigar()
         {
-            foreach (Gegner gegner in ListeGegner)
-            {
-                if (gegner.isVisible == false)
-                    ListeGegner.Remove(gegner);
-            }
-        }
+            int x = 200;
+            int y = 100;
 
+            Gegner gegner = new Gegner();
+            gegner.isVisible = true;
+            gegner.setXPos(x);
+            gegner.setYPos(y);
+            gegner.gtyp = 2;
+            gegner.setzeLeben(gegner.getGtyp());
+            ListeGegner.Add(gegner);
+            anzahl++;
+        }
+               
 
         public void remove()
         {
@@ -188,6 +193,14 @@ namespace Space
 
         public void bewegen()
         {
+            
+            tempBew = 0;
+            if (groesseDrei != 0) //Andere Abstandsberechung für dreieck
+                maxBew = 150; 
+            else
+                maxBew = 300;
+
+            
             if (runter == true)  //Runter ist true, also nach unten gehen 
             {
                 foreach (Gegner gegner in ListeGegner)
@@ -247,7 +260,7 @@ namespace Space
 
                         GProjektil.isVisible = true;
 
-                        if (ListeGProjektil.Count < 5) //Maximal 5 Projektile zur selben Zeit möglich
+                        if (ListeGProjektil.Count < 2) //Maximal 5 Projektile zur selben Zeit möglich
                             ListeGProjektil.Add(GProjektil);
                 }
         }

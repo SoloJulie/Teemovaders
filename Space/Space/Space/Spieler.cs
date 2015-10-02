@@ -12,7 +12,7 @@ namespace Space
 {
     public class Spieler
     {
-        public Texture2D textur, texProjektil;
+        public Texture2D textur, superT, texProjektil, superProjekt;
         public Vector2 position;
         public int speed, leben, spTyp;
         public float pDelay, pD; //Verhindern von Dauerfeuer
@@ -27,9 +27,11 @@ namespace Space
         {
             ListeSchuss = new List<Schuss>(); 
             textur = null;
+            superT = null;
+            superProjekt = null;
             position = new Vector2(300, 450); //Teemo Sporn 300,450 x,y
             speed = 5;
-            pD = 10; // Um änderungen in Schussmethode nicht 2mal durch Wert Ändern zu müssen, nur zur Wertanpassung / vereinfachung gedacht
+            pD = 25; // Um änderungen in Schussmethode nicht 2mal durch Wert Ändern zu müssen, nur zur Wertanpassung / vereinfachung gedacht
             pDelay = pD;
             isVisible = true;
             leben = 3;
@@ -40,16 +42,30 @@ namespace Space
         public void LoadContent(ContentManager Content)
         {
             textur = Content.Load<Texture2D>("Teemo");
-            texProjektil = Content.Load<Texture2D>("teemoPfeil");  
+            superT = Content.Load<Texture2D>("Super Teemo");
+            texProjektil = Content.Load<Texture2D>("teemoPfeil");
+            superProjekt = Content.Load<Texture2D>("Super Teemo - Emblem");  
         }
 
         //Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textur, position, Color.White);
+            if (spTyp == 1)
+            {
+                spriteBatch.Draw(textur, position, Color.White);
+                foreach (Schuss p in ListeSchuss)
+                    p.Draw(spriteBatch, texProjektil);
+            }
 
-            foreach (Schuss p in ListeSchuss)
-                p.Draw(spriteBatch);
+            else 
+            {
+                spriteBatch.Draw(superT, position, Color.White);
+
+                foreach (Schuss p in ListeSchuss)
+                    p.Draw(spriteBatch, superProjekt);
+            }
+
+            
         }
 
         
